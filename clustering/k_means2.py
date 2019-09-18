@@ -46,6 +46,7 @@ class Kmeans:
         return distance
 
     def find_closest_cluster(self, distance):
+    	print(type(np.argmin(distance, axis=1)))
     	return np.argmin(distance, axis=1)
 
     def compute_sse(self, X, labels, centroids):
@@ -60,9 +61,6 @@ class Kmeans:
             old_centroids = self.centroids
             distance = self.compute_distance(X, old_centroids)
             self.labels = self.find_closest_cluster(distance)
-
-            print(type(self.labels))
-
             self.centroids = self.compute_centroids(X, self.labels)
             if np.all(old_centroids == self.centroids):
                 break

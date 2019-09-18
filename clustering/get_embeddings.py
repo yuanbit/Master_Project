@@ -24,29 +24,45 @@ X = embeddings[:-1]
 
 # KMeans from sklearn
 kmeans = KMeans(n_clusters=10, random_state=0).fit(X)
-l = kmeans.labels_
-print(l)
+print(kmeans.labels_)
+print("\n")
+print(kmeans.cluster_centers_)
+print("\n")
 # y = embeddings[-1].reshape(1, -1)
 # p = kmeans.predict(y)
 # print(p)
 
 # KMeans implementation
-model = K_Means(k=10)
+model = K_Means(num_clusters=10)
 model.fit(X)
 
-# colors of plot
-colors = 10*["g","r","c","b","k"]
+print(model.centroids)
+print("\n")
+print(model.labels)
+# print("\n")
+# print(model.label_feature)
 
-# plot centroids
-for centroid in model.centroids:
-    plt.scatter(model.centroids[centroid][0], model.centroids[centroid][1],
-                marker="o", color="k", s=50, linewidths=5)
+print("\n")
+print(model.predict(embeddings[-1].reshape(1, -1)))
 
-# plot datapoints in each colored cluster
-for classification in model.classes:
-    color = colors[classification]
-    for feature in model.classes[classification]:
-        plt.scatter(feature[0], feature[1], marker="x", color=color, s=40, linewidths=5)
+########### Plotting ####################
+#plt.scatter(X[:,0], X[:,1], s=150)
+
+#colors of plot
+# colors = 10*["g","r","c","b","k"]
+
+# #plot centroids
+# for k in range(model.num_clusters):
+
+#     plt.scatter(model.centroids[k][0], model.centroids[k][1], marker="o", color="k", s=30, linewidths=5)
+
+# for i in model.labels:
+#   color = colors[i]
+#   for feature in X[model.labels == i]:
+#       plt.scatter(feature[0], feature[1], marker="x", color=color, s=30, linewidths=5)
+
+# plt.show()
+
 
 # Predict new datapoint
 ##unknowns = np.array([[1,3],
@@ -65,12 +81,12 @@ for classification in model.classes:
 # Datapoints in each cluster
 #print(model.classes)
 
-clusters = model.classes
+#clusters = model.classes
 
 #for i in clusters.get(0):
 	#print(i)
 
-a = np.round(clusters.get(0)[0], decimals=6)
+#a = np.round(clusters.get(0)[0], decimals=6)
 
 # print(a)
 # print(embeddings[0])
@@ -84,8 +100,8 @@ a = np.round(clusters.get(0)[0], decimals=6)
 # 		if np.array_equal(i, embeddings[j]) == True:
 # 			print(label_strings[j])
 
-print(len(clusters))
+# print(len(clusters))
 
-for key, value in clusters.items():
-	print(key)
+# for key, value in clusters.items():
+# 	print(key)
 	#print(len(value))

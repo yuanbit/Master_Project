@@ -3,19 +3,6 @@ import matplotlib.pyplot as plt
 from matplotlib import style
 style.use('ggplot')
 
-X = np.array([[1, 2],
-              [1.5, 1.8],
-              [5, 8 ],
-              [8, 8],
-              [1, 0.6],
-              [9,11],
-              [1,3],
-              [8,9],
-              [0,3],
-              [5,4],
-              [6,4],])
-
-
 
 class K_Means:
     '''Implementing Kmeans algorithm.'''
@@ -40,12 +27,12 @@ class K_Means:
         # Dimension: number of data points * k
         # Rows: data point
         # Cols: centroid
-        distances = np.zeros((X.shape[0], self.num_clusters))
+        distances = np.zeros((data.shape[0], self.num_clusters))
 
         # For each centroid
         for i in range(self.num_clusters):
             # Compute Euclidean distance to data point
-            row_norm = np.linalg.norm(X - centroids[i, :], axis=1)
+            row_norm = np.linalg.norm(data - centroids[i, :], axis=1)
             # Set distance in matrix
             distances[:, i] = row_norm
 
@@ -60,12 +47,13 @@ class K_Means:
     def compute_new_centroids(self, data, labels):
 
         # Initialize dimension for new centroids
-        centroids = np.zeros((self.num_clusters, X.shape[1]))
+        centroids = np.zeros((self.num_clusters, data.shape[1]))
 
         for i in range(self.num_clusters):
             # Compute the average of all data points for each label (cluster)
             # Assign new centroids for each cluster as the average 
-            centroids[i, :] = np.mean(X[labels == i, :], axis=0)
+            if len(data[labels == 0, :]) != 0:
+                centroids[i, :] = np.mean(data[labels == i, :], axis=0)
 
         return centroids
 
@@ -99,18 +87,40 @@ class K_Means:
 
                 self.label_feature[i].append(feature)
 
+    def predict(self, data):
+
+        distance = self.distance_from_centroid(data, self.centroids)
+
+        return self.compute_closest_centroid(distance)
 
 
-model = K_Means(num_clusters=3)
-model.fit(X)
+##### Testing #################
 
-print(model.centroids)
-print("\n")
-print(model.labels)
-print("\n")
-print(model.label_feature)
+# X = np.array([[1, 2],
+#               [1.5, 1.8],
+#               [5, 8 ],
+#               [8, 8],
+#               [1, 0.6],
+#               [9,11],
+#               [1,3],
+#               [8,9],
+#               [0,3],
+#               [5,4],
+#               [6,4],])
 
+# Y = np.array([[1,1], [8, 8.5]])
 
+# model = K_Means(num_clusters=3)
+# model.fit(X)
+
+# print(model.centroids)
+# print("\n")
+# print(model.labels)
+# print("\n")
+# print(model.label_feature)
+
+# print("\n")
+# print(model.predict(Y))
 
 
 ########### Plotting ####################
