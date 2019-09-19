@@ -5,29 +5,46 @@ import sys
 import numpy as np
 from sklearn.cluster import KMeans
 from k_means import K_Means
+import pandas as pd
 
-## TODO: create python dict: keys: label_strings, values: embeddings
+def get_cluster_labels(labels, names):
+
+    # Create dictionary
+    label_name = {}
+
+    for i in range(10):
+            
+        label_name[i] = []
+
+    for j in range(len(labels)):
+
+        label_name[labels[j]].append(names[j])
+
+    return label_name
+
+def output_cluster(label_name):
+
+    cluster_output = pd.DataFrame(list(label_name.items()))
+
+    cluster_output.to_csv("cluster_output.csv", index=False, header=False, sep="\t")
+
 
 embeddings = np.round(np.load("embeddings/embeddings.npy"), decimals=6)
 labels = np.load("embeddings/labels.npy")
 label_strings = np.load("embeddings/label_strings.npy")
 
-embedding_label = {}
-
-for i in range(len(embeddings)-1):
-	embedding_label[label_strings[i]] = embeddings[i] 
-
-#print(embedding_label)
 
 # Clustering
-X = embeddings[:-1]
+X = np.round(embeddings[:-1], decimals=6)
+# label: names
+names = label_strings[:-1]
 
 # KMeans from sklearn
 kmeans = KMeans(n_clusters=10, random_state=0).fit(X)
-print(kmeans.labels_)
-print("\n")
-print(kmeans.cluster_centers_)
-print("\n")
+# print(kmeans.labels_)
+# print("\n")
+# print(kmeans.cluster_centers_)
+# print("\n")
 # y = embeddings[-1].reshape(1, -1)
 # p = kmeans.predict(y)
 # print(p)
@@ -39,11 +56,19 @@ model.fit(X)
 print(model.centroids)
 print("\n")
 print(model.labels)
-# print("\n")
+print("\n")
 # print(model.label_feature)
 
-print("\n")
-print(model.predict(embeddings[-1].reshape(1, -1)))
+label_names = get_cluster_labels(model.labels, names)
+output_cluster(label_names)
+
+
+
+
+########### Prediction ###################
+
+# print("\n")
+# print(model.predict(embeddings[-1].reshape(1, -1)))
 
 ########### Plotting ####################
 #plt.scatter(X[:,0], X[:,1], s=150)
@@ -77,31 +102,3 @@ print(model.predict(embeddings[-1].reshape(1, -1)))
 ##
 
 #plt.show()
-
-# Datapoints in each cluster
-#print(model.classes)
-
-#clusters = model.classes
-
-#for i in clusters.get(0):
-	#print(i)
-
-#a = np.round(clusters.get(0)[0], decimals=6)
-
-# print(a)
-# print(embeddings[0])
-
-# print(np.array_equal(a, embeddings[0]))
-
-# fc = []
-
-# for i in clusters.get(1):
-# 	for j in range(len(embeddings)):
-# 		if np.array_equal(i, embeddings[j]) == True:
-# 			print(label_strings[j])
-
-# print(len(clusters))
-
-# for key, value in clusters.items():
-# 	print(key)
-	#print(len(value))
