@@ -5,8 +5,7 @@ style.use('ggplot')
 
 
 class K_Means:
-    '''Implementing Kmeans algorithm.'''
-
+    
     def __init__(self, num_clusters, max_iter=300):
 
         self.num_clusters = num_clusters
@@ -93,20 +92,41 @@ class K_Means:
 
         return self.compute_closest_centroid(distance)
 
+    def get_cluster_labels(self, labels, names):
+
+        # dictionary with cluster id and array of names of faces
+        label_name = {}
+
+        for i in range(10): 
+            label_name[i] = []
+
+        for j in range(len(labels)):
+            label_name[labels[j]].append(names[j])
+
+        # Sort results in alphabetical order
+        label_name_sorted = sorted(label_name.items() ,  key=lambda x: x[1])
+
+        clusters = []
+
+        for i in range(len(label_name_sorted)):
+            clusters.append(label_name_sorted[i][1])
+
+        return clusters
+
 
 ##### Testing #################
 
-X = np.array([[1, 2],
-              [1.5, 1.8],
-              [5, 8 ],
-              [8, 8],
-              [1, 0.6],
-              [9,11],
-              [1,3],
-              [8,9],
-              [0,3],
-              [5,4],
-              [6,4],])
+# X = np.array([[1, 2],
+#               [1.5, 1.8],
+#               [5, 8 ],
+#               [8, 8],
+#               [1, 0.6],
+#               [9,11],
+#               [1,3],
+#               [8,9],
+#               [0,3],
+#               [5,4],
+#               [6,4],])
 
 # Y = np.array([[1,1], [8, 8.5]])
 

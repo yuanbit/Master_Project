@@ -1,0 +1,11 @@
+Questions:
+
+-Ask if precision and recall is correct
+-evaluation on the clustering results or prediction or both?
+-precision, recall, f-measure differ depending on the initial centroids of k-means, for the evaluation should I take the average of n trials?
+
+-Sufficient to implement 2 algorithms? k-means and threshold
+	-evaluate and compare
+-3 experiments with different data size
+-coding standards
+-length of report
