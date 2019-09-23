@@ -6,10 +6,11 @@ style.use('ggplot')
 
 class K_Means:
     
-    def __init__(self, num_clusters, max_iter=300):
+    def __init__(self, num_clusters, max_iter=300, k_means_plus_plus=False):
 
         self.num_clusters = num_clusters
         self.max_iter = max_iter
+        self.k_means_plus_plus = k_means_plus_plus
         
 
     def initialize_centroids(self, data):
@@ -19,8 +20,49 @@ class K_Means:
 
         return centroids
 
+    def kmeans_plus_plus(self, data):
 
-    def distance_from_centroid(self, data, centroids):
+        # Get random index from data
+        i = np.random.randint(0, data.shape[0])
+
+        # Initialize first random centroid
+        centroid = np.array([data[i]])
+
+        # Substract the dataset with the first chosen centroid
+        new_data = np.delete(data, (i), axis=0)
+
+        # Pick the next k-1 centroids
+        for k in range(1, self.num_clusters):
+
+            # Get the distance of the data points to the nearest centroid
+            D = np.array([])
+
+            # For each datapoint
+            for x in new_data:
+                # Compute the squared Euclidian distance from the nearest centroid (with minimum distance)
+                D = np.append(D, np.min(np.square(np.linalg.norm(x - centroid))))
+
+            # Probability of choosing the next centroid (proportional to ||c_i-x||^2)
+            # These are the probabilities of choosing the particular data point as the next centroid
+            prob= D/np.sum(D)
+            cummulative_prob= np.cumsum(prob)
+
+            r = np.random.random()
+            # Get index of the first cum prob that is greater than chosen random number
+            #idx = np.where(cummulative_prob >= r)[0][0]
+
+            idx = np.argmax(prob)
+
+            # Append the next centroid
+            centroid = np.append(centroid,[new_data[idx]],axis=0)
+
+            # Substract the dataset with the chosen centroids
+            new_data = np.delete(new_data, (idx), axis=0)
+            
+        return centroid
+
+
+    def distance(self, data, centroids):
 
         # Initialize matrix for the distances of each data point to the centroids
         # Dimension: number of data points * k
@@ -51,20 +93,22 @@ class K_Means:
         for i in range(self.num_clusters):
             # Compute the average of all data points for each label (cluster)
             # Assign new centroids for each cluster as the average 
-            if len(data[labels == 0, :]) != 0:
-                centroids[i, :] = np.mean(data[labels == i, :], axis=0)
+            centroids[i, :] = np.mean(data[labels == i, :], axis=0)
 
         return centroids
 
     def fit(self, data):
 
-        self.centroids = self.initialize_centroids(data)
+        if self.k_means_plus_plus == False:
+            self.centroids = self.initialize_centroids(data)
+        else:
+            self.centroids = self.kmeans_plus_plus(data)
 
         for i in range(self.max_iter):
 
             prev_centroids = self.centroids
 
-            distances = self.distance_from_centroid(data, prev_centroids)
+            distances = self.distance(data, prev_centroids)
             # The indices represent the row indices of the data
             self.labels = self.compute_closest_centroid(distances)
             # Compute new centroids
@@ -88,7 +132,7 @@ class K_Means:
 
     def predict(self, data):
 
-        distance = self.distance_from_centroid(data, self.centroids)
+        distance = self.distance(data, self.centroids)
 
         return self.compute_closest_centroid(distance)
 
@@ -97,7 +141,7 @@ class K_Means:
         # dictionary with cluster id and array of names of faces
         label_name = {}
 
-        for i in range(10): 
+        for i in range(self.num_clusters): 
             label_name[i] = []
 
         for j in range(len(labels)):
@@ -116,25 +160,28 @@ class K_Means:
 
 ##### Testing #################
 
-# X = np.array([[1, 2],
-#               [1.5, 1.8],
-#               [5, 8 ],
-#               [8, 8],
-#               [1, 0.6],
-#               [9,11],
-#               [1,3],
-#               [8,9],
-#               [0,3],
-#               [5,4],
-#               [6,4],])
+X = np.array([[1, 2],
+              [1.5, 1.8],
+              [5, 8 ],
+              [8, 8],
+              [1, 0.6],
+              [9,11],
+              [1,3],
+              [8,9],
+              [0,3],
+              [5,4],
+              [6,4],])
+
+
+
 
 # Y = np.array([[1,1], [8, 8.5]])
 
 # model = K_Means(num_clusters=3)
 # model.fit(X)
 
-# print(model.centroids)
-# print("\n")
+# # print(model.centroids)
+# # print("\n")
 # print(model.labels)
 # print("\n")
 # print(model.label_feature)
@@ -146,17 +193,18 @@ class K_Means:
 ########### Plotting ####################
 # #plt.scatter(X[:,0], X[:,1], s=150)
 
+# k = 3
 # #colors of plot
 # colors = 10*["g","r","c","b","k"]
 
 # #plot centroids
 # for k in range(k):
 
-#     plt.scatter(centroids[k][0], centroids[k][1], marker="o", color="k", s=60, linewidths=5)
+#     plt.scatter(model.centroids[k][0], model.centroids[k][1], marker="o", color="k", s=60, linewidths=5)
 
-# for i in labels:
+# for i in model.labels:
 #   color = colors[i]
-#   for feature in X[labels == i]:
+#   for feature in X[model.labels == i]:
 #       plt.scatter(feature[0], feature[1], marker="x", color=color, s=50, linewidths=5)
 
 # plt.show()

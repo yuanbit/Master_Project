@@ -3,9 +3,11 @@ Questions:
 -Ask if precision and recall is correct
 -evaluation on the clustering results or prediction or both?
 -precision, recall, f-measure differ depending on the initial centroids of k-means, for the evaluation should I take the average of n trials?
+-k-means: choosing k as the number of labels --> ground truth
+	- if k != number of classes: how to compute precision, recall, f-measure? --> The size of the set of true labels and the clusters is different
 
--Sufficient to implement 2 algorithms? k-means and threshold
-	-evaluate and compare
+-Should I implement thresholding algo or k-means++?
+
 -3 experiments with different data size
 -coding standards
 -length of report
