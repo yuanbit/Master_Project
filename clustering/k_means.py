@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import style
+from sklearn.decomposition import PCA
 style.use('ggplot')
 
 
@@ -156,6 +157,29 @@ class K_Means:
             clusters.append(label_name_sorted[i][1])
 
         return clusters
+
+    def plot_clusters(self, data, labels, centroids):
+
+        pca = PCA(n_components=2)
+        principalComponents = pca.fit_transform(data)
+        reduced_centroids = pca.fit_transform(centroids)
+
+        # colors = []
+
+        # for i in range(self.num_clusters):
+        #     colors.append('#%06X' % np.random.randint(0, 0xFFFFFF))
+
+        colors = ["#e6194B", "#f58231", "#ffe119", "#469990", "#3cb44b", "#42d4f4", "#4363d8", "#911eb4", "#f032e6", "#9A6324"]
+
+        for i in labels:
+          color = colors[i]
+          for feature in principalComponents[labels == i]:
+              plt.scatter(feature[0], feature[1], marker="x", color=color, s=50, linewidths=5)
+
+        #plot centroids
+        for k in range(self.num_clusters):
+            plt.scatter(reduced_centroids[k][0], reduced_centroids[k][1], marker="o", color="k", s=50, linewidths=5)
+        plt.show()
 
 
 ##### Testing #################

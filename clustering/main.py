@@ -9,9 +9,17 @@ import csv
 from collections import Counter
 from k_means import K_Means
 from evaluate import Evaluate
+import matplotlib.cm as cm
 
 
+def plot_data(data):
 
+    pca = PCA(n_components=2)
+    principalComponents = pca.fit_transform(data)
+
+    plt.scatter(principalComponents[:,0], principalComponents[:,1], s=30)
+
+    plt.show()
 
 embeddings = np.round(np.load("embeddings/test/embeddings.npy"), decimals=6)
 t_labels = np.load("embeddings/test/labels.npy")
@@ -54,12 +62,6 @@ print(model2.labels)
 
 # label_names = model.get_cluster_labels(model.labels, names)
 
-
-# model = Kmeans(n_clusters=10)
-# model.fit(X)
-
-# print(model.labels)
-
 # # output cluster results in csv file
 # with open("cluster_output2.csv","w+") as my_csv:
 #     csvWriter = csv.writer(my_csv, delimiter=',')
@@ -88,17 +90,11 @@ print(model2.labels)
 
 ########### Plotting ####################
 
-# pca = PCA(n_components=2)
-# principalComponents = pca.fit_transform(X)
-# reduced_centroids = pca.fit_transform(model.centroids)
+#plot_data(X)
+#model2.plot_clusters(X, model2.labels, model2.centroids)
 
-# #plt.scatter(X[:,0], X[:,1], s=30)
 
-# #colors of plot
-# colors = 10*["g","r","c","b"]
-
-# Plot true classes
-
+########3 Plot example ##################
 # n = ['Ariel_Sharon', 'Arnold_Schwarzenegger','Colin_Powell']
 
 # for i in subset_labels:
@@ -114,19 +110,7 @@ print(model2.labels)
 
 # plt.show()
 
-#plot centroids
-# for k in range(model.num_clusters):
-
-#     plt.scatter(model.centroids[k][0], model.centroids[k][1], marker="o", color="k", s=60)
-
-# for i in model.labels:
-#   color = colors[i]
-#   for feature in X[model.labels == i]:
-#       plt.scatter(feature[0], feature[1], marker="x", color=color, s=20)
-
-# plt.show()
-
 ##for unknown in unknowns:
 ##    classification = model.predict(unknown)
 ##    plt.scatter(unknown[0], unknown[1], marker="*", color=colors[classification], s=150, linewidths=5)
-##
+
