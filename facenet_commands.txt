@@ -1,0 +1,26 @@
+export PYTHONPATH=$PYTHONPATH:/home/bithiah/Documents/S2019/Master_Project/facenet/src
+
+for N in {1..4}; do \
+python ~/Documents/Master_Project/facenet/src/align/align_dataset_mtcnn.py \
+~/Documents/Master_Project/datasets/data1/raw \
+~/Documents/Master_Project/datasets/data1/data1_mtcnnpy_160 \
+--image_size 160 \
+--margin 32 \
+--random_order \
+--gpu_memory_fraction 0.25 \
+& done
+
+
+# Training
+
+python ~/Documents/S2019/Master_Project/facenet/src/classifier.py TRAIN ~/Documents/S2019/Master_Project/datasets/train/ ~/Documents/S2019/Master_Project/models/facenet/20180402-114759/20180402-114759.pb ~/Documents/S2019/Master_Project/models/my_classifier.pkl --batch_size 1000
+
+# Testing
+
+python ~/Documents/S2019/Master_Project/facenet/src/classifier.py CLASSIFY ~/Documents/S2019/Master_Project/datasets/test/ ~/Documents/S2019/Master_Project/models/facenet/20180402-114759/20180402-114759.pb ~/Documents/S2019/Master_Project/models/my_classifier.pkl --batch_size 1000
+
+# Export embeddings
+
+python ~/Documents/Master_Project/facenet/contributed/export_embeddings.py ~/Documents/Master_Project/facenet/models/20180402-114759/ ~/Documents/Master_Project/datasets/data1/small_test
+
+pip install numpy==1.16.1
