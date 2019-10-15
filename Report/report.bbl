@@ -1,0 +1,63 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{7410780}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=JJ}{%
+         family={{Joo}},
+         familyi={J\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SFF}{%
+         family={{Steen}},
+         familyi={S\bibinitperiod},
+         given={F.\bibnamedelima F.},
+         giveni={F\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=ZS}{%
+         family={{Zhu}},
+         familyi={Z\bibinitperiod},
+         given={S.},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{face recognition;politics;automated visual trait analysis;United
+  States elections;political elections;face social dimensions;election outcome
+  prediction;automated facial trait judgment;Face;Nominations and
+  elections;History;Computer vision;Visualization;Computational modeling}
+    \strng{namehash}{JJSFFZS1}
+    \strng{fullhash}{JJSFFZS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{booktitle}{2015 IEEE International Conference on Computer Vision
+  (ICCV)}
+    \verb{doi}
+    \verb 10.1109/ICCV.2015.423
+    \endverb
+    \field{pages}{3712\bibrangedash 3720}
+    \field{title}{Automated Facial Trait Judgment and Election Outcome
+  Prediction: Social Dimensions of Face}
+    \field{year}{2015}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+\enddatalist
+\endinput
