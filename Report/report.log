@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.13)  16 OCT 2019 16:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.13)  17 OCT 2019 14:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -811,6 +811,16 @@ LaTeX Info: Redefining \addtolength on input line 81.
 )
 \c@@todonotes@numberoftodonotes=\count145
 )
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2017/12/19 v3.10 programmable bibliographies (PK/JW/AB)
 
@@ -1290,7 +1300,16 @@ LaTeX Info: Redefining \nameref on input line 24.
 \@outlinefile=\write6
 \openout6 = `report.out'.
 
+LaTeX Font Info:    Try loading font information for U+msa on input line 27.
 
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 27.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 Underfull \hbox (badness 10000) in paragraph at lines 46--47
 
  []
@@ -1298,53 +1317,82 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--47
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<figures/otto_faceClustering_workflow.png, id=65, 1026.83624pt x 466.74374pt>
+<figures/otto_faceClustering_workflow.png, id=81, 1026.83624pt x 466.74374pt>
 File: figures/otto_faceClustering_workflow.png Graphic file (type png)
 <use figures/otto_faceClustering_workflow.png>
 Package pdftex.def Info: figures/otto_faceClustering_workflow.png  used on inpu
 t line 50.
 (pdftex.def)             Requested size: 438.51413pt x 199.32848pt.
-<figures/face_detection.png, id=73, 413.545pt x 256.96pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--61
+
+ []
+
+<figures/face_detection.png, id=88, 413.545pt x 256.96pt>
 File: figures/face_detection.png Graphic file (type png)
 <use figures/face_detection.png>
 Package pdftex.def Info: figures/face_detection.png  used on input line 74.
 (pdftex.def)             Requested size: 214.87433pt x 133.51802pt.
-<figures/landmark.png, id=75, 348.30125pt x 169.63374pt>
+<figures/landmark.png, id=90, 348.30125pt x 169.63374pt>
 File: figures/landmark.png Graphic file (type png)
 <use figures/landmark.png>
 Package pdftex.def Info: figures/landmark.png  used on input line 80.
 (pdftex.def)             Requested size: 214.87433pt x 104.65155pt.
- [2 <./figures/otto_faceClustering_workflow.png>] [3 <./figures/face_detection.
-png> <./figures/landmark.png>] [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 107.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 107.
+[2 <./figures/otto_faceClustering_workflow.png>] [3 <./figures/face_detection.p
+ng> <./figures/landmark.png>]
+<figures/triplet_loss_example.png, id=124, 1097.09875pt x 419.5675pt>
+File: figures/triplet_loss_example.png Graphic file (type png)
+<use figures/triplet_loss_example.png>
+Package pdftex.def Info: figures/triplet_loss_example.png  used on input line 1
+20.
+(pdftex.def)             Requested size: 438.51413pt x 167.70238pt.
+ [4 <./figures/triplet_loss_example.png>] [5]
+[6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 155.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 155.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 107.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 107.
-Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: B01718ED9CD2DB74B51A8108FA665065;488.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 155.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 155.
+
+
+Package rerunfilecheck Warning: File `report.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `report.out':
+(rerunfilecheck)             Before: 4FF2BBF4A3AFAD36AF7B4B12155E3213;778
+(rerunfilecheck)             After:  69EC6C0CF0FECAE824FA9471DB2E6FBE;934.
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23975 strings out of 492982
- 444019 string characters out of 6134895
- 870071 words of memory out of 5000000
- 27110 multiletter control sequences out of 15000+600000
- 10443 words of font info for 38 fonts, out of 8000000 for 9000
+ 24285 strings out of 492982
+ 447627 string characters out of 6134895
+ 870558 words of memory out of 5000000
+ 27392 multiletter control sequences out of 15000+600000
+ 13220 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,8n,56p,991b,1617s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (4 pages, 844235 bytes).
+ 62i,8n,56p,1100b,1617s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{subsubsection.2.2.2} has been referenced but does
+ not exist, replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+tt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
+m10.pfb>
+Output written on report.pdf (6 pages, 1211794 bytes).
 PDF statistics:
- 172 PDF objects out of 1000 (max. 8388607)
- 152 compressed objects within 2 object streams
- 42 named destinations out of 1000 (max. 500000)
- 100 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 240 PDF objects out of 1000 (max. 8388607)
+ 209 compressed objects within 3 object streams
+ 52 named destinations out of 1000 (max. 500000)
+ 137 words of extra memory for PDF output out of 10000 (max. 10000000)
 

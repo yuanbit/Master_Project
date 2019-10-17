@@ -1,9 +1,15 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Background}{}% 2
+\BOOKMARK [1][-]{section.2}{Related Work}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Face Recognition}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Feature Extraction}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Clustering}{section.2}% 5
-\BOOKMARK [1][-]{section.3}{Experiment}{}% 6
-\BOOKMARK [2][-]{subsection.3.1}{Dataset}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.2}{Evaluation}{section.3}% 8
-\BOOKMARK [1][-]{section.4}{Conclusion}{}% 9
+\BOOKMARK [2][-]{subsection.2.2}{Face Detection}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Histograms of Oriented Gradients}{subsection.2.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{Face Representation}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Convolutional Neural Networks}{subsection.2.3}% 7
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Triplet Loss Function}{subsection.2.3}% 8
+\BOOKMARK [1][-]{section.3}{Face Representation Methods}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{FaceNet}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{Experiment}{}% 11
+\BOOKMARK [2][-]{subsection.4.1}{FaceNet}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.2}{Dataset}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.3}{Evaluation}{section.4}% 14
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 15

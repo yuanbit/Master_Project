@@ -9,7 +9,7 @@
 \usepackage{amsmath}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{graphicx}
-
+\usepackage{amssymb}
 \usepackage[backend=bibtex]{biblatex}
 \addbibresource{mybib.bib}
 \usepackage[hidelinks]{hyperref}
@@ -41,7 +41,7 @@ Caused by behaviour experiments from human judgement, the the research of the so
 
 Through a computational framework, \cite{joo} examined the relationship between facial traits and the social construction of leadership by a trained model that can predict the outcomes of political elections based on the perceived social attributes of a person's appearance. The results indicate that similar methods can be used to predict behavior in a broad range of human social relations, such as mate selection, job placement,and political and commercial negotiations \cite{joo}.
 
-Clustering analysis is an unsupervised learning technique that groups data points into clusters based on their similarities. It is useful in grouping a collection of unlabeled data with similar nature into clusters. \cite{shi} investigated clustering a large number of unlabeled face images into individual identities present in the data \cite{shi}. The workflow shown in Figure\ref{fig:face} consists of obtaining face representations of a collection of unlabeled date by a deep neural network. The choice of clustering algorithm then groups the face images according to their identity.
+Clustering analysis is an unsupervised learning technique that groups data points into clusters based on their similarities. It is useful in grouping a collection of unlabeled data with similar nature into clusters. \cite{shi} investigated clustering a large number of unlabeled face images into individual identities present in the data \cite{shi}. The workflow shown in Figure\ref{fig:face}. consists of obtaining face representations of a collection of unlabeled date by a deep neural network. The choice of clustering algorithm then groups the face images according to their identity.
 
 Motivated by the researches in computational social trait judgment and \cite{shi}, the following paper aims to examine the correlation between a person's profession based on their facial features through clustering face images. The clustering problem consists of the face representation and similarity metric of the face images and the choice of clustering algorithm \cite{shi}. Due to the importance of the underlying face representation in face clustering, this paper further compares different open-source state-of-the-art feature extraction methods based on deep learning.\\
 
@@ -52,12 +52,12 @@ Motivated by the researches in computational social trait judgment and \cite{shi
 	\label{fig:face}
 \end{figure}
 
-\section{Background}	
+\section{Related Work}	
 
 \subsection{Face Recognition}
 
 \quad
-Face recognition focuses on identifying or verifying the identity of subjects in images or videos \cite{trigueros}. Challenges occur in real world (in-the-wild) images due to variations ranging from head poses and illumination conditions to aging and facial expressions. Recently, deep learning methods based on convolutional neural networks (CNNs) were able to achieve very high accuracy by learning robust features due to the availability of large-scale faces in-the-wild datasets on the web \cite{trigueros}. 
+Face recognition focuses on identifying or verifying the identity of subjects in images or videos \cite{trigueros}.\\
 
 Face recognition systems are usually composed of the following 4 steps \cite{trigueros}: 
 
@@ -83,14 +83,62 @@ Face recognition systems are usually composed of the following 4 steps \cite{tri
   \end{minipage}
 \end{figure}
 
+\subsection{Face Detection}
+
+\subsubsection{Histograms of Oriented Gradients}
+
+\quad
+\cite{dalal}
+The method is based on evaluating well-normalized local histograms of image gradient orientations in a dense grid. The basic idea is that local object appearance and shape can often be characterized rather well by the distribution of local intensity gradients or edge directions, even without precise knowledge of the corresponding gradient or edge positions. In practice this is implemented by dividing the image window into small spatial regions (“cells”), for each cell accumulating a local 1-D histogram of gradient directions or edge orientations over the pixels of the cell. The combined histogram entries form the representation. For better invariance to illumination, shadowing, it is also useful to contrast-normalize the local responses before using them. This can be done by accumulating a measure of local histogram “energy” over somewhat larger spatial regions (“blocks”) and using the results to normalize all of the cells in the block. We will refer to the normalized descriptor blocks as Histogram of Oriented Gradient (HOG) descriptors. 
+
+\subsection{Face Representation}
+
+\subsubsection{Convolutional Neural Networks}
+
+\quad
+Face representation is conceivably the most important component in the system \cite{trigueros}. However, challenges occur in real world (in-the-wild) images due to variations ranging from head poses and illumination conditions to aging and facial expressions. Recently, deep learning methods based on convolutional neural networks (CNNs) were able to achieve very high accuracy by learning robust features due to the availability of large-scale faces in-the-wild datasets on the web \cite{trigueros}. 
+
+Residual networks (ResNets) is a popular network architecture for face recognition. ResNets introduces a shortcut connection to learn a residual mapping which contributes to information flow across layers and allows the training of much deeper architectures \cite{trigueros}.
+
+A common approach to training CNN models for face recognition is use a classification approach, where each face image in the training set corresponds to a class. When recognizing a new face image, the classification layer is discarded and the features of the previous layer are used as face representations. The downsides of this approach is that it doesn't generalize well to new face faces and that the representation size per face is large and inefficient \cite{schroff}.
+
+Another approach is to learn the features for face representation directly by optimizing the distance between pairs or triplets of faces, in which the distances measure the similarity between faces \cite{trigueros} \cite{schroff}. 
+
+\subsubsection{Triplet Loss Function}
+
+\quad
+When learning the face features directly, the choice of loss function has a great influence on the accuracy. One of the most used metric is the triplet loss function. The goal of the loss is to separate the distance between two aligned matching (positive) face images and a non-matching aligned (negative) face image by a distance margin. The result is a feature vector $f(x)$, known as embeddings, from a face image $x$ to a compact Euclidean feature space in $ \mathbb{R}^{d}$. The distance of the embeddings will be small if the faces are identical and large if the faces are distinct \cite{schroff}.
 
 
-\subsection{Feature Extraction}
+More specifically, as shown in the example in Figure \ref{fig:bale}. the distance between an anchor face image, $x_{i}^{a}$ is minimized by the loss and will be closer to all other positive face images $x_{i}^{p}$ than the negative face images $x_{i}^{n}$ where the distance is maximized by the loss. For each triplet $i$, the following condition needs to be satisfied: $$\Vert f(x_{i}^{a}) - f(x_{i}^{p}) \Vert_{2}^{2} + \alpha < \Vert f(x_{i}^{a}) - f(x_{i}^{n}) \Vert_{2}^{2} $$
+where $\alpha$ is a margin that from the positive and negative pairs \cite{trigueros}.
 
-\subsection{Clustering}
-  
+For $N$ possible triplets, the loss being minimized is: $$ L = \sum_{i}^{N} \Big[ \Vert f(x_{i}^{a}) - f(x_{i}^{p}) \Vert_{2}^{2} - \Vert f(x_{i}^{a}) - f(x_{i}^{n}) \Vert_{2}^{2} + \alpha\Big]_{+} $$ \cite{schroff}.
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\textwidth]{figures/triplet_loss_example.png}
+    \caption{The loss of identical faces are minimized and the loss of distinct faces are maximized by the triplet loss function.}
+	\label{fig:bale}
+\end{figure}
+ 
+\section{Face Representation Methods}
+
+\subsection{FaceNet}
+
+\quad
+
+FaceNet is a method that uses a deep CNN and the triplet loss function to directly optimize the face embeddings. Between 100 to 200 million face images consisting of about 8 million different identities were used for training. The large dataset if labelled faces consist of various poses, illuminations, and other variations. \cite{schroff}.
 
 \section{Experiment}
+
+\subsection{FaceNet}
+
+This page describes the training of a model using the VGGFace2 dataset and softmax loss. The dataset contains 3.31 million images of 9131 subjects (identities), with an average of 362.6 images for each subject. Images are downloaded from Google Image Search and have large variations in pose, age, illumination, ethnicity and profession (e.g. actors, athletes, politicians).
+20180402-114759
+0.9965
+VGGFace2
+Inception ResNet v1
 
 \subsection{Dataset}
 
