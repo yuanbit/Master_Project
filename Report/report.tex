@@ -62,10 +62,10 @@ Face recognition focuses on identifying or verifying the identity of subjects in
 Face recognition systems are usually composed of the following 4 steps \cite{trigueros}: 
 
 \begin{enumerate}
-  \item Face Detection:\\ Detect the position of the faces in an image and returns the coordinates of a bounding box for each face as shown in Figure \ref{fig:detect}.
-  \item Face Alignment: \\ Find a set of facial landmarks with the best affine transformation that fits a set of reference points located at fixed locations in the image as shown in Figure \ref{fig:landmark}.
-  \item Face Representation: \\ Trasnform the pixel values of a face image into a discriminative feature vector.
-  \item Face Matching: \\ Compute similarity scores from feature vectors.
+  \item \textbf{Face Detection:}\\ Detect the position of the faces in an image and returns the coordinates of a bounding box for each face as shown in Figure \ref{fig:detect}.
+  \item \textbf{Face Alignment:} \\ Find a set of facial landmarks with the best affine transformation that fits a set of reference points located at fixed locations in the image as shown in Figure \ref{fig:landmark}.
+  \item \textbf{Face Representation:} \\ Trasnform the pixel values of a face image into a discriminative feature vector.
+  \item \textbf{Face Matching:} \\ Compute similarity scores from feature vectors.
 \end{enumerate} 
  
 \begin{figure}[!tbp]
@@ -88,8 +88,49 @@ Face recognition systems are usually composed of the following 4 steps \cite{tri
 \subsubsection{Histograms of Oriented Gradients}
 
 \quad
-\cite{dalal}
-The method is based on evaluating well-normalized local histograms of image gradient orientations in a dense grid. The basic idea is that local object appearance and shape can often be characterized rather well by the distribution of local intensity gradients or edge directions, even without precise knowledge of the corresponding gradient or edge positions. In practice this is implemented by dividing the image window into small spatial regions (“cells”), for each cell accumulating a local 1-D histogram of gradient directions or edge orientations over the pixels of the cell. The combined histogram entries form the representation. For better invariance to illumination, shadowing, it is also useful to contrast-normalize the local responses before using them. This can be done by accumulating a measure of local histogram “energy” over somewhat larger spatial regions (“blocks”) and using the results to normalize all of the cells in the block. We will refer to the normalized descriptor blocks as Histogram of Oriented Gradient (HOG) descriptors. 
+
+A traditional method for face detection is the Histograms of Oriented Gradients (HOG) descriptors, which utilizes the distribution of local intensity gradients or edge directions to characterize local object appearance and shape in an image. HOG divides the image into small grids, where each grid accumulates a histogram of gradient directions or edge orientations over the pixels of the cell. The combination of all the histogram in the cells form the face region. The cells are then normalized for better invariance to illumination, shadowing, and other variations. The normalized local histograms of image gradient orientations in a dense grid as features are then trained to classify the region of the face in an image \cite{dalal}. When encountering a HOG representation of a new face image as shown in Figure \ref{fig:obama}, the part of the image that looks most similar to a trained HOG detector as shown in Figure \ref{fig:dlibhog} will form the region of the face. 
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.35\textwidth}
+    \includegraphics[width=\textwidth]{figures/hog_dlib.png}
+    \caption{Trained HOG detector on multiple faces \cite{trigueros}}
+    \label{fig:dlibhog}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figures/face_hog.png}
+    \caption{Hog representation of a face \cite{hackevolve}}
+    \label{fig:obama}
+  \end{minipage}
+\end{figure}
+
+\subsubsection{Multi-task Cascaded Convolutional Networks}
+
+Another than using the tradition HOG representation and landmark detectors, face detection and alignment can also be done using CNNs. In particular, Multi-task Cascaded Convolutional Networks (MTCNN) is a widely used method to predict face and landmark location. The framework has a cascaded structure with three stages of deep CNNs shown in Figure \ref{fig:mtcnn}. \cite{zhang} 
+
+The image is first resized to different scales to build an image pyramid and is the input of the three stages:
+
+\begin{enumerate}
+\item \textbf{Proposal Network (P-Net):} Obtains candidate windows and their bounding box regression vectors. The estimated bounding box regression vectors are used to calibrate the candidates. Then the bounding boxes are post-processed and filtered by the non-maximum suppression (NMS) algorithm to merge overlapped candidates.
+
+\item \textbf{Refine Network (R-Net):} Rejects false candidates, calibrates the candidates with bounding box regression, and NMS candidate merge.
+
+\item \textbf{Output Network (O-Net):} Outputs five facial landmark positions.
+
+\end{enumerate}
+
+Both the bounding box regression and facial landmark localization uses regression to minimize the Euclidean loss between the candidate window, landmark coordinates and the ground truth. The ground truth of the bounding boxes are the left, top, height, width of the box. The ground truth of the facial landmarks are the coordinates of the left, right eye, nose, left and right mouth corner \cite{zhang}.
+
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\columnwidth]{figures/mtcnn_pipeline.png}
+    \caption{MTCNN: Cascaded structure with three stages of deep CNNs. \cite{zhang}}
+	\label{fig:mtcnn}
+\end{figure}
+
 
 \subsection{Face Representation}
 
@@ -124,21 +165,38 @@ For $N$ possible triplets, the loss being minimized is: $$ L = \sum_{i}^{N} \Big
  
 \section{Face Representation Methods}
 
+The following section examines open-source state-of-the-art face feature extraction methods.
+
 \subsection{FaceNet}
 
 \quad
 
-FaceNet is a method that uses a deep CNN and the triplet loss function to directly optimize the face embeddings. Between 100 to 200 million face images consisting of about 8 million different identities were used for training. The large dataset if labelled faces consist of various poses, illuminations, and other variations. \cite{schroff}.
+FaceNet is a method that uses a deep CNN along with the GoogLeNet style Inception models and the triplet loss function to directly optimize the face embeddings. The structure of FaceNet consists of a batch input layer and a deep CNN followed by $L_{2}$ normalization, which results in the face embedding. This is followed by the triplet loss during training as shown in Figure \ref{fig:facemodel} \cite{schroff}.
+
+%Between 100 to 200 million face images consisting of about 8 million different identities were used for training. The large dataset of labelled faces consist of various poses, illuminations, and other variations. \cite{schroff}.
+
+\subsection{Dlib-ml}
+
+\cite{geitgey} built a face recognition method using Dlib-ml, which is an open source library for developing machine learning software \cite{king}. \cite{geitgey} used the HOG face detector from Dlib, which the HOG representation was trained with a linear classifier (SVM) \cite{king2014}. The face representation model uses the ResNet architecture with 29 convolution layers and the triplet loss function to learn the embeddings \cite{king2017}. 
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\textwidth]{figures/facenet_model_archi.png}
+    \caption{FaceNet model structure \cite{schroff}}
+	\label{fig:facemodel}
+\end{figure}
+
+\section{Clustering Algorithms}
 
 \section{Experiment}
 
 \subsection{FaceNet}
 
-This page describes the training of a model using the VGGFace2 dataset and softmax loss. The dataset contains 3.31 million images of 9131 subjects (identities), with an average of 362.6 images for each subject. Images are downloaded from Google Image Search and have large variations in pose, age, illumination, ethnicity and profession (e.g. actors, athletes, politicians).
-20180402-114759
-0.9965
-VGGFace2
-Inception ResNet v1
+The pre-trained model (20180402-114759) of open-source FaceNet implementation \cite{sandberg} used in the experiment was trained using the VGGFace2 dataset. The dataset contains 3.31 million images of 9131 identities, with an average of 362.6 images for each person. The images were downloaded from Google Image Search and have large variations in pose, age, illumination, ethnicity and profession. The model uses the Inception ResNet v1 architecture and has an accuracy of $99.65\%$ on the Labeled Faces in the Wild (LFW) benchmark \cite{sandberg}.
+
+\subsection{Dlib}
+
+A dataset of about 3 million faces and 7485 unique identities from a combination of the face scrub and VGG dataset as well as a large number of other images scraped from the internet was used for training. The pre-trained model has an accuracy of $99.38\%$ on the LFW benchmark \cite{king2017}.
 
 \subsection{Dataset}
 

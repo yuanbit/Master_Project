@@ -234,6 +234,15 @@
     \field{year}{2018}
   \endentry
 
+  \entry{hackevolve}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+  \field{howpublished}{\url{https://www.hackevolve.com/face-recognition-deep-learning/}}
+    \field{title}{Face Recognition with Deep Learning}
+    \field{year}{2017}
+  \endentry
+
   \entry{geitgey}{misc}{}
     \name{author}{1}{}{%
       {{hash=GA}{%
@@ -252,6 +261,27 @@
     \field{howpublished}{\url{https://github.com/ageitgey/face_recognition}}
     \field{title}{Face Recognition}
     \field{year}{2017}
+  \endentry
+
+  \entry{mediuma}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=GA}{%
+         family={Geitgey},
+         familyi={G\bibinitperiod},
+         given={Adam},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GA1}
+    \strng{fullhash}{GA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+  \field{howpublished}{\url{https://medium.com/@ageitgey/machine-learning-is-fun-part-4-modern-face-recognition-with-deep-learning-c3cffc121d78}}
+    \field{title}{Machine Learning is Fun! Part 4: Modern Face Recognition with
+  Deep Learning}
+    \field{year}{2016}
   \endentry
 
   \entry{deng2019}{misc}{}
@@ -325,6 +355,26 @@
   Prediction: Social Dimensions of Face}
     \field{year}{2015}
     \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{king2014}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=KDE}{%
+         family={King},
+         familyi={K\bibinitperiod},
+         given={Davis\bibnamedelima E.},
+         giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KDE1}
+    \strng{fullhash}{KDE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+  \field{howpublished}{\url{http://blog.dlib.net/2014/02/dlib-186-released-make-your-own-object.html}}
+    \field{title}{Dlib 18.6 released: Make your own object detector!}
+    \field{year}{2014}
   \endentry
 
   \entry{king}{article}{}
