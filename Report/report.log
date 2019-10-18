@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.13)  17 OCT 2019 21:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.13)  18 OCT 2019 15:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1317,7 +1317,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--47
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<figures/otto_faceClustering_workflow.png, id=101, 1026.83624pt x 466.74374pt>
+<figures/otto_faceClustering_workflow.png, id=105, 1026.83624pt x 466.74374pt>
 File: figures/otto_faceClustering_workflow.png Graphic file (type png)
 <use figures/otto_faceClustering_workflow.png>
 Package pdftex.def Info: figures/otto_faceClustering_workflow.png  used on inpu
@@ -1328,54 +1328,90 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--61
 
  []
 
-<figures/face_detection.png, id=108, 413.545pt x 256.96pt>
+[2 <./figures/otto_faceClustering_workflow.png>]
+<figures/face_detection.png, id=128, 413.545pt x 256.96pt>
 File: figures/face_detection.png Graphic file (type png)
 <use figures/face_detection.png>
-Package pdftex.def Info: figures/face_detection.png  used on input line 74.
+Package pdftex.def Info: figures/face_detection.png  used on input line 75.
 (pdftex.def)             Requested size: 214.87433pt x 133.51802pt.
-<figures/landmark.png, id=110, 348.30125pt x 169.63374pt>
+<figures/landmark.png, id=130, 348.30125pt x 169.63374pt>
 File: figures/landmark.png Graphic file (type png)
 <use figures/landmark.png>
-Package pdftex.def Info: figures/landmark.png  used on input line 80.
+Package pdftex.def Info: figures/landmark.png  used on input line 81.
 (pdftex.def)             Requested size: 214.87433pt x 104.65155pt.
-[2 <./figures/otto_faceClustering_workflow.png>]
-<figures/hog_dlib.png, id=127, 180.675pt x 180.675pt>
+<figures/openface_detection.png, id=132, 623.32875pt x 658.46pt>
+File: figures/openface_detection.png Graphic file (type png)
+<use figures/openface_detection.png>
+Package pdftex.def Info: figures/openface_detection.png  used on input line 89.
+
+(pdftex.def)             Requested size: 306.95854pt x 324.26584pt.
+ [3 <./figures/face_detection.png> <./figures/landmark.png> <./figures/openface
+_detection.png>]
+<figures/hog_dlib.png, id=146, 180.675pt x 180.675pt>
 File: figures/hog_dlib.png Graphic file (type png)
 <use figures/hog_dlib.png>
-Package pdftex.def Info: figures/hog_dlib.png  used on input line 97.
+Package pdftex.def Info: figures/hog_dlib.png  used on input line 105.
 (pdftex.def)             Requested size: 153.48262pt x 153.48347pt.
-<figures/face_hog.png, id=130, 427.5975pt x 278.03876pt>
+<figures/face_hog.png, id=149, 427.5975pt x 278.03876pt>
 File: figures/face_hog.png Graphic file (type png)
 <use figures/face_hog.png>
-Package pdftex.def Info: figures/face_hog.png  used on input line 103.
+Package pdftex.def Info: figures/face_hog.png  used on input line 111.
 (pdftex.def)             Requested size: 197.33002pt x 128.3109pt.
- [3 <./figures/face_detection.png> <./figures/landmark.png> <./figures/hog_dlib
-.png> <./figures/face_hog.png>]
-<figures/mtcnn_pipeline.png, id=147, 551.05875pt x 651.43375pt>
-File: figures/mtcnn_pipeline.png Graphic file (type png)
-<use figures/mtcnn_pipeline.png>
-Package pdftex.def Info: figures/mtcnn_pipeline.png  used on input line 129.
-(pdftex.def)             Requested size: 306.95854pt x 362.88197pt.
-[4] [5 <./figures/mtcnn_pipeline.png>]
-<figures/triplet_loss_example.png, id=175, 1097.09875pt x 419.5675pt>
+<figures/mtcnn_pipeline2.png, id=158, 933.4875pt x 148.30406pt>
+File: figures/mtcnn_pipeline2.png Graphic file (type png)
+<use figures/mtcnn_pipeline2.png>
+Package pdftex.def Info: figures/mtcnn_pipeline2.png  used on input line 139.
+(pdftex.def)             Requested size: 438.51413pt x 69.6667pt.
+ [4 <./figures/hog_dlib.png> <./figures/face_hog.png>]
+<figures/neural_flow.png, id=186, 772.8875pt x 137.51375pt>
+File: figures/neural_flow.png Graphic file (type png)
+<use figures/neural_flow.png>
+Package pdftex.def Info: figures/neural_flow.png  used on input line 164.
+(pdftex.def)             Requested size: 438.51413pt x 78.02065pt.
+ [5 <./figures/mtcnn_pipeline2.png> <./figures/neural_flow.png>]
+<figures/triplet_loss_example.png, id=204, 1097.09875pt x 419.5675pt>
 File: figures/triplet_loss_example.png Graphic file (type png)
 <use figures/triplet_loss_example.png>
 Package pdftex.def Info: figures/triplet_loss_example.png  used on input line 1
-61.
-(pdftex.def)             Requested size: 438.51413pt x 167.70238pt.
+84.
+(pdftex.def)             Requested size: 350.81264pt x 134.1619pt.
+<figures/openface_architecture.png, id=209, 1005.7575pt x 381.425pt>
+File: figures/openface_architecture.png Graphic file (type png)
+<use figures/openface_architecture.png>
+Package pdftex.def Info: figures/openface_architecture.png  used on input line 
+191.
+(pdftex.def)             Requested size: 306.95854pt x 116.4072pt.
  [6 <./figures/triplet_loss_example.png>]
-<figures/facenet_model_archi.png, id=195, 779.91376pt x 153.57375pt>
+<figures/facenet_model_archi.png, id=239, 779.91376pt x 153.57375pt>
 File: figures/facenet_model_archi.png Graphic file (type png)
 <use figures/facenet_model_archi.png>
-Package pdftex.def Info: figures/facenet_model_archi.png  used on input line 18
-4.
+Package pdftex.def Info: figures/facenet_model_archi.png  used on input line 21
+8.
 (pdftex.def)             Requested size: 438.51413pt x 86.34752pt.
-[7 <./figures/facenet_model_archi.png>] [8] [9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 213.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 213.
+ [7 <./figures/openface_architecture.png>]
+<figures/comparison.png, id=263, 797.98125pt x 684.5575pt>
+File: figures/comparison.png Graphic file (type png)
+<use figures/comparison.png>
+Package pdftex.def Info: figures/comparison.png  used on input line 237.
+(pdftex.def)             Requested size: 263.11115pt x 225.7062pt.
+<figures/ex.png, id=265, 582.175pt x 374.39874pt>
+File: figures/ex.png Graphic file (type png)
+<use figures/ex.png>
+Package pdftex.def Info: figures/ex.png  used on input line 244.
+(pdftex.def)             Requested size: 263.11115pt x 169.20912pt.
+ [8 <./figures/facenet_model_archi.png>] [9 <./figures/comparison.png> <./figur
+es/ex.png>]
+Overfull \hbox (42.28856pt too wide) in paragraph at lines 274--274
+[][]$\OT1/cmtt/m/n/12 https : / / i . pinimg . com / originals / 76 / c3 / ea /
+ 76c3ea5bcd34a4d7435320c05651d494 .
+ []
+
+[10] [11]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 275.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 275.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 213.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 213.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 275.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 275.
 
 
 Package rerunfilecheck Warning: File `report.out' has changed.
@@ -1383,48 +1419,36 @@ Package rerunfilecheck Warning: File `report.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: EDDE1D3B94E4925D657DB13297208240;1147
-(rerunfilecheck)             After:  A630D84BF47CF7CAB1DECC5F41899541;1204.
+(rerunfilecheck)             Before: 1DD9A7E9B321848C3469300A3FECD3CF;1208
+(rerunfilecheck)             After:  988D3EC4E7377EE92827621890B40ECB;1458.
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24340 strings out of 492982
- 448748 string characters out of 6134895
+ 24383 strings out of 492982
+ 449721 string characters out of 6134895
  872558 words of memory out of 5000000
- 27423 multiletter control sequences out of 15000+600000
+ 27453 multiletter control sequences out of 15000+600000
  13220 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,8n,56p,1033b,1620s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsection.4.4} has been referenced but does not 
-exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.4.3} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.4.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.4.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-tt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
-m10.pfb>
-Output written on report.pdf (9 pages, 1796175 bytes).
+ 62i,8n,56p,1033b,1622s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sbm10.pfb>
+Output written on report.pdf (11 pages, 3239442 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
- 279 compressed objects within 3 object streams
- 72 named destinations out of 1000 (max. 500000)
- 197 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 396 PDF objects out of 1000 (max. 8388607)
+ 335 compressed objects within 4 object streams
+ 81 named destinations out of 1000 (max. 500000)
+ 230 words of extra memory for PDF output out of 10000 (max. 10000000)
 

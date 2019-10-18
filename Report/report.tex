@@ -56,15 +56,16 @@ Motivated by the researches in computational social trait judgment and \cite{shi
 
 \subsection{Face Recognition}
 
-\quad
+\quad 
 Face recognition focuses on identifying or verifying the identity of subjects in images or videos \cite{trigueros}.\\
 
 Face recognition systems are usually composed of the following 4 steps \cite{trigueros}: 
 
 \begin{enumerate}
   \item \textbf{Face Detection:}\\ Detect the position of the faces in an image and returns the coordinates of a bounding box for each face as shown in Figure \ref{fig:detect}.
-  \item \textbf{Face Alignment:} \\ Find a set of facial landmarks with the best affine transformation that fits a set of reference points located at fixed locations in the image as shown in Figure \ref{fig:landmark}.
-  \item \textbf{Face Representation:} \\ Trasnform the pixel values of a face image into a discriminative feature vector.
+  \item \textbf{Face Alignment:} \\ Find a set of facial landmarks with the best affine transformation that fits a set of reference points located at fixed locations in the image. As shown in Figure \ref{fig:landmark}, this step also includes resizing and cropping the image to the edges of the landmarks \cite{amos}. More specifically, as shown in Figure \ref{fig:meanlandmark} given a set of mean landmark locations, the affine transformation makes the landmarks detected in the face image close to the mean \cite{amos}.
+  
+  \item \textbf{Face Representation:} \\ Transform the pixel values of a face image into a low-dimensional discriminative feature vector, also known as an embedding. 
   \item \textbf{Face Matching:} \\ Compute similarity scores from feature vectors.
 \end{enumerate} 
  
@@ -81,6 +82,13 @@ Face recognition systems are usually composed of the following 4 steps \cite{tri
     \caption{Face Alignment \cite{trigueros}}
     \label{fig:landmark}
   \end{minipage}
+\end{figure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\textwidth]{figures/openface_detection.png}
+    \caption{Applying affine transformation so that the face image is closer tothe set of mean landmarks. \cite{amos}}
+	\label{fig:meanlandmark}
 \end{figure}
 
 \subsection{Face Detection}
@@ -113,20 +121,22 @@ Another than using the tradition HOG representation and landmark detectors, face
 The image is first resized to different scales to build an image pyramid and is the input of the three stages:
 
 \begin{enumerate}
-\item \textbf{Proposal Network (P-Net):} Obtains candidate windows and their bounding box regression vectors. The estimated bounding box regression vectors are used to calibrate the candidates. Then the bounding boxes are post-processed and filtered by the non-maximum suppression (NMS) algorithm to merge overlapped candidates.
+\item \textbf{Proposal Network (P-Net):} Obtain candidates that will serve as potential positions of the bounding boxes \cite{chinapas}.
+%Obtains candidate windows and their bounding box regression vectors. The estimated bounding box regression vectors are used to calibrate the candidates. Then the bounding boxes are post-processed and filtered by the non-maximum suppression (NMS) algorithm to merge overlapped candidates.
 
-\item \textbf{Refine Network (R-Net):} Rejects false candidates, calibrates the candidates with bounding box regression, and NMS candidate merge.
+\item \textbf{Refine Network (R-Net):} Using the image and the results of the first prediction of the bounding boxes, reduce false positives to get the final box boundaries \cite{chinapas}.
+%Rejects false candidates, calibrates the candidates with bounding box regression, and NMS candidate merge.
 
-\item \textbf{Output Network (O-Net):} Outputs five facial landmark positions.
+\item \textbf{Output Network (O-Net):} Outputs five facial landmark positions \cite{zhang}.
 
 \end{enumerate}
 
-Both the bounding box regression and facial landmark localization uses regression to minimize the Euclidean loss between the candidate window, landmark coordinates and the ground truth. The ground truth of the bounding boxes are the left, top, height, width of the box. The ground truth of the facial landmarks are the coordinates of the left, right eye, nose, left and right mouth corner \cite{zhang}.
+Both the predicting the bounding box regression and facial landmark localization uses regression to minimize the Euclidean loss between the candidate positions of the bounding boxes, landmark coordinates and the ground truth. The ground truth of the bounding boxes are the left, top, height, width of the box. The ground truth of the facial landmarks are the coordinates of the left, right eye, nose, left and right mouth corner \cite{zhang}.
 
 
 \begin{figure}[!tbp]
  \centering
-    \includegraphics[width=0.7\columnwidth]{figures/mtcnn_pipeline.png}
+    \includegraphics[width=\columnwidth]{figures/mtcnn_pipeline2.png}
     \caption{MTCNN: Cascaded structure with three stages of deep CNNs. \cite{zhang}}
 	\label{fig:mtcnn}
 \end{figure}
@@ -134,16 +144,27 @@ Both the bounding box regression and facial landmark localization uses regressio
 
 \subsection{Face Representation}
 
-\subsubsection{Convolutional Neural Networks}
-
 \quad
-Face representation is conceivably the most important component in the system \cite{trigueros}. However, challenges occur in real world (in-the-wild) images due to variations ranging from head poses and illumination conditions to aging and facial expressions. Recently, deep learning methods based on convolutional neural networks (CNNs) were able to achieve very high accuracy by learning robust features due to the availability of large-scale faces in-the-wild datasets on the web \cite{trigueros}. 
+Face representation is conceivably the most important component in the system. However, challenges occur in real world (in-the-wild) images due to variations ranging from head poses and illumination conditions to aging and facial expressions \cite{trigueros}.
+
+Traditional techniques include using statistical methods such as Principal Component Analysis (PCA) to represent faces as a combination of eigenvectors \cite{amos}. The top-performing face representation techniques use deep learning methods based on convolutional neural networks (CNNs) \cite{amos} since they are able to achieve very high accuracy by learning robust features due to the availability of large-scale faces in-the-wild datasets on the web \cite{trigueros}.  
+
+\subsubsection{Convolutional Neural Networks}
+\quad
+As shown in Figure \ref{fig:nnflow} a neural network feeds the input into many layers of function compositions followed by a loss function which measures how well the neural network models the data. Each layer is parameterized by a vector or matrix $\theta_{i}$ and the aim is to optimize the loss function iteratively by finding the optimal gradients $\delta L \mathbin{/} \delta  \theta_{i}$ which are computed with the backpropagation \cite{amos}. 
 
 Residual networks (ResNets) is a popular network architecture for face recognition. ResNets introduces a shortcut connection to learn a residual mapping which contributes to information flow across layers and allows the training of much deeper architectures \cite{trigueros}.
 
 A common approach to training CNN models for face recognition is use a classification approach, where each face image in the training set corresponds to a class. When recognizing a new face image, the classification layer is discarded and the features of the previous layer are used as face representations. The downsides of this approach is that it doesn't generalize well to new face faces and that the representation size per face is large and inefficient \cite{schroff}.
 
 Another approach is to learn the features for face representation directly by optimizing the distance between pairs or triplets of faces, in which the distances measure the similarity between faces \cite{trigueros} \cite{schroff}. 
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/neural_flow.png}
+    \caption{Neural Network Traing Flow. \cite{amos}}
+	\label{fig:nnflow}
+\end{figure}
 
 \subsubsection{Triplet Loss Function}
 
@@ -156,11 +177,20 @@ where $\alpha$ is a margin that from the positive and negative pairs \cite{trigu
 
 For $N$ possible triplets, the loss being minimized is: $$ L = \sum_{i}^{N} \Big[ \Vert f(x_{i}^{a}) - f(x_{i}^{p}) \Vert_{2}^{2} - \Vert f(x_{i}^{a}) - f(x_{i}^{n}) \Vert_{2}^{2} + \alpha\Big]_{+} $$ \cite{schroff}.
 
+As shown in Figure \ref{fig:loss} using a neural network, the triplet loss is computed and it's gradient is backpropagated through the network to the unique images \cite{amos}.
+
 \begin{figure}[!tbp]
  \centering
-    \includegraphics[width=\textwidth]{figures/triplet_loss_example.png}
-    \caption{The loss of identical faces are minimized and the loss of distinct faces are maximized by the triplet loss function.}
+    \includegraphics[width=0.8\textwidth]{figures/triplet_loss_example.png}
+    \caption{The loss of identical faces are minimized and the loss of distinct faces are maximized by the triplet loss function \cite{pic1} \cite{pic2}.}
 	\label{fig:bale}
+\end{figure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\columnwidth]{figures/openface_architecture.png}
+    \caption{Learning the embeddings by optimizing the gradients of the triplet loss function \cite{amos}.}
+	\label{fig:loss}
 \end{figure}
  
 \section{Face Representation Methods}
@@ -171,38 +201,70 @@ The following section examines open-source state-of-the-art face feature extract
 
 \quad
 
-FaceNet is a method that uses a deep CNN along with the GoogLeNet style Inception models and the triplet loss function to directly optimize the face embeddings. The structure of FaceNet consists of a batch input layer and a deep CNN followed by $L_{2}$ normalization, which results in the face embedding. This is followed by the triplet loss during training as shown in Figure \ref{fig:facemodel} \cite{schroff}.
+FaceNet is a method that uses a deep CNN along with the GoogLeNet style Inception models and the triplet loss function to directly optimize the face embeddings. The faces of images are first detected and aligned with MTCNN \cite{sandberg}, the resulting face images are 160 x 160 pixels and serve as the input for the FaceNet model. The structure of FaceNet consists of a batch input layer and a deep CNN followed by $L_{2}$ normalization, which results in the face embedding. This is followed by the triplet loss during training as shown in Figure \ref{fig:facemodel} \cite{schroff}.
 
-%Between 100 to 200 million face images consisting of about 8 million different identities were used for training. The large dataset of labelled faces consist of various poses, illuminations, and other variations. \cite{schroff}.
+Between 100 to 200 million face images consisting of about 8 million different identities were used for training. The large dataset of labelled faces consist of various poses, illuminations, and other variations. \cite{schroff}.
+
+The pre-trained model (20180402-114759) of open-source FaceNet implementation \cite{sandberg} used in the experiment from the next section was trained using the VGGFace2 dataset. The faces of the dataset was detected and aligned using MTCNN . The dataset contains 3.31 million images of 9131 identities, with an average of 362.6 images for each person. The images were downloaded from Google Image Search and have large variations in pose, age, illumination, ethnicity and profession. The model uses the Inception ResNet v1 architecture and has an accuracy of $99.65\%$ on the Labeled Faces in the Wild (LFW) benchmark \cite{sandberg}. \cite{sandberg}'s implementation results in a 512-dimensional feature vector.
 
 \subsection{Dlib-ml}
+\quad
+\cite{geitgey} built a face recognition method using Dlib-ml, which is an open source library for developing machine learning software in C++ \cite{king}. \cite{geitgey} used the HOG face detector from Dlib, which the HOG representation was trained with a linear classifier (SVM) \cite{king2014}. The face representation model uses the ResNet architecture with 29 convolution layers and the triplet loss function to learn the embeddings \cite{king2017}. The resulting feature embedding is a 128-dimensional vector \cite{king2017}. 
 
-\cite{geitgey} built a face recognition method using Dlib-ml, which is an open source library for developing machine learning software \cite{king}. \cite{geitgey} used the HOG face detector from Dlib, which the HOG representation was trained with a linear classifier (SVM) \cite{king2014}. The face representation model uses the ResNet architecture with 29 convolution layers and the triplet loss function to learn the embeddings \cite{king2017}. 
+A dataset of about 3 million faces and 7485 unique identities from a combination of the face scrub and VGG dataset as well as a large number of other images scraped from the internet was used for training. The pre-trained model has an accuracy of $99.38\%$ on the LFW benchmark \cite{king2017}.
 
 \begin{figure}[!tbp]
  \centering
     \includegraphics[width=\textwidth]{figures/facenet_model_archi.png}
-    \caption{FaceNet model structure \cite{schroff}}
+    \caption{FaceNet model structure \cite{amos}}
 	\label{fig:facemodel}
+\end{figure}
+
+\subsection{OpenFace}
+\quad
+OpenFace uses Dlib for face detection and alignment. The input images after alignment are 96 x 96 pixels. OpenFace was trained with 500,000 images from a combination of CASIA-WebFace and FaceScrub. The face representation is obtained using a modification of FaceNet's architecture, which the number of parameters are reduced. The resulting feature embedding is a 128 dimensional vector \cite{amos}.
+
+\subsection{ArcFace}
+\quad
+\cite{deng} introduced a new loss function, additive angular margin (ArcFace), that uses a geometric interpretation for learning the discriminative features for face representation \cite{deng}. After applying MTCNN for face detection and alignment \cite{deng2019} get the 112 x 112 face input images, ArcFace further adjusts a face image by rotating an image to a straight face as shown in the comparsion in Figure \ref{fig:arcface1}. Consequently, the positions of eyebrows, eyes, nose, and mouth in different images are consistent and increases the effective when computing the similarities between the embeddings. The resulting embedding is a 512-dimensional vector \cite{deng}.
+
+A downside of ArcFace is that it cannot compute face representations of images with the high intensity of light reflection \cite{chinapas} as shown in Figure \ref{fig:arcface2}.
+
+The model is trained on MS1MV2 which is a refinement of the MS-Celeb-1M dataset. The training dataset contains about 10 million images of 100,000 top celebrities selected from one million celebrities in terms of their web appearance frequency \cite{deng}. The pre-trained model (LResNet100E-IR) used in the experiment in the next section was trained on the MS1MV2 dataset using the ResNet100 architecture which achieved an accuracy of $0.9982$ on the LFW benchmark \cite{deng2019}.
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.6\textwidth]{figures/comparison.png}
+    \caption{Comparsion of Face Detection between Dlib, FaceNet, and ArcFace \cite{chinapas}}
+	\label{fig:arcface1}
+\end{figure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.6\textwidth]{figures/ex.png}
+    \caption{Images with high intensity of light reflection in which ArcFace is unable to compute the embeddings for \cite{chinapas}}
+	\label{fig:arcface2}
 \end{figure}
 
 \section{Clustering Algorithms}
 
+\subsection{K-Means}
+
+\subsection{Hierarchical The Agglomerative}
+
+\subsection{Spectral}
+
+\subsection{Birch}
+
 \section{Experiment}
 
-\subsection{FaceNet}
-
-The pre-trained model (20180402-114759) of open-source FaceNet implementation \cite{sandberg} used in the experiment was trained using the VGGFace2 dataset. The dataset contains 3.31 million images of 9131 identities, with an average of 362.6 images for each person. The images were downloaded from Google Image Search and have large variations in pose, age, illumination, ethnicity and profession. The model uses the Inception ResNet v1 architecture and has an accuracy of $99.65\%$ on the Labeled Faces in the Wild (LFW) benchmark \cite{sandberg}.
-
-\subsection{Dlib}
-
-A dataset of about 3 million faces and 7485 unique identities from a combination of the face scrub and VGG dataset as well as a large number of other images scraped from the internet was used for training. The pre-trained model has an accuracy of $99.38\%$ on the LFW benchmark \cite{king2017}.
 
 \subsection{Dataset}
 
 
 \subsection{Evaluation}
 
+The ROC curve shows the tradeoffs between the TPR and FPR.The perfect ROC curve would have a TPR of 1 everywhere, which is where todays state-of-the-artindustry techniques are nearly at. \cite{amos}
 
 \section{Conclusion}
 

@@ -17,6 +17,14 @@
 \endgroup
 
 \datalist[entry]{nty/global//global/global}
+  \entry{pic1}{misc}{}
+  \field{howpublished}{\url{https://i.pinimg.com/originals/76/c3/ea/76c3ea5bcd34a4d7435320c05651d494.jpg}}
+  \endentry
+
+  \entry{pic2}{misc}{}
+  \field{howpublished}{\url{https://www.slovenskenovice.si/images/slike/2018/04/28/239717.jpg}}
+  \endentry
+
   \entry{clustering}{misc}{}
     \field{labeltitlesource}{title}
     \field{sortinit}{2}
