@@ -371,13 +371,42 @@ This dataset consists of $4,593$ unique images of 11 different categories of pro
 \subsection{Set-Up}
 We know the number of clusters, so we can focus on parametric clustering methods.
 
+describe the folder structure
+
+\subsection{Framework}
+
+computer details
+
+steps to do the experiment
+
+\section{Results}
+
 \subsection{Evaluation}
+
+\subsubsection{F-Measure}
+
+Suppose $L = \{l_{1},...,l_{n}\}$ contains the actual labels for each face and $C = \{c_{1},...,c_{n}\}$ are the labels from the output of the clustering algorithm. Then for each face pair $(i, j)$ of each cluster, \\
+The amount of true positives are the number of face pairs $(i, j)$ that are correctly clustered into the same cluster. $$TP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_{i} = l_{j}\}|$$
+The amount of false positives is the number of face pairs $(i, j)$ that are incorrectly clustered to the same cluster: $$FP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_{i} \neq l_{j}\}|$$
+The amount of true negatives is the number of face pairs that are clustered to a different cluster. $$TN = | \{(i, j) \ \textrm{where} \ c_{i} \neq c_{j} \ \textrm{and} \ l_{i} \neq l_{j}\}|$$
+
+\cite{thesis}
+
+For example if $P = \{(1, 2), (1, 3), (2, 3), (4, 5)\}$ is a set of face pairs from the ground truth labels and $Q = \{(2, 3), (1, 4), (1, 5), (4, 5)\}$ is the set of face pairs from the labels of the clustering algorithms where the face pairs are represented by the indices of their embeddings. Then
+$$TP = | P \cap Q | = |\{(2, 3), (4, 5)\}| = 2$$
+$$FP = |Q - P| = |\{(1, 4), (1, 5)\}| = 2$$
+$$FN = |P - Q| = |\{(1, 2), (1, 3)\}| = 2$$
+
+\subsubsection{ROC}
 
 The ROC curve shows the tradeoffs between the TPR and FPR.The perfect ROC curve would have a TPR of 1 everywhere, which is where todays state-of-the-artindustry techniques are nearly at. \cite{amos}
 
-\section{Analysis}
+
+\subsection{Analysis}
 
 Can't control age, big factor.
+
+Bar graph Comparsion of accuracy based on increasing the number of clusters for each algorithm
 
 \section{Conclusion}
 

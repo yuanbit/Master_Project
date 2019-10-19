@@ -143,6 +143,26 @@
     \field{year}{2007}
   \endentry
 
+  \entry{thesis}{article}{}
+    \name{author}{1}{}{%
+      {{hash=BA}{%
+         family={Bijl},
+         familyi={B\bibinitperiod},
+         given={A.F.},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BA1}
+    \strng{fullhash}{BA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{A comparison of clustering algorithms for face clustering}
+    \field{month}{07}
+    \field{year}{2018}
+  \endentry
+
   \entry{chinapas}{article}{}
     \name{author}{4}{}{%
       {{hash=CA}{%
