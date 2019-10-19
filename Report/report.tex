@@ -13,6 +13,7 @@
 \usepackage[backend=bibtex]{biblatex}
 \addbibresource{mybib.bib}
 \usepackage[hidelinks]{hyperref}
+\usepackage[title]{appendix}
 
 
 \title{Correlation between Professional Domain and Facial Features based on Face Clustering}
@@ -41,7 +42,7 @@ Caused by behaviour experiments from human judgement, the the research of the so
 
 Through a computational framework, \cite{joo} examined the relationship between facial traits and the social construction of leadership by a trained model that can predict the outcomes of political elections based on the perceived social attributes of a person's appearance. The results indicate that similar methods can be used to predict behavior in a broad range of human social relations, such as mate selection, job placement,and political and commercial negotiations \cite{joo}.
 
-Clustering analysis is an unsupervised learning technique that groups data points into clusters based on their similarities. It is useful in grouping a collection of unlabeled data with similar nature into clusters. \cite{shi} investigated clustering a large number of unlabeled face images into individual identities present in the data \cite{shi}. The workflow shown in Figure\ref{fig:face}. consists of obtaining face representations of a collection of unlabeled date by a deep neural network. The choice of clustering algorithm then groups the face images according to their identity.
+Clustering analysis is an unsupervised learning technique that groups data points into clusters based on their similarities. It is useful in grouping a collection of unlabeled data with similar nature into clusters. \cite{shi} investigated clustering a large number of unlabeled face images into individual identities present in the data \cite{shi}. The workflow shown in Figure\ref{fig:face}. consists of obtaining face representations of a collection of unlabeled data by a deep neural network. The choice of clustering algorithm then groups the face images according to their identity.
 
 Motivated by the researches in computational social trait judgment and \cite{shi}, the following paper aims to examine the correlation between a person's profession based on their facial features through clustering face images. The clustering problem consists of the face representation and similarity metric of the face images and the choice of clustering algorithm \cite{shi}. Due to the importance of the underlying face representation in face clustering, this paper further compares different open-source state-of-the-art feature extraction methods based on deep learning.\\
 
@@ -207,7 +208,7 @@ Between 100 to 200 million face images consisting of about 8 million different i
 
 The pre-trained model (20180402-114759) of open-source FaceNet implementation \cite{sandberg} used in the experiment from the next section was trained using the VGGFace2 dataset. The faces of the dataset was detected and aligned using MTCNN . The dataset contains 3.31 million images of 9131 identities, with an average of 362.6 images for each person. The images were downloaded from Google Image Search and have large variations in pose, age, illumination, ethnicity and profession. The model uses the Inception ResNet v1 architecture and has an accuracy of $99.65\%$ on the Labeled Faces in the Wild (LFW) benchmark \cite{sandberg}. \cite{sandberg}'s implementation results in a 512-dimensional feature vector.
 
-\subsection{Dlib-ml}
+\subsection{Dlib}
 \quad
 \cite{geitgey} built a face recognition method using Dlib-ml, which is an open source library for developing machine learning software in C++ \cite{king}. \cite{geitgey} used the HOG face detector from Dlib, which the HOG representation was trained with a linear classifier (SVM) \cite{king2014}. The face representation model uses the ResNet architecture with 29 convolution layers and the triplet loss function to learn the embeddings \cite{king2017}. The resulting feature embedding is a 128-dimensional vector \cite{king2017}. 
 
@@ -248,25 +249,174 @@ The model is trained on MS1MV2 which is a refinement of the MS-Celeb-1M dataset.
 
 \section{Clustering Algorithms}
 
+\quad
+Clustering can be considered the most important unsupervised learning problem and aims to find a structure in a collection of unlabeled data. Objects that are similar between each other are grouped in the same cluster, while dissimilar objects belong to other clusters \cite{ncbi}.
+
+
+After obtaining the face embeddings, each face represents a data point in the dataset. The similarity between each face can therefore be computed and grouped using different metrics clustering algorithms. The following section will present the algorithms use in Section 5. 
+
 \subsection{K-Means}
 
-\subsection{Hierarchical The Agglomerative}
+\quad
+Lloyd’s K-Means algorithm is a commonly used clustering method due to it's simplicity and efficiency. It aims to minimize the average squared distance between points in the same cluster \cite{kmeans}. The algorithm first initializes k random centroids, which are random datapoints chosen from the dataset. Then each point is assigned to the closest centroid. The centroids are then recomputed as the average of all datapoints assigned to it. The latter two steps are repeated until the centroids don't change significantly. The implementation in \cite{scikit-learn} computes the difference between the old and new centroids and terminates until the difference is less than a threshold of $0.0001$ \cite{kmeans}.
+
+Even though the converagence of this algorithm is guranteed, one of the drawbacks is that it assumes the datapoints of the clusters have the same variation, therefore responding poorly to clusters with irregular shapes. Moreover, the algorithm is highly sensitve to the initialization of the centroids which can noteably affect the accuracy of the clusters \cite{scikit-learn}. K-means++ is a method developed by \cite{kmeans} to address this issue, in which it initializes the centroids at random from the data points, but weights the data points from the closest centroid already chosen \cite{kmeans}. Therefore, the initialized centroids will be (generally) far from each other \cite{scikit-learn}. Experiments from \cite{kmeans} show that k-means++ outperforms k-means in terms of both accuracy and speed.
+
+TODO: plots of bad initialization
 
 \subsection{Spectral}
 
+\quad
+Spectral Clustering is an efficient clustering algorithm where it uses a low-dimensional embedding of the distance matrix between the data points, followed by the K-Means algorithm in the low dimensional space \cite{scikit-learn}.
+
+\subsection{Hierarchical Agglomerative}
+
+\quad
+Hierarchical clustering is a method that merges or splits the clusters successively to form a nested tree of clusters, known as the dendrogram. In particular, Hierarchical Agglomerative Clustering is a bottom up approach where the root of the tree consists of the data points as their own clusters, then the clusters are successively merged together to form unique clusters at the leaves \cite{scikit-learn}.
+
+The merging technique is determined by the linkage criteria. Section 5 uses Ward's method for the linkage criteria, in which it minimizes the variance of the clusters by the sum of squared differences. Although Ward's method gives the clusters the most regular sizes, the distance used in the clustering is limited to Euclidean metrics \cite{scikit-learn}.
+
+\subsection{Expectation–Maximization}
+
+The Expectation–Maximization (EM) algorithm is based on the Gaussian mixture model (GMM), which is a probabilistic method that assumes all the data points are generated from a mixture of Gaussian distributions with unknown latent parameters (mean, covariance) for each distribution \cite{scikit-learn}. The Gaussian distributions corresponds to the clusters and since the information of which distribution each data point belongs to is unknown the goal of the EM algorithm is to estimate the latent parameters for each distribution. After randomly initializing the latent parameters, EM executes the following two steps until convergence \cite{scikit-learn}.
+
+\begin{enumerate}
+\item \textbf{Expectation: } For each data point, compute the probability of it being generated by each latent parameter of the model. Each data point is then assigned to a cluster based on the probability.
+
+\item \textbf{Maximize: } Re-estimate the latent parameters using the by maximizing the likelihood of the data given the assignments 
+
+\end{enumerate}
+
+The EM algorithm is similar to K-means, but instead the assignment of data points uses soft clustering. Instead of being either in a cluster or not (hard clustering), EM computes a probability of for assigning the data points \cite{ncbi}.
+
 \subsection{Birch}
+
+\quad
+Birch clustering is an efficient data reduction algorithm in which it reduces the input data to a set of subclusters. For a given dataset, the algorithm builds the Characteristic Feature Tree (CFT) where the data points are compressed to a set of  Characteristic Feature nodes (CF Nodes). When a new data point is inserted into the CF Tree, it is merged with the nearest leaf of the subcluster of the root. These subclusters contain the necessary information for clustering \cite{scikit-learn}
 
 \section{Experiment}
 
-
 \subsection{Dataset}
 
+\subsubsection{Experiment 1: Head shots of 5 types of athletes}
+\label{experiment1}
+\quad
+This dataset consists of $2,180$ unique images of five categories of athletes obtained from a combination of repositories of \cite{data1}. As shown in Figure \ref{fig:sport}, \cite{data1} scraped the images directly from the official sport competition websites, therefore, the images are all high quality straight head shots \cite{data1}. The following shows the distribution of images:
+
+\begin{itemize}
+\item \textbf{NBA Basketball Players: } $225$ images
+\item \textbf{UFC Fighting Champions: } $560$ images
+\item \textbf{FIFA Soccer Players: } $735$ images
+\item \textbf{PGA TOUR Golf Players: } $558$ images
+\item \textbf{ATP Tour Tennis Players: } $102$ images
+\end{itemize}
+
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\columnwidth]{figures/ex1.png}
+    \caption{Example of face images from the dataset of Experiment 1: Five categories of athletes \cite{data1}}
+	\label{fig:sport}
+\end{figure}
+
+\subsubsection{Experiment 2: In-The-Wild images of 5 varying professions}
+\label{experiment2}
+\quad
+This dataset consists of $2,065$ unique images of five different categories of professions. It is a combination of a subset of the dataset from \ref{experiment1} and a new dataset acquired using Wikidata's SPARQL query service. 
+
+Wikidata is an open-source knowledge base for structured data. After choosing the professions and finding their entity ID's a query was formed to find people and the corresponding image links with of the occupation. In order to reduce variation in the dataset, additional queries were composed to obtain only males from North America and Europe. Since clustering algorithms like K-Means tend to generate similar sized clusters \cite{shi}, the number of images for each occupation are limited to similar sizes. An example of a query for the manager occupation can be found in \ref{appen1}. Then, the images were automatically downloaded using Python. As shown in Figure \ref{fig:prof}, opposed to the dataset from \ref{experiment1}, the images from Wikidata are in-the-wild images with varying head poses, illumination conditions, and other variations. The following shows the distribution of images:
+
+\begin{itemize}
+\item \textbf{Managers: } $371$ images
+\item \textbf{Politicians: } $449$ images
+\item \textbf{Military Officers: } $407$ images
+\item \textbf{Architects: } $388$ images
+\item \textbf{FIFA Soccer Players: } $450$ images
+\end{itemize}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\columnwidth]{figures/ex2.png}
+    \caption{Example of face images from the dataset of Experiment 2: Five categories of professions \cite{data1}}
+	\label{fig:prof}
+\end{figure}
+
+\subsubsection{Experiment 3: In-The-Wild images of 11 varying professions}
+
+\quad
+This dataset consists of $4,593$ unique images of 11 different categories of professions. It is again a combination of a subset of the dataset from \ref{experiment1}, \ref{experiment2}, and images of five more professions downloaded from Wikidata using the same method as \ref{experiment2}. The following shows the distribution of images:
+
+\begin{itemize}
+\item \textbf{Managers: } $371$ images
+\item \textbf{Entrepreneur: } $485$ images
+\item \textbf{Politicians: } $449$ images
+\item \textbf{Lawyer: } $394$ images
+\item \textbf{Military Officers: } $407$ images
+\item \textbf{Sport Coaches: } $334$ images
+\item \textbf{FIFA Soccer Players: } $450$ images
+\item \textbf{UFC Fighting Champions: } $537$ images
+\item \textbf{Architects: } $388$ images
+\item \textbf{Actor: } $403$ images
+\item \textbf{Musician: } $375$ images
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\columnwidth]{figures/ex3.png}
+    \caption{Example of a subset of face images from the dataset of Experiment 3. In combination with \ref{fig:prof}, the professions make up the 11 professions for Experiment 3}
+\end{figure}
+
+\end{itemize}
+
+
+\subsection{Set-Up}
+We know the number of clusters, so we can focus on parametric clustering methods.
 
 \subsection{Evaluation}
 
 The ROC curve shows the tradeoffs between the TPR and FPR.The perfect ROC curve would have a TPR of 1 everywhere, which is where todays state-of-the-artindustry techniques are nearly at. \cite{amos}
 
+\section{Analysis}
+
+Can't control age, big factor.
+
 \section{Conclusion}
+
+\begin{appendices}
+\section{SPARQL Query}
+\label{appen1}
+An example of a query that returns the names and image links to people who are male with a citizenship from Europe or North America and the occupation of manager.
+ 
+\begin{verbatim}
+SELECT distinct ?name ?img
+    WHERE{
+          ?person wdt:P106 wd:Q2462658.
+          ?person rdfs:label ?name.
+          ?person wdt:P18 ?img.
+          ?person wdt:P21 wd:Q6581097.
+          
+          ?person wdt:P27 ?country.
+          {?country wdt:P30 wd:Q46} 
+          UNION {?country wdt:P30 wd:Q49}
+          
+          FILTER (LANG(?name) = 'en') .
+          SERVICE wikibase:label { bd:serviceParam wikibase:language "en".}.
+        } LIMIT 600
+\end{verbatim}
+
+\begin{itemize}
+\item Property wdt:P106: Occupation
+\item Entity ID wd:Q2462658: Manager
+\item Property wdt:P18: Image
+\item Property wdt: P21: Gender
+\item Entity ID wd:Q6581097: Male
+\item Property wdt:P27: Country of Citizenship
+\item Property wdt:P30: Continent
+\item Entity ID wd:Q46: Europe
+\item Entity ID wd:Q49: North America
+\end{itemize}
+
+
+\end{appendices}
 
 \nocite{*}
 

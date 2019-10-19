@@ -25,13 +25,21 @@
   \field{howpublished}{\url{https://www.slovenskenovice.si/images/slike/2018/04/28/239717.jpg}}
   \endentry
 
-  \entry{clustering}{misc}{}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{2}
-    \field{sortinithash}{2}
-  \field{howpublished}{\url{https://scikit-learn.org/stable/modules/clustering.html}}
-    \field{title}{2.3. Clustering}
-    \field{year}{2011}
+  \entry{data1}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=AS}{%
+         family={Agarwal},
+         familyi={A\bibinitperiod},
+         given={Soumitra},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AS1}
+    \strng{fullhash}{AS1}
+    \field{labelnamesource}{author}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+  \field{howpublished}{\url{https://github.com/SoumitraAgarwal?tab=repositories}}
   \endentry
 
   \entry{amos2016}{misc}{}
@@ -178,6 +186,15 @@
   Computing}
     \field{month}{08}
     \field{year}{2019}
+  \endentry
+
+  \entry{clustering}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+  \field{howpublished}{\url{https://scikit-learn.org/stable/modules/clustering.html}}
+    \field{title}{Clustering}
+    \field{year}{2011}
   \endentry
 
   \entry{dalal}{article}{}
@@ -363,6 +380,41 @@
   Prediction: Social Dimensions of Face}
     \field{year}{2015}
     \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{ncbi}{article}{}
+    \name{author}{2}{}{%
+      {{hash=JKMSYG}{%
+         family={Jung},
+         familyi={J\bibinitperiod},
+         suffix={Y.\bibnamedelima G.},
+         suffixi={Y\bibinitperiod\bibinitdelim G\bibinitperiod},
+         given={Kang M.\bibnamedelima S.},
+         giveni={K\bibinitperiod\bibinitdelim M\bibinitperiod\bibinitdelim
+  S\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Heo},
+         familyi={H\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JYGKMSHJ1}
+    \strng{fullhash}{JYGKMSHJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \verb{doi}
+    \verb 10.1080/13102818.2014.949045
+    \endverb
+    \field{pages}{S44–S48}
+    \field{title}{Clustering performance comparison using K-means and
+  expectation maximization algorithms}
+    \field{volume}{28(sup1)}
+    \field{journaltitle}{Biotechnology, biotechnological equipment}
+    \field{year}{2014}
   \endentry
 
   \entry{king2014}{misc}{}
