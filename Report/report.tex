@@ -14,6 +14,7 @@
 \addbibresource{mybib.bib}
 \usepackage[hidelinks]{hyperref}
 \usepackage[title]{appendix}
+\usepackage{changepage}
 
 
 \title{Correlation between Professional Domain and Facial Features based on Face Clustering}
@@ -195,6 +196,7 @@ As shown in Figure \ref{fig:loss} using a neural network, the triplet loss is co
 \end{figure}
  
 \section{Face Representation Methods}
+\label{facemethod}
 
 The following section examines open-source state-of-the-art face feature extraction methods.
 
@@ -206,7 +208,7 @@ FaceNet is a method that uses a deep CNN along with the GoogLeNet style Inceptio
 
 Between 100 to 200 million face images consisting of about 8 million different identities were used for training. The large dataset of labelled faces consist of various poses, illuminations, and other variations. \cite{schroff}.
 
-The pre-trained model (20180402-114759) of open-source FaceNet implementation \cite{sandberg} used in the experiment from the next section was trained using the VGGFace2 dataset. The faces of the dataset was detected and aligned using MTCNN . The dataset contains 3.31 million images of 9131 identities, with an average of 362.6 images for each person. The images were downloaded from Google Image Search and have large variations in pose, age, illumination, ethnicity and profession. The model uses the Inception ResNet v1 architecture and has an accuracy of $99.65\%$ on the Labeled Faces in the Wild (LFW) benchmark \cite{sandberg}. \cite{sandberg}'s implementation results in a 512-dimensional feature vector.
+The pre-trained model (20180402-114759) of open-source FaceNet implementation \cite{sandberg} used in the experiment from Section \ref{experiment} was trained using the VGGFace2 dataset. The faces of the dataset was detected and aligned using MTCNN . The dataset contains 3.31 million images of 9131 identities, with an average of 362.6 images for each person. The images were downloaded from Google Image Search and have large variations in pose, age, illumination, ethnicity and profession. The model uses the Inception ResNet v1 architecture and has an accuracy of $99.65\%$ on the Labeled Faces in the Wild (LFW) benchmark \cite{sandberg}. \cite{sandberg}'s implementation results in a 512-dimensional feature vector.
 
 \subsection{Dlib}
 \quad
@@ -248,6 +250,7 @@ The model is trained on MS1MV2 which is a refinement of the MS-Celeb-1M dataset.
 \end{figure}
 
 \section{Clustering Algorithms}
+\label{clustering}
 
 \quad
 Clustering can be considered the most important unsupervised learning problem and aims to find a structure in a collection of unlabeled data. Objects that are similar between each other are grouped in the same cluster, while dissimilar objects belong to other clusters \cite{ncbi}.
@@ -295,6 +298,7 @@ The EM algorithm is similar to K-means, but instead the assignment of data point
 Birch clustering is an efficient data reduction algorithm in which it reduces the input data to a set of subclusters. For a given dataset, the algorithm builds the Characteristic Feature Tree (CFT) where the data points are compressed to a set of  Characteristic Feature nodes (CF Nodes). When a new data point is inserted into the CF Tree, it is merged with the nearest leaf of the subcluster of the root. These subclusters contain the necessary information for clustering \cite{scikit-learn}
 
 \section{Experiment}
+\label{experiment}
 
 \subsection{Dataset}
 
@@ -369,37 +373,197 @@ This dataset consists of $4,593$ unique images of 11 different categories of pro
 
 
 \subsection{Set-Up}
-We know the number of clusters, so we can focus on parametric clustering methods.
-
-describe the folder structure
+\quad
+In the experiments faces of people are clustered by profession using different clustering algorithms. Since the number of different professions are known, the number of clusters selected corresponds to the number of professions in each experiment. The cluster algorithms were applied to the feature embeddings using the methods described in Section \ref{facemethod}. Pre-trained models from each method was used in the experiment. 
 
 \subsection{Framework}
+\quad
+Computer Device Details:
+\begin{itemize}
+\item Processor: Intel Core i5-4570 CPU, 3.20GHz x 4
+\item 16 GB RAM
+\end{itemize}
 
-computer details
+The following describes the steps to obtain the results:
 
-steps to do the experiment
+\begin{enumerate}
+\item \textbf{Load Images: } Each image is located inside a directory with the same filename
+\item \textbf{Face Detection: } The FaceNet implementation uses MTCNN and the detected faces are of 160 x 160 pixels. Dlib uses the HOG face detector. OpenFace uses the HOG detector and the detected faces are of 96 x 96 pixels. ArcFace uses MTCNN and the detected faces are 112 x 112 pixels. Based on the open-source implementations, \cite{sandberg}, \cite{geitgey}, \cite{amos2016}, \cite{deng2019}, Table \ref{table:1} shows which face detection method was used for each method and the number of features in the resulting embeddings. Table \ref{table:2} shows the details of the accuracy based on the LWF benchmark, data size, and architecture of the pre-trained models.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c||} 
+ \hline
+  Method & Face Detector & Number of Features\\ [0.5ex]
+ \hline\hline
+ \textbf{FaceNet} & MTCNN (160 x 160 px) & 512\\ 
+ \hline
+ \textbf{Dlib} & HOG & 128\\
+ \hline
+ \textbf{OpenFace} & HOG (96 x 96 px) & 128\\
+ \hline
+ \textbf{ArcFace} & MTCNN (112 x 112 px) & 512\\
+ \hline
+\end{tabular}
+\caption{The face detection method used and the number of features of the embeddings extracted from each method \cite{sandberg}, \cite{geitgey}, \cite{amos2016}, \cite{deng2019}.}
+\label{table:1}
+\end{table}
+
+\begin{table}[h!]
+%\centering
+\begin{adjustwidth}{-2.5cm}{}
+\begin{tabular}{||c c c c ||} 
+ \hline
+  Method & LWF Accuracy & Dataset Size & Architecture\\ [0.5ex]
+ \hline\hline
+ \textbf{FaceNet} & 0.9965 & 3.31 million images, 9,121 identities & Inception ResNet v1\\ 
+ \hline
+ \textbf{Dlib} & 0.9938 & 3 million images, 7,485 identities & ResNet 29\\
+ \hline
+ \textbf{OpenFace} & 0.9292 & 500,000 images & Inception ResNet v1 (modified)\\
+ \hline
+ \textbf{ArcFace} & 0.9982 & 10 million images, 100,000 identities & ResNet 100\\
+ \hline
+ \textbf{Human-Level} \cite{amos} & 0.9753 &  &\\
+ \hline
+\end{tabular}
+\caption{Accuracy based on the LWF benchmark, data size, and architecture of the pre-trained models \cite{sandberg}, \cite{geitgey}, \cite{amos2016}, \cite{deng2019}.}
+\label{table:2}
+\end{adjustwidth}
+\end{table}
+
+
+\item \textbf{Extract Feature Embeddings: } Using the pre-trained models provided by the implementations, the embeddings can be extracted. The embeddings of FaceNet and ArcFace both have 512 features and the embeddings of Dlib and OpenFace have 128 features. The embeddings and corresponding labels (identity and profession) of FaceNet, Dlib, and ArcFace are saved as binary files that can be loaded directly using NumPy in Python and the Openface embeddings and labels are saved as csv files. Table \ref{table:3} shows the dimensions of the feature embeddings extracted from each method.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c||} 
+ \hline
+  Method & Experiment 1 & Experiment 2 & Experiment 3\\ [0.5ex]
+ \hline\hline
+ \textbf{FaceNet} & 2,180 x 512 & 2,065 x 512 & 4,593 x 512\\ 
+ \hline
+ \textbf{Dlib} & 2,180 x 128 & 2,065 x 128 & 4,593 x 128\\
+ \hline
+ \textbf{OpenFace} & 2,180 x 128 & 2,065 x 128 & 4,593 x 128\\
+ \hline
+ \textbf{ArcFace} & 2,180 x 510 & 2,065 x 512 & 4,593 x 512\\
+ \hline
+\end{tabular}
+\caption{Dimensions of the feature embeddings extracted from each method}
+\label{table:3}
+\end{table}
+
+\item \textbf{Profession Clustering: } The clustering algorithms from Section \ref{clustering} were applied to the feature embeddings of the different methods. Since the number of different professions are known, the number of clusters selected corresponds to the number of professions in each experiment.
+\end{enumerate}
 
 \section{Results}
 
 \subsection{Evaluation}
+\quad
+Since the dataset provides the labels of the correct profession for each face image, the accuracy of the clusters can be evaluated corresponding to the known profession labels. Due to efficiency, the clustering accuracy is evaluated with the Pairwise F-Measure \cite{otto}.
 
-\subsubsection{F-Measure}
+\subsubsection{Pairwise F-Measure}
 
-Suppose $L = \{l_{1},...,l_{n}\}$ contains the actual labels for each face and $C = \{c_{1},...,c_{n}\}$ are the labels from the output of the clustering algorithm. Then for each face pair $(i, j)$ of each cluster, \\
-The amount of true positives are the number of face pairs $(i, j)$ that are correctly clustered into the same cluster. $$TP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_{i} = l_{j}\}|$$
-The amount of false positives is the number of face pairs $(i, j)$ that are incorrectly clustered to the same cluster: $$FP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_{i} \neq l_{j}\}|$$
-The amount of true negatives is the number of face pairs that are clustered to a different cluster. $$TN = | \{(i, j) \ \textrm{where} \ c_{i} \neq c_{j} \ \textrm{and} \ l_{i} \neq l_{j}\}|$$
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/fmeasure.png}
+    \caption{Example of a possible clustering output. Six data points are grouped into 2 clusters. A1, A2, and A3 have the same label, B1 has it's own label, and samples U1 and U2 have the same label \cite{otto}.}
+    \label{fig:fmeasure}
+\end{figure}
 
-\cite{thesis}
+Suppose $L = \{l_{1},...,l_{n}\}$ contains the actual labels for each face and $C = \{c_{1},...,c_{n}\}$ are the labels from the output of the clustering algorithm. For example, shown in Figure \ref{fig:fmeasure}, the actual labels are $$L = \{\{A1, A2, A3\}, \{B1\}, \{U1, U2\}\}$$ and the labels from the output of the cluster algorithm are $$C = \{\{A1, A2, B1\}, \{A3, U1, U2 \}\}$$
+Then the set of face pairs from the actual labels are $$P = \{(A1, A2), (A1, A3), (A2, A3), (U1, U2)\}$$ 
+The set of face pairs from the labels of the cluster algorithm are $$Q = \{(A1, A2), (A1, B1), (A2, B1), (A3, U1), (A3, U2), (U1, U2)\}$$
+For each face pair $(i, j)$ of each cluster \cite{thesis}: \\
+\begin{itemize}
+\item \textbf{True Positive (TP):} The number of face pairs $(i, j)$ that are correctly clustered into the same cluster.
+$$TP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_{i} = l_{j}\}|$$
 
-For example if $P = \{(1, 2), (1, 3), (2, 3), (4, 5)\}$ is a set of face pairs from the ground truth labels and $Q = \{(2, 3), (1, 4), (1, 5), (4, 5)\}$ is the set of face pairs from the labels of the clustering algorithms where the face pairs are represented by the indices of their embeddings. Then
-$$TP = | P \cap Q | = |\{(2, 3), (4, 5)\}| = 2$$
-$$FP = |Q - P| = |\{(1, 4), (1, 5)\}| = 2$$
-$$FN = |P - Q| = |\{(1, 2), (1, 3)\}| = 2$$
+In Figure \ref{fig:fmeasure}, $(A1, A2), (U1, U2)$ are matching pairs and
+$$TP = | P \cap Q | = |\{(A1, A2), (U1, U2)\}| = 2$$
 
-\subsubsection{ROC}
+\item \textbf{False Positives (FP):} The number of face pairs $(i, j)$ that are incorrectly clustered to the same cluster. $$FP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_{i} \neq l_{j}\}|$$
 
-The ROC curve shows the tradeoffs between the TPR and FPR.The perfect ROC curve would have a TPR of 1 everywhere, which is where todays state-of-the-artindustry techniques are nearly at. \cite{amos}
+In Figure \ref{fig:fmeasure}, $(A1, B1), (A2, B1), (A3, U1), (A3, U2)$ are mismatching pairs and $$FP = |Q - P| = |\{(A1, B1), (A2, B1), (A3, U1), (A3, U2)\}| = 4$$ 
+
+\item \textbf{False Negatives (FN)}: The number of face pairs that are clustered to a different cluster. $$TN = | \{(i, j) \ \textrm{where} \ c_{i} \neq c_{j} \ \textrm{and} \ l_{i} \neq l_{j}\}|$$
+
+In Figure \ref{fig:fmeasure}, $(A1, A3), (A2, A3)$ are same-class pairs in different clusters and $$FN = |P - Q| = |\{(A1, A3), (A2, A3)\}| = 2$$
+\end{itemize}
+
+
+\begin{itemize}
+\item \textbf{Pairwise Precision:} Fraction of face pairs that are correctly clustered together over the total number of pairs that belong to the same class \cite{shi}.
+$$ Pairwise \ Precision = \frac{TP}{TP + FP}$$
+
+\item \textbf{Pairwise Recall:} Fraction of face pairs that are correctly clustered together over the total number of pairs that are in the same cluster \cite{shi}.
+$$ Pairwise \ Recall = \frac{TP}{TP + FN}$$
+
+\item \textbf{Pairwise F-Measure:} Harmonic mean of Precision and Recall \cite{shi} $$Pairwise \ F\textrm{-}Measure = \frac{2 * \textrm{Precision}*\textrm{Recall}}{\textrm{Precision} + \textrm{Recall}}$$
+\end{itemize}
+If the output of the algorithm clusters all data points as individual clusters, it will have a high precision, but low recall. Whereas if the output clusters all data points in the same cluster, it will have a high recall, but low precision \cite{otto}.
+
+
+%For example if $P = \{(1, 2), (1, 3), (2, 3), (4, 5)\}$ is a set of face pairs from the ground truth labels and $Q = \{(2, 3), (1, 4), (1, 5), (4, 5)\}$ is the set of face pairs from the labels of the clustering algorithms where the face pairs are represented by the indices of their embeddings. Then $$TP = | P \cap Q | = |\{(2, 3), (4, 5)\}| = 2$$ $$FP = |Q - P| = |\{(1, 4), (1, 5)\}| = 2$$ $$FN = |P - Q| = |\{(1, 2), (1, 3)\}| = 2$$
+
+%\item \textbf{Create ground truth dictionary: } Based on the embeddings and labels from the feature extraction methods, a dictionary that assigns the indices of the images to the corresponding profession was created. The identity and profession can later be retrieved from the indices. The keys are the professions and the values are arrays of image indices. e.g. $\{\textrm{tennis player}: [41, 54, ...], \ \textrm{basketball player}: [0, 2, 5, ...], \ \textrm{golfer}: [...], ...\}$
+
+\subsection{Experiment 1}
+
+The results were obtained by averaging 10 F-measure scores. 
+
+\begin{itemize}
+\item \textbf{ArcFace}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.511 & 0.582 & 0.455 & 1.279\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.465 & 0.531 & 0.414 & 0.792\\
+ \hline
+ \textbf{HAC} & 5 & 0.413 & 0.459 & 0.376 & 0.719\\
+ \hline
+ \textbf{EM} & 5 & 0.513 & 0.583 & 0.459 & 0.914\\
+ \hline
+ \textbf{Birch} & 5 & 0.453 & 0.473 & 0.434 & 1.017\\
+ \hline
+\end{tabular}
+\caption{ArFace}
+\label{table:4}
+\end{table}
+
+\end{itemize}
+
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/soccer_tp.png}
+    \caption{True Positives of Soccer Players}
+    \label{fig:ex1tp}
+\end{figure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.4\columnwidth]{figures/soccer_fp.png}
+    \caption{False Positives}
+    \label{fig:ex1fp}
+\end{figure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.4\columnwidth]{figures/soccer_fn.png}
+    \caption{False Negatives}
+    \label{fig:ex1fn}
+\end{figure}
+
+\subsection{Experiment 2}
+
+\subsection{Experiment 3}
 
 
 \subsection{Analysis}
@@ -407,6 +571,9 @@ The ROC curve shows the tradeoffs between the TPR and FPR.The perfect ROC curve 
 Can't control age, big factor.
 
 Bar graph Comparsion of accuracy based on increasing the number of clusters for each algorithm
+
+
+It can also be assumed that the quality of images in terms of pose, illumination, occlusion, etc. being considered is relatively low, since social media images, images taken at public events etc. are not generally captured in the most favorable conditions for face recognition. \cite{shi}
 
 \section{Conclusion}
 
