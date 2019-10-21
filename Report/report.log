@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.13)  20 OCT 2019 23:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.13)  21 OCT 2019 11:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1178,6 +1178,14 @@ Package: changepage 2009/10/20 v1.0c check page and change page layout
 \c@cp@cntr=\count347
 \cp@tempcnt=\count348
 )
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count349
+\float@exts=\toks37
+\float@box=\box39
+\@float@everytoks=\toks38
+\@floatcapt=\box40
+)
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -1188,25 +1196,25 @@ File: english.lbx 2017/12/19 v3.10 biblatex localization (PK/JW/AB)
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count349
-\@quotereset=\count350
+\@quotelevel=\count350
+\@quotereset=\count351
 (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1245,17 +1253,17 @@ LaTeX Font Info:    ... okay on input line 26.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count351
+\scratchcounter=\count352
 \scratchdimen=\dimen175
-\scratchbox=\box39
-\nofMPsegments=\count352
-\nofMParguments=\count353
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count354
+\scratchbox=\box41
+\nofMPsegments=\count353
+\nofMParguments=\count354
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count355
 \MPscratchDim=\dimen176
-\MPnumerator=\count355
-\makeMPintoPDFobject=\count356
-\everyMPtoPDFconversion=\toks38
+\MPnumerator=\count356
+\makeMPintoPDFobject=\count357
+\everyMPtoPDFconversion=\toks40
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1291,37 +1299,37 @@ Package biblatex Warning: BibTeX reported the following issues
 (biblatex)                - Invalid format of field 'month'.
 
 )
-Package biblatex Info: Reference section=0 on input line 26.
-Package biblatex Info: Reference segment=0 on input line 26.
-\AtBeginShipoutBox=\box40
-Package hyperref Info: Link coloring OFF on input line 26.
+Package biblatex Info: Reference section=0 on input line 27.
+Package biblatex Info: Reference segment=0 on input line 27.
+\AtBeginShipoutBox=\box42
+Package hyperref Info: Link coloring OFF on input line 27.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count357
+\c@section@level=\count358
 )
-LaTeX Info: Redefining \ref on input line 26.
-LaTeX Info: Redefining \pageref on input line 26.
-LaTeX Info: Redefining \nameref on input line 26.
+LaTeX Info: Redefining \ref on input line 27.
+LaTeX Info: Redefining \pageref on input line 27.
+LaTeX Info: Redefining \nameref on input line 27.
 
 (./report.out) (./report.out)
 \@outlinefile=\write6
 \openout6 = `report.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 29.
+LaTeX Font Info:    Try loading font information for U+msa on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 29.
+LaTeX Font Info:    Try loading font information for U+msb on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
 
  []
 
@@ -1332,194 +1340,462 @@ Underfull \hbox (badness 10000) in paragraph at lines 48--49
 File: figures/otto_faceClustering_workflow.png Graphic file (type png)
 <use figures/otto_faceClustering_workflow.png>
 Package pdftex.def Info: figures/otto_faceClustering_workflow.png  used on inpu
-t line 52.
+t line 53.
 (pdftex.def)             Requested size: 438.51413pt x 199.32848pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--63
+Underfull \hbox (badness 10000) in paragraph at lines 62--64
 
  []
 
-[2 <./figures/otto_faceClustering_workflow.png>]
+[2pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.73 \end{enumerate}
+                     <./figures/otto_faceClustering_workflow.png>]
 <figures/face_detection.png, id=197, 413.545pt x 256.96pt>
 File: figures/face_detection.png Graphic file (type png)
 <use figures/face_detection.png>
-Package pdftex.def Info: figures/face_detection.png  used on input line 77.
+Package pdftex.def Info: figures/face_detection.png  used on input line 78.
 (pdftex.def)             Requested size: 214.87433pt x 133.51802pt.
 <figures/landmark.png, id=199, 348.30125pt x 169.63374pt>
 File: figures/landmark.png Graphic file (type png)
 <use figures/landmark.png>
-Package pdftex.def Info: figures/landmark.png  used on input line 83.
+Package pdftex.def Info: figures/landmark.png  used on input line 84.
 (pdftex.def)             Requested size: 214.87433pt x 104.65155pt.
 <figures/openface_detection.png, id=201, 623.32875pt x 658.46pt>
 File: figures/openface_detection.png Graphic file (type png)
 <use figures/openface_detection.png>
-Package pdftex.def Info: figures/openface_detection.png  used on input line 91.
+Package pdftex.def Info: figures/openface_detection.png  used on input line 92.
 
 (pdftex.def)             Requested size: 306.95854pt x 324.26584pt.
- [3 <./figures/face_detection.png> <./figures/landmark.png> <./figures/openface
-_detection.png>]
+ [3pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
+ has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.104 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+3}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.104 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+4}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.104 
+       <./figures/face_detection.png> <./figures/landmark.png> <./figures/openf
+ace_detection.png>]
 <figures/hog_dlib.png, id=215, 180.675pt x 180.675pt>
 File: figures/hog_dlib.png Graphic file (type png)
 <use figures/hog_dlib.png>
-Package pdftex.def Info: figures/hog_dlib.png  used on input line 107.
+Package pdftex.def Info: figures/hog_dlib.png  used on input line 108.
 (pdftex.def)             Requested size: 153.48262pt x 153.48347pt.
 <figures/face_hog.png, id=218, 427.5975pt x 278.03876pt>
 File: figures/face_hog.png Graphic file (type png)
 <use figures/face_hog.png>
-Package pdftex.def Info: figures/face_hog.png  used on input line 113.
+Package pdftex.def Info: figures/face_hog.png  used on input line 114.
 (pdftex.def)             Requested size: 197.33002pt x 128.3109pt.
-<figures/mtcnn_pipeline2.png, id=227, 933.4875pt x 148.30406pt>
+ [4pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
+ has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.138 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+6}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.138 
+       <./figures/hog_dlib.png> <./figures/face_hog.png>]
+<figures/mtcnn_pipeline2.png, id=242, 933.4875pt x 148.30406pt>
 File: figures/mtcnn_pipeline2.png Graphic file (type png)
 <use figures/mtcnn_pipeline2.png>
-Package pdftex.def Info: figures/mtcnn_pipeline2.png  used on input line 141.
+Package pdftex.def Info: figures/mtcnn_pipeline2.png  used on input line 142.
 (pdftex.def)             Requested size: 438.51413pt x 69.6667pt.
- [4 <./figures/hog_dlib.png> <./figures/face_hog.png>]
 <figures/neural_flow.png, id=254, 772.8875pt x 137.51375pt>
 File: figures/neural_flow.png Graphic file (type png)
 <use figures/neural_flow.png>
-Package pdftex.def Info: figures/neural_flow.png  used on input line 166.
+Package pdftex.def Info: figures/neural_flow.png  used on input line 167.
 (pdftex.def)             Requested size: 438.51413pt x 78.02065pt.
- [5 <./figures/mtcnn_pipeline2.png> <./figures/neural_flow.png>]
-<figures/triplet_loss_example.png, id=272, 1097.09875pt x 419.5675pt>
+ [5pdfTeX warning (ext4): destination with the same identifier (name{figure.7})
+ has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.176 
+       <./figures/mtcnn_pipeline2.png>]
+<figures/triplet_loss_example.png, id=271, 1097.09875pt x 419.5675pt>
 File: figures/triplet_loss_example.png Graphic file (type png)
 <use figures/triplet_loss_example.png>
 Package pdftex.def Info: figures/triplet_loss_example.png  used on input line 1
-86.
+87.
 (pdftex.def)             Requested size: 350.81264pt x 134.1619pt.
-<figures/openface_architecture.png, id=277, 1005.7575pt x 381.425pt>
+<figures/openface_architecture.png, id=276, 1005.7575pt x 381.425pt>
 File: figures/openface_architecture.png Graphic file (type png)
 <use figures/openface_architecture.png>
 Package pdftex.def Info: figures/openface_architecture.png  used on input line 
-193.
+194.
 (pdftex.def)             Requested size: 306.95854pt x 116.4072pt.
- [6 <./figures/triplet_loss_example.png>]
-<figures/facenet_model_archi.png, id=308, 779.91376pt x 153.57375pt>
+ [6pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
+ has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.204 \subsection
+                 {FaceNet}pdfTeX warning (ext4): destination with the same iden
+tifier (name{figure.9}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.204 \subsection
+                 {FaceNet} <./figures/neural_flow.png> <./figures/triplet_loss_
+example.png>] [7pdfTeX warning (ext4): destination with the same identifier (na
+me{figure.10}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.219 
+       <./figures/openface_architecture.png>]
+<figures/facenet_model_archi.png, id=320, 779.91376pt x 153.57375pt>
 File: figures/facenet_model_archi.png Graphic file (type png)
 <use figures/facenet_model_archi.png>
 Package pdftex.def Info: figures/facenet_model_archi.png  used on input line 22
-1.
+2.
 (pdftex.def)             Requested size: 438.51413pt x 86.34752pt.
- [7 <./figures/openface_architecture.png>]
 <figures/comparison.png, id=332, 797.98125pt x 684.5575pt>
 File: figures/comparison.png Graphic file (type png)
 <use figures/comparison.png>
-Package pdftex.def Info: figures/comparison.png  used on input line 240.
+Package pdftex.def Info: figures/comparison.png  used on input line 241.
 (pdftex.def)             Requested size: 263.11115pt x 225.7062pt.
 <figures/ex.png, id=334, 582.175pt x 374.39874pt>
 File: figures/ex.png Graphic file (type png)
 <use figures/ex.png>
-Package pdftex.def Info: figures/ex.png  used on input line 247.
+Package pdftex.def Info: figures/ex.png  used on input line 248.
 (pdftex.def)             Requested size: 263.11115pt x 169.20912pt.
- [8 <./figures/facenet_model_archi.png> <./figures/comparison.png>]
-Overfull \hbox (2.82434pt too wide) in paragraph at lines 272--274
+ [8pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
+) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.261 
+       <./figures/facenet_model_archi.png>] [9pdfTeX warning (ext4): destinatio
+n with the same identifier (name{figure.12}) has been already used, duplicate i
+gnored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.261 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+13}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.261 
+       <./figures/comparison.png> <./figures/ex.png>]
+Overfull \hbox (2.82434pt too wide) in paragraph at lines 273--275
  \OT1/cmr/m/n/12 Spec-tral Clus-ter-ing is an ef-fi-cient clus-ter-ing al-go-ri
 thm where it uses a low-dimensional
  []
 
-[9 <./figures/ex.png>] [10]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 311.
+[10]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 312.
 
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 311.
-<figures/ex1.png, id=382, 755.82375pt x 551.05875pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 312.
+<figures/ex1.png, id=380, 755.82375pt x 551.05875pt>
 File: figures/ex1.png Graphic file (type png)
 <use figures/ex1.png>
-Package pdftex.def Info: figures/ex1.png  used on input line 321.
+Package pdftex.def Info: figures/ex1.png  used on input line 322.
 (pdftex.def)             Requested size: 306.95854pt x 223.79979pt.
- [11 <./figures/ex1.png>]
-<figures/ex2.png, id=397, 813.0375pt x 512.91624pt>
+ [11]
+<figures/ex2.png, id=396, 813.0375pt x 512.91624pt>
 File: figures/ex2.png Graphic file (type png)
 <use figures/ex2.png>
-Package pdftex.def Info: figures/ex2.png  used on input line 343.
+Package pdftex.def Info: figures/ex2.png  used on input line 344.
 (pdftex.def)             Requested size: 306.95854pt x 193.65013pt.
- [12 <./figures/ex2.png>]
-<figures/ex3.png, id=409, 861.2175pt x 533.995pt>
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.14
+}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.353 
+       <./figures/ex1.png>]
+<figures/ex3.png, id=408, 861.2175pt x 533.995pt>
 File: figures/ex3.png Graphic file (type png)
 <use figures/ex3.png>
-Package pdftex.def Info: figures/ex3.png  used on input line 368.
+Package pdftex.def Info: figures/ex3.png  used on input line 369.
 (pdftex.def)             Requested size: 306.95854pt x 190.33139pt.
- [13 <./figures/ex3.png>]
-Overfull \hbox (62.76193pt too wide) in paragraph at lines 415--430
-[][] 
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.15
+}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.384 \item P
+             rocessor: Intel Core i5-4570 CPU, 3.20GHz x 4 <./figures/ex2.png>]
+
+Overfull \hbox (62.76193pt too wide) in paragraph at lines 416--431
+[][]
  []
 
-[14]
-<figures/fmeasure.png, id=459, 565.11125pt x 199.74625pt>
-File: figures/fmeasure.png Graphic file (type png)
-<use figures/fmeasure.png>
-Package pdftex.def Info: figures/fmeasure.png  used on input line 470.
-(pdftex.def)             Requested size: 438.51413pt x 155.0029pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 477--479
-
- []
-
-[15 <./figures/fmeasure.png>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<figures/soccer_tp.png, id=479, 1125.20375pt x 284.06125pt>
+[14pdfTeX warning (ext4): destination with the same identifier (name{figure.16}
+) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.438 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.438 
+       <./figures/ex3.png>]
+<figures/fmeasure.png, id=456, 565.11125pt x 199.74625pt>
+File: figures/fmeasure.png Graphic file (type png)
+<use figures/fmeasure.png>
+Package pdftex.def Info: figures/fmeasure.png  used on input line 471.
+(pdftex.def)             Requested size: 438.51413pt x 155.0029pt.
+ [15pdfTeX warning (ext4): destination with the same identifier (name{table.2})
+ has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.477 ...A1, A2), (A1, A3), (A2, A3), (U1, U2)\}$$
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{table.3}) has been already used, duplicate
+ ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.477 ...A1, A2), (A1, A3), (A2, A3), (U1, U2)\}$$
+                                                  ]
+Underfull \hbox (badness 10000) in paragraph at lines 478--480
+
+ []
+
+[16pdfTeX warning (ext4): destination with the same identifier (name{figure.17}
+) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.499 ...irwise \ Precision = \frac{TP}{TP + FP}$$
+                                                   <./figures/fmeasure.png>]
+[17pdfTeX warning (ext4): destination with the same identifier (name{table.4}) 
+has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.582 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.5
+}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.582 
+      ]
+<figures/soccer_tp.png, id=489, 1125.20375pt x 284.06125pt>
 File: figures/soccer_tp.png Graphic file (type png)
 <use figures/soccer_tp.png>
-Package pdftex.def Info: figures/soccer_tp.png  used on input line 545.
+Package pdftex.def Info: figures/soccer_tp.png  used on input line 632.
 (pdftex.def)             Requested size: 438.51413pt x 110.70541pt.
-<figures/soccer_fp.png, id=480, 463.7325pt x 547.04375pt>
+<figures/soccer_fp.png, id=490, 463.7325pt x 547.04375pt>
 File: figures/soccer_fp.png Graphic file (type png)
 <use figures/soccer_fp.png>
-Package pdftex.def Info: figures/soccer_fp.png  used on input line 552.
+Package pdftex.def Info: figures/soccer_fp.png  used on input line 639.
 (pdftex.def)             Requested size: 175.40297pt x 206.91885pt.
-<figures/soccer_fn.png, id=481, 470.75874pt x 559.08875pt>
+<figures/soccer_fn.png, id=491, 470.75874pt x 559.08875pt>
 File: figures/soccer_fn.png Graphic file (type png)
 <use figures/soccer_fn.png>
-Package pdftex.def Info: figures/soccer_fn.png  used on input line 559.
+Package pdftex.def Info: figures/soccer_fn.png  used on input line 646.
 (pdftex.def)             Requested size: 175.40297pt x 208.30986pt.
-[16] [17 <./figures/soccer_tp.png> <./figures/soccer_fp.png> <./figures/soccer_
-fn.png>]
-Overfull \hbox (30.7861pt too wide) in paragraph at lines 600--600
+ [18pdfTeX warning (ext4): destination with the same identifier (name{table.6})
+ has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.673 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.7
+}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.673 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.8
+}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.673 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+18}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.673 
+       <./figures/soccer_tp.png>] [19pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.19}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.673 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+20}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.673 
+       <./figures/soccer_fp.png> <./figures/soccer_fn.png>] [20pdfTeX warning (
+ext4): destination with the same identifier (name{table.9}) has been already us
+ed, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.763 \end{itemize}
+                   pdfTeX warning (ext4): destination with the same identifier 
+(name{table.10}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.763 \end{itemize}
+                   pdfTeX warning (ext4): destination with the same identifier 
+(name{table.11}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.763 \end{itemize}
+                   pdfTeX warning (ext4): destination with the same identifier 
+(name{table.12}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.763 \end{itemize}
+                   ]
+<figures/manager.png, id=518, 1094.0875pt x 588.1975pt>
+File: figures/manager.png Graphic file (type png)
+<use figures/manager.png>
+Package pdftex.def Info: figures/manager.png  used on input line 767.
+(pdftex.def)             Requested size: 438.51413pt x 235.7505pt.
+
+Overfull \hbox (28.28323pt too wide) in paragraph at lines 800--815
+ [][] 
+ []
+
+[21pdfTeX warning (ext4): destination with the same identifier (name{figure.21}
+) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.818 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+3}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.818 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+4}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.818 
+       <./figures/manager.png>]
+Overfull \hbox (28.28323pt too wide) in paragraph at lines 822--837
+ [][] 
+ []
+
+
+Overfull \hbox (28.28323pt too wide) in paragraph at lines 844--859
+ [][] 
+ []
+
+
+Overfull \hbox (28.28323pt too wide) in paragraph at lines 866--881
+ [][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[22pdfTeX warning (ext4): destination with the same identifier (name{table.15})
+ has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.914 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+6}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.914 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+7}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.914 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+8}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.914 
+      ]
+Overfull \hbox (30.7861pt too wide) in paragraph at lines 937--937
 []          \OT1/cmtt/m/n/12 SERVICE wikibase:label { bd:serviceParam wikibase:
 language "en".}.[] 
  []
 
-[18]
-Overfull \hbox (42.28856pt too wide) in paragraph at lines 620--620
+[23pdfTeX warning (ext4): destination with the same identifier (name{table.19})
+ has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.948 \item E
+             ntity ID wd:Q49: North America]
+Overfull \hbox (42.28856pt too wide) in paragraph at lines 957--957
 [][]$\OT1/cmtt/m/n/12 https : / / i . pinimg . com / originals / 76 / c3 / ea /
  76c3ea5bcd34a4d7435320c05651d494 .
  []
 
 
-Overfull \hbox (7.62163pt too wide) in paragraph at lines 620--620
+Overfull \hbox (7.62163pt too wide) in paragraph at lines 957--957
 []\OT1/cmr/m/n/12 Soumitra Agar-wal. []$\OT1/cmtt/m/n/12 https : / / github . c
 om / SoumitraAgarwal ? tab = repositories$[]\OT1/cmr/m/n/12 . 
  []
 
-[19] [20]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 621.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 621.
+[24] [25]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 958.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 958.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 621.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 621.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 958.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 958.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: F46A454BDF38480BD634CDE9E1D56989;2401.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24655 strings out of 492982
- 453902 string characters out of 6134895
- 874742 words of memory out of 5000000
- 27666 multiletter control sequences out of 15000+600000
+ 24756 strings out of 492982
+ 455194 string characters out of 6134895
+ 881076 words of memory out of 5000000
+ 27741 multiletter control sequences out of 15000+600000
  13220 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,8n,56p,1033b,1625s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,9n,56p,1033b,1625s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/tex
@@ -1532,10 +1808,10 @@ amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on report.pdf (20 pages, 6221374 bytes).
+Output written on report.pdf (25 pages, 7336432 bytes).
 PDF statistics:
- 617 PDF objects out of 1000 (max. 8388607)
- 519 compressed objects within 6 object streams
- 123 named destinations out of 1000 (max. 500000)
- 401 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 659 PDF objects out of 1000 (max. 8388607)
+ 554 compressed objects within 6 object streams
+ 144 named destinations out of 1000 (max. 500000)
+ 406 words of extra memory for PDF output out of 10000 (max. 10000000)
 

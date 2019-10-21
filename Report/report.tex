@@ -15,6 +15,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage[title]{appendix}
 \usepackage{changepage}
+\usepackage{float}
 
 
 \title{Correlation between Professional Domain and Facial Features based on Face Clustering}
@@ -513,60 +514,396 @@ If the output of the algorithm clusters all data points as individual clusters, 
 
 The results were obtained by averaging 10 F-measure scores. 
 
-\begin{itemize}
-\item \textbf{ArcFace}
-
 \begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c c||} 
+ \hline
+Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 0.478 & 0.391 & 0.382 & \textbf{0.516}\\ 
+ \hline
+  \textbf{Spectral} & 0.445 & 0.361 & 0.345 & \textbf{0.467}\\
+ \hline
+ \textbf{HAC} & \textbf{0.447} & 0.362 & 0.391 & 0.413\\
+ \hline
+ \textbf{EM} & 0.449 & 0.394 & 0.376 & \textbf{0.512}\\
+ \hline
+ \textbf{Birch} & 0.442 & 0.404 & 0.331 & \textbf{0.453}\\
+ \hline
+\end{tabular}
+\caption{Experiment 1: Comparison of Feature Extraction Methods and F-Measure of Clustering Algorithms}
+\label{table:ex1}
+\end{table}
+
+\begin{itemize}
+\item \textbf{FaceNet}
+\begin{table}[H]
 \centering
 \begin{tabular}{||c c c c c c||} 
  \hline
  Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime\\ [0.5ex]
  \hline\hline
- \textbf{K-Means} & 5 & 0.511 & 0.582 & 0.455 & 1.279\\ 
+ \textbf{K-Means} & 5 & \textbf{0.478} & 0.515 & 0.446 & 0.906\\ 
  \hline
-  \textbf{Spectral} & 5 & 0.465 & 0.531 & 0.414 & 0.792\\
+  \textbf{Spectral} & 5 & 0.445 & 0.507 & 0.397 & 0.662\\
  \hline
- \textbf{HAC} & 5 & 0.413 & 0.459 & 0.376 & 0.719\\
+ \textbf{HAC} & 5 & 0.447 & 0.463 & 0.432 & 0.669\\
  \hline
- \textbf{EM} & 5 & 0.513 & 0.583 & 0.459 & 0.914\\
+ \textbf{EM} & 5 & 0.449 & 0.499 & 0.408 & 5.004\\
  \hline
- \textbf{Birch} & 5 & 0.453 & 0.473 & 0.434 & 1.017\\
+ \textbf{Birch} & 5 & 0.442 & 0.452 & 0.432 & 0.553\\
  \hline
 \end{tabular}
-\caption{ArFace}
-\label{table:4}
+\caption{Experiment 1 FaceNet}
+\label{table:ex1facenet}
+\end{table}
+
+\item \textbf{Dlib}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.391 & 0.415 & 0.370 & 0.277\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.361 & 0.385 & 0.339 & 0.631\\
+ \hline
+ \textbf{HAC} & 5 & 0.362 & 0.384 & 0.343 & 0.234\\
+ \hline
+ \textbf{EM} & 5 & 0.394 & 0.419 & 0.372 & 0.594\\
+ \hline
+ \textbf{Birch} & 5 & \textbf{0.404} & 0.325 & 0.533 & 0.086\\
+ \hline
+\end{tabular}
+\caption{Experiment 1 Dlib}
+\label{table:ex1dlib}
+\end{table}
+
+\item \textbf{OpenFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.382 & 0.410 & 0.357 & 0.258\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.345 & 0.359 & 0.332 & 0.665\\
+ \hline
+ \textbf{HAC} & 5 & \textbf{0.391} & 0.369 & 0.417 & 0.226\\
+ \hline
+ \textbf{EM} & 5 & 0.376 & 0.408 & 0.349 & 0.475\\
+ \hline
+ \textbf{Birch} & 5 & 0.331 & 0.365 & 0.303 & 0.12\\
+ \hline
+\end{tabular}
+\caption{Experiment 1 OpenFace}
+\label{table:ex1openface}
+\end{table}
+
+\item \textbf{ArcFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & \textbf{0.516} & 0.588 & 0.459 & 1.211\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.467 & 0.533 & 0.415 & 0.804\\
+ \hline
+ \textbf{HAC} & 5 & 0.413 & 0.459 & 0.376 & 0.756\\
+ \hline
+ \textbf{EM} & 5 & 0.512 & 0.582 & 0.457 & 1.03\\
+ \hline
+ \textbf{Birch} & 5 & 0.453 & 0.473 & 0.434 & 1.036\\
+ \hline
+\end{tabular}
+\caption{Experiment 1 ArFace}
+\label{table:ex1arcface}
 \end{table}
 
 \end{itemize}
 
 
-\begin{figure}[!tbp]
+\begin{figure}[H]
  \centering
     \includegraphics[width=\columnwidth]{figures/soccer_tp.png}
-    \caption{True Positives of Soccer Players}
+    \caption{Experiment 1: True Positives}
     \label{fig:ex1tp}
 \end{figure}
 
 \begin{figure}[!tbp]
  \centering
     \includegraphics[width=0.4\columnwidth]{figures/soccer_fp.png}
-    \caption{False Positives}
+    \caption{Experiement 1: False Positives}
     \label{fig:ex1fp}
 \end{figure}
 
 \begin{figure}[!tbp]
  \centering
     \includegraphics[width=0.4\columnwidth]{figures/soccer_fn.png}
-    \caption{False Negatives}
+    \caption{Experiment 1: False Negatives}
     \label{fig:ex1fn}
 \end{figure}
 
 \subsection{Experiment 2}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c||} 
+ \hline
+Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & \textbf{0.426} & 0.405 & 0.306 & 0.294\\ 
+ \hline
+  \textbf{Spectral} & \textbf{0.392} & 0.367 & 0.295 & 0.272\\
+ \hline
+ \textbf{HAC} & 0.384 & \textbf{0.392} & 0.310 & 0.333\\
+ \hline
+ \textbf{EM} & \textbf{0.443} & 0.411 & 0.310 & 0.277\\
+ \hline
+ \textbf{Birch} & \textbf{0.399} & 0.383 & 0.294 & 0.304\\
+ \hline
+\end{tabular}
+\caption{Experiment 2: Comparison of Feature Extraction Methods and F-Measure of Clustering Algorithms}
+\label{table:ex2}
+\end{table}
+
+\begin{itemize}
+
+\item \textbf{FaceNet}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.426 & 0.415 & 0.439 & 0.880\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.392 & 0.379 & 0.408 & 0.617\\
+ \hline
+ \textbf{HAC} & 5 & 0.384 & 0.331 & 0.457 & 0.590\\
+ \hline
+ \textbf{EM} & 5 & \textbf{0.443} & 0.427 & 0.461 & 5.337\\
+ \hline
+ \textbf{Birch} & 5 & 0.399 & 0.368 & 0.435 & 0.499\\
+ \hline
+\end{tabular}
+\caption{Experiment 2 FaceNet}
+\label{table:ex2facenet}
+\end{table}
+
+\item \textbf{Dlib}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & \textbf{0.405} & 0.404 & 0.408 & 0.287\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.367 & 0.365 & 0.370 & 0.640\\
+ \hline
+ \textbf{HAC} & 5 & 0.392 & 0.348 & 0.450 & 0.201\\
+ \hline
+ \textbf{EM} & 5 & 0.411 & 0.401 & 0.422 & 0.532\\
+ \hline
+ \textbf{Birch} & 5 & 0.383 & 0.280 & 0.606 & 0.077\\
+ \hline
+\end{tabular}
+\caption{Experiment 2 Dlib}
+\label{table:ex2dlib}
+\end{table}
+
+\item \textbf{OpenFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.306 & 0.306 & 0.307 & 0.344\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.295 & 0.293 & 0.297 & 0.624\\
+ \hline
+ \textbf{HAC} & 5 & \textbf{0.310} & 0.282 & 0.345 & 0.203\\
+ \hline
+ \textbf{EM} & 5 & \textbf{0.310} & 0.310 & 0.311 & 0.398\\
+ \hline
+ \textbf{Birch} & 5 & 0.294 & 0.276 & 0.314 & 0.137\\
+ \hline
+\end{tabular}
+\caption{Experiment 2 OpenFace}
+\label{table:ex2openface}
+\end{table}
+
+\item \textbf{ArcFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.294 & 0.283 & 0.306 & 1.332\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.272 & 0.262 & 0.283 & 0.742\\
+ \hline
+ \textbf{HAC} & 5 & \textbf{0.333} & 0.277 & 0.418 & 0.586\\
+ \hline
+ \textbf{EM} & 5 & 0.277 & 0.268 & 0.288 & 0.803\\
+ \hline
+ \textbf{Birch} & 5 & 0.304 & 0.255 & 0.376 & 0.837\\
+ \hline
+\end{tabular}
+\caption{Experiment 2 ArFace}
+\label{table:ex2arcface}
+\end{table}
+\end{itemize}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/manager.png}
+    \caption{Experiment 2: Cluster of Managers and Politicians}
+    \label{fig:ex2tp}
+\end{figure}
+
 \subsection{Experiment 3}
 
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c||} 
+ \hline
+Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & \textbf{0.203} & 0.185 & 0.141 & 0.182\\ 
+ \hline
+  \textbf{Spectral} & \textbf{0.204} & 0.166 & 0.143 & 0.159\\
+ \hline
+ \textbf{HAC} & 0.177 & \textbf{0.188} & 0.131 & 0.174\\
+ \hline
+ \textbf{EM} & \textbf{0.210} & 0.191 & 0.146 & 0.179\\
+ \hline
+ \textbf{Birch} & 0.182 & \textbf{0.193} & 0.149 & 0.151\\
+ \hline
+\end{tabular}
+\caption{Experiment 3: Comparison of Feature Extraction Methods and F-Measure of Clustering Algorithms}
+\label{table:ex3}
+\end{table}
+
+\begin{itemize}
+
+\item \textbf{FaceNet}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 11 & 0.203 & 0.202 & 0.204 & 3.698\\ 
+ \hline
+  \textbf{Spectral} & 11 & 0.204 & 0.205 & 0.203 & 3.695\\
+ \hline
+ \textbf{HAC} & 11 & 0.177 & 0.154 & 0.209 & 3.497\\
+ \hline
+ \textbf{EM} & 11 & \textbf{0.210} & 0.206 & 0.215 & 25.618\\
+ \hline
+ \textbf{Birch} & 11 & 0.182 & 0.172 & 0.193 & 2.271\\
+ \hline
+\end{tabular}
+\caption{Experiment 3 FaceNet}
+\label{table:ex3facenet}
+\end{table}
+
+\item \textbf{Dlib}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 11 & 0.185 & 0.181 & 0.190 & 1.260\\ 
+ \hline
+  \textbf{Spectral} & 11 & 0.166 & 0.167 & 0.167 & 3.458\\
+ \hline
+ \textbf{HAC} & 11 & 0.188 & 0.168 & 0.214 & 1.132\\
+ \hline
+ \textbf{EM} & 11 & 0.191 & 0.186 & 0.196 & 3.296\\
+ \hline
+ \textbf{Birch} & 11 & \textbf{0.193} & 0.140 & 0.310 & 0.207\\
+ \hline
+\end{tabular}
+\caption{Experiment 3 Dlib}
+\label{table:ex3dlib}
+\end{table}
+
+\item \textbf{OpenFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 11 & 0.141 & 0.139 & 0.145 & 1.162\\ 
+ \hline
+  \textbf{Spectral} & 11 & 0.143 & 0.130 & 0.160 & 1.140\\
+ \hline
+ \textbf{HAC} & 11 & 0.131 & 0.130 & 0.133 & 3.500\\
+ \hline
+ \textbf{EM} & 11 & 0.146 & 0.143 & 0.150 & 3.233\\
+ \hline
+ \textbf{Birch} & 11 & \textbf{0.149} & 0.137 & 0.164 & 0.492\\
+ \hline
+\end{tabular}
+\caption{Experiment 3 OpenFace}
+\label{table:ex3openface}
+\end{table}
+
+\item \textbf{ArcFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 11 & \textbf{0.182} & 0.182 & 0.183 & 4.679\\ 
+ \hline
+  \textbf{Spectral} & 11 & 0.159 & 0.159 & 0.159 & 4.112\\
+ \hline
+ \textbf{HAC} & 11 & 0.174 & 0.156 & 0.197 & 3.600\\
+ \hline
+ \textbf{EM} & 11 & 0.179 & 0.178 & 0.180 & 4.043\\
+ \hline
+ \textbf{Birch} & 11 & 0.151 & 0.122 & 0.197 & 3.986\\
+ \hline
+\end{tabular}
+\caption{Experiment 3 ArcFace}
+\label{table:ex3arcface}
+\end{table}
+
+\end{itemize}
 
 \subsection{Analysis}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c||} 
+ \hline
+Feature Extraction Method & Experiment 1 & Experiment 2 & Experiment 3\\ [0.5ex]
+ \hline\hline
+ \textbf{FaceNet} & \textbf{00:15:06} & \textbf{00:25:27} & 00:57:44\\ 
+ \hline
+  \textbf{Dlib} & 00:28:19 & 00:50:44 & 01:52:57\\
+ \hline
+ \textbf{OpenFace} & 00:16:01 & 00:27:59 & \textbf{00:53:30}\\
+ \hline
+ \textbf{ArcFace} & 00:16:04 & 00:42:44 & 01:34:38\\
+ \hline
+\end{tabular}
+\caption{Runtime}
+\label{table:runtime}
+\end{table}
 
 Can't control age, big factor.
 
