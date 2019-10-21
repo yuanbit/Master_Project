@@ -1,0 +1,1008 @@
+\documentclass[12pt,english]{article}
+\usepackage[a4paper,bindingoffset=0.2in,%
+            left=1in,right=1in,top=1in,bottom=1in,%
+            footskip=.25in]{geometry}
+\usepackage{blindtext}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[backend=bibtex]{biblatex}
+\addbibresource{mybib.bib}
+\usepackage[hidelinks]{hyperref}
+\usepackage[title]{appendix}
+\usepackage{changepage}
+\usepackage{float}
+
+
+\title{A Comparison of Facial Feature Extraction Methods based on Professional Domain Clustering}
+
+
+\author{Bithiah Yuan \\ \textit{University of Freiburg - Department of Compute Science}}
+
+\date{\normalsize \today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+Motivated by researches in the social-sciences, the correlation between facial features and professional talents are examined using a computational method. Face clustering is a technique that groups similar faces together based on their feature representations. Obtaining a robust and discriminative embedding for this task is essential in the accuracy of face clustering. Thus, four open-source state-of-the-art feature extraction methods based on deep convolutional neural networks and common clustering algorithms are compared with respect to their ability to cluster faces based on the identity's profession domain. The results show that there is a slight correlation between facial features and professional talents and that a combination of FaceNet and K-Means or EM clustering yield good clustering results.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+
+\quad 
+Since a significant source of information and attributes can be derived from the human face by non-verbal communication \cite{joo}, facial features have been studied extensively in the social-science domain to predict success in reaching reputable leadership positions. In particular, studies have shown that certain facial features contribute to higher salaries and more prestigious employments. In application, the relationship between facial characteristics and social attributes can provide a powerful objective indicator for organizations to idenity and select effective leaders within their domain. Results have shown that a human judge can identify business, military, and sports leaders from their faces with above-chance accuracy \cite{olivola}. %However, these results are biased and do not imply the actual leadership qualities of a person \cite{olivola}.
+
+Caused by experiments based human judgement, research of social attributes and facial features in the social-sciences are limited in scalability, consistency, and generalization. Therefore, a growing number of studies have been extended and refined to computer vision and machine learning research due to the capability of using massive datasets and the large-scale processing capacity \cite{joo}.
+
+Through a computational framework, \cite{joo} trained a model to predict the outcomes of political elections based on the candidates' face images. This suggests that similar methods can be used to predict behavior in a broad range of human social relations, such as job placement, political and commercial negotiations \cite{joo}.
+
+Motivated by computational methods, the following paper aims to examine the correlation between facial features and professional talents through face clustering. The face clustering problem consists of not only the choice of the clustering algorithm, but also the face representation and similarity metric of the face images \cite{shi}. Due to the importance of face representations in face clustering, this paper compares four open-source state-of-the-art feature extraction methods based on deep convolutional neural networks.\\
+
+\section{Related Work}	
+
+\subsection{Face Clustering}
+
+\quad
+Clustering analysis is an unsupervised learning technique that groups data points into clusters based on their similarities. It is useful in grouping a collection of unlabeled data with similar nature into clusters. \cite{shi} investigated clustering a large number of unlabeled face images into individual identities present in the data \cite{shi}. The workflow shown in Figure\ref{fig:face}. consists of obtaining face representations of a collection of unlabeled data by a deep neural network. The choice of clustering algorithm then groups the face images according to their identity.
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\textwidth]{figures/otto_faceClustering_workflow.png}
+    \caption{Face clustering workflow \cite{shi}}
+	\label{fig:face}
+\end{figure}
+
+
+Face clustering systems are usually composed of the following 4 steps \cite{trigueros}: 
+
+\begin{enumerate}
+  \item \textbf{Face Detection:}\\ Detect the position of the faces in an image and returns the coordinates of a bounding box for each face as shown in Figure \ref{fig:detect}.
+  \item \textbf{Face Alignment:} \\ Find a set of facial landmarks with the best affine transformation that fits a set of reference points located at fixed locations in the image. As shown in Figure \ref{fig:landmark}, this step also includes resizing and cropping the image to the edges of the landmarks \cite{amos}. More specifically, as shown in Figure \ref{fig:meanlandmark} given a set of mean landmark locations, the affine transformation makes the landmarks detected in the face image close to the mean \cite{amos}.
+  
+  \item \textbf{Face Representation:} \\ Transform the pixel values of a face image into a low-dimensional discriminative feature vector, also known as an embeddings. 
+  \item \textbf{Face Clustering:} \\ Apply clustering algorithm.
+\end{enumerate} 
+ 
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{figures/face_detection.png}
+    \caption{Face Detection \cite{trigueros}}
+    \label{fig:detect}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth]{figures/landmark.png}
+    \caption{Face Alignment \cite{trigueros}}
+    \label{fig:landmark}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\textwidth]{figures/openface_detection.png}
+    \caption{Applying affine transformation so that the face image is closer tothe set of mean landmarks. \cite{amos}}
+	\label{fig:meanlandmark}
+\end{figure}
+
+\subsection{Face Detection}
+\quad
+In this section a traditional face detector, HOG, and another based on deep neural networks, MTCNN is discussed.
+
+\subsubsection{Histograms of Oriented Gradients}
+\quad
+A traditional method for face detection is the Histograms of Oriented Gradients (HOG) descriptors, which utilizes the distribution of local intensity gradients or edge directions to identify appearances and shapes in an image \cite{dalal}. 
+
+HOG divides the image into small grids, where each grid accumulates a histogram of gradient directions or edge orientations over the pixels of the cell. The combination of all the histograms in the cells form the face region. The cells are then normalized for better invariance to illumination, shadowing, and other variations \cite{dalal}. 
+
+The normalized local histograms of image gradient orientations in the grids are the features and are then trained (typically by a linear classifier) to classify the region of the face in an image \cite{dalal}. When encountering a HOG representation of a new face image as shown in Figure \ref{fig:obama}, the part of the image that looks most similar to a trained HOG detector as shown in Figure \ref{fig:dlibhog} will form the region of the face. 
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.35\textwidth}
+    \includegraphics[width=\textwidth]{figures/hog_dlib.png}
+    \caption{Trained HOG detector on multiple faces \cite{trigueros}}
+    \label{fig:dlibhog}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{figures/face_hog.png}
+    \caption{Hog representation of a face \cite{hackevolve}}
+    \label{fig:obama}
+  \end{minipage}
+\end{figure}
+
+\subsubsection{Multi-task Cascaded Convolutional Networks}
+\quad
+Face detection and alignment can also be done using covolutional neural networks (CNNs). CNNs are a type of deep neural networks. As shown in Figure \ref{fig:nnflow} a neural network feeds the input into many layers of function compositions followed by a loss function which measures how well the neural network models the data. Each layer is parameterized by a vector or matrix $\theta_{i}$ and the aim is to optimize the loss function iteratively by finding the optimal gradients $\delta L \mathbin{/} \delta  \theta_{i}$ which are computed with the backpropagation \cite{amos}. 
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/neural_flow.png}
+    \caption{Neural Network Traing Flow. \cite{amos}}
+	\label{fig:nnflow}
+\end{figure}
+
+
+Multi-task Cascaded Convolutional Networks (MTCNN) is a widely used method to predict face and landmark location. The framework has a cascaded (waterfall) structure with three stages of deep CNNs shown in Figure \ref{fig:mtcnn}. \cite{zhang} 
+
+The image is first resized to different scales to build an image pyramid and is the input of the three stages:
+
+\begin{enumerate}
+\item \textbf{Proposal Network (P-Net):} Obtains candidates that will serve as potential positions of the bounding boxes \cite{chinapas}.
+%Obtains candidate windows and their bounding box regression vectors. The estimated bounding box regression vectors are used to calibrate the candidates. Then the bounding boxes are post-processed and filtered by the non-maximum suppression (NMS) algorithm to merge overlapped candidates.
+
+\item \textbf{Refine Network (R-Net):} Uses the image and the results of the first prediction of the bounding boxes to reduce false positives and get the final box boundaries \cite{chinapas}.
+%Rejects false candidates, calibrates the candidates with bounding box regression, and NMS candidate merge.
+
+\item \textbf{Output Network (O-Net):} Outputs five facial landmark positions \cite{zhang}.
+
+\end{enumerate}
+
+Both the predicting the bounding box and facial landmark locations use regression to minimize the Euclidean loss between the candidate positions of the bounding boxes, landmark coordinates and the ground truth. The ground truth of the bounding box is the left, top, height, width of the box. The ground truth of the facial landmarks is the coordinates of the left, right eye, nose, left and right mouth corner \cite{zhang}.
+
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/mtcnn_pipeline2.png}
+    \caption{MTCNN: Cascaded structure with three stages of deep CNNs. \cite{zhang}}
+	\label{fig:mtcnn}
+\end{figure}
+
+
+\subsection{Face Representation}
+
+\quad
+Face representation is conceivably the most important component in face clustering. However, challenges occur in real world images due to variations ranging from head poses and illumination conditions to aging and facial expressions. These images are referred in-the-wild images \cite{trigueros}.
+
+Traditional techniques include using statistical methods such as Principal Component Analysis (PCA) to represent faces as a combination of eigenvectors \cite{amos}. The top-performing face representation techniques convolutional neural networks (CNNs) \cite{amos} since they are able to achieve very high accuracy by learning robust features due to the availability of large-scale faces in-the-wild datasets on the web \cite{trigueros}.  
+
+\subsubsection{Convolutional Neural Networks}
+\quad
+A common approach to training CNN models for face representation is using a classification approach, where each face image in the training set corresponds to a class. When recognizing a new face image, the classification layer is discarded and the features of the previous layer are used as face representations. The downsides of this approach is that it doesn't generalize well to new faces and that the representation size per face is large and inefficient \cite{schroff}.
+
+Another approach is to learn the features of the face directly by optimizing the distance between triplets of faces, in which the distances measure the similarity between faces \cite{trigueros} \cite{schroff}. The approach uses the triplet loss function, which will be discussed in detail in the next section.
+
+\subsubsection{Triplet Loss Function}
+\quad
+When learning the face features directly, the choice of loss function has a great influence on the accuracy. One of the most used metric is the triplet loss function. The goal is to separate the distance between two aligned matching (positive) face images and an aligned non-matching (negative) face image by a distance margin. The result is a feature vector $f(x)$, known as embeddings, from a face image $x$ to a compact Euclidean feature space in $ \mathbb{R}^{d}$. The distance of the embeddings will be small if the faces are identical and large if the faces are distinct \cite{schroff}.
+
+
+More specifically, as shown in Figure \ref{fig:bale}. the distance between an anchor face image, $x_{i}^{a}$ is minimized by the loss and will be closer to all other positive face images $x_{i}^{p}$ than the negative face images $x_{i}^{n}$ where the distance is maximized. For each triplet $i$, the following condition needs to be satisfied: $$\Vert f(x_{i}^{a}) - f(x_{i}^{p}) \Vert_{2}^{2} + \alpha < \Vert f(x_{i}^{a}) - f(x_{i}^{n}) \Vert_{2}^{2} $$
+where $\alpha$ is a margin from the positive and negative pairs \cite{trigueros}.
+
+For $N$ possible triplets, the loss being minimized is: $$ L = \sum_{i}^{N} \Big[ \Vert f(x_{i}^{a}) - f(x_{i}^{p}) \Vert_{2}^{2} - \Vert f(x_{i}^{a}) - f(x_{i}^{n}) \Vert_{2}^{2} + \alpha\Big]_{+} $$.
+
+Figure \ref{fig:loss} further demonstrates using a neural network to compute the triplet loss and it's gradient is backpropagated through the network to the unique images in the learning step \cite{amos}.
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.9\textwidth]{figures/triplet_loss_example.png}
+    \caption{The loss of identical faces are minimized and the loss of distinct faces are maximized by the triplet loss function \cite{pic1} \cite{pic2}.}
+	\label{fig:bale}
+\end{figure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.6\columnwidth]{figures/openface_architecture.png}
+    \caption{Learning the embeddings by optimizing the gradients of the triplet loss function \cite{amos}.}
+	\label{fig:loss}
+\end{figure}
+ 
+\section{Face Feature Extraction Methods}
+\label{facemethod}
+
+The following section examines four open-source state-of-the-art face feature extraction methods for face representation.
+
+\subsection{FaceNet}
+\quad
+FaceNet is a method that uses a deep CNN and the triplet loss function to directly optimize face embeddings. In \cite{sandberg}'s open-source implementation, the faces in the images are first detected and aligned with MTCNN. The resulting aligned face images are 160 x 160 pixels and serve as the input for the FaceNet model. %The structure of FaceNet consists of a batch input layer and a deep CNN followed by $L_{2}$ normalization, which results in the face embedding. This is followed by the triplet loss during training as shown in Figure \ref{fig:facemodel} \cite{schroff}.
+
+%Between 100 to 200 million face images consisting of about 8 million different identities were used for training. The large dataset of labelled faces consist of various poses, illuminations, and other variations. \cite{schroff}.
+
+The pre-trained model (20180402-114759) from \cite{sandberg} used in Section \ref{experiment} was trained using the VGGFace2 dataset. The dataset contains 3.31 million images of 9,131 identities, with an average of 362.6 images for each person. The images were downloaded from Google Image Search and have large variations in pose, age, illumination, ethnicity and profession. The model has an accuracy of $99.65\%$ on the Labeled Faces in the Wild (LFW) benchmark \cite{sandberg}. \cite{sandberg}'s implementation results in a 512-dimensional feature vector.
+
+\subsection{Dlib}
+\quad
+\cite{geitgey} built a face recognition method using Dlib, which is an open source library for developing machine learning software in C++ \cite{king}. \cite{geitgey} used the HOG face detector from Dlib, in which the HOG representation was trained with a linear classifier (SVM) \cite{king2014}. The face representation model again uses CNNs and the triplet loss function to learn the embeddings \cite{king2017}. The resulting feature embedding is a 128-dimensional vector \cite{king2017}. 
+
+A dataset of about 3 million faces and 7,485 unique identities from a combination of the FaceScrub and VGG dataset as well as a large number of other images scraped from the internet was used for training. The pre-trained model has an accuracy of $99.38\%$ on the LFW benchmark \cite{king2017}.
+
+%\begin{figure}[!tbp]
+ %\centering
+  %  \includegraphics[width=\textwidth]{figures/facenet_model_archi.png}
+   % \caption{FaceNet model structure \cite{amos}}
+	%\label{fig:facemodel}
+%\end{figure}
+
+\subsection{OpenFace}
+\quad
+OpenFace uses Dlib for face detection and alignment. The input images after alignment are 96 x 96 pixels. OpenFace was trained with 500,000 images from a combination of the CASIA-WebFace and FaceScrub dataset. The face representation is obtained using a modification of FaceNet's architecture, in which the number of parameters are reduced. The resulting feature embedding is a 128-dimensional vector \cite{amos}.
+
+\subsection{ArcFace}
+\quad
+\cite{deng} introduced a new loss function, additive angular margin (ArcFace), that uses a geometric interpretation for learning the discriminative features for a face representation \cite{deng}. \cite{deng2019}'s implementation uses MTCNN for face detection to get aligned images of 112 x 112 pixels face. Then, ArcFace further adjusts a face image by rotating the image to a straight face as shown in Figure \ref{fig:arcface1}. Consequently, increasing the consistency of the facial feature positions and effectiveness when computing similarities between the embeddings. The resulting embedding is a 512-dimensional vector \cite{deng}.
+
+A downside of ArcFace is that it cannot compute face representations of images with high intensity of light reflection \cite{chinapas} as shown in Figure \ref{fig:arcface2}.
+
+The pre-trained model ((LResNet100E-IR) used in Section \ref{experiment} is trained on MS1MV2 which is a refinement of the MS-Celeb-1M dataset. The training dataset contains about 10 million images of 100,000 top celebrities selected from one million celebrities in terms of their web appearance frequency \cite{deng}. The model has an accuracy of $0.9982$ on the LFW benchmark \cite{deng2019}.
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.6\textwidth]{figures/comparison.png}
+    \caption{Comparsion of aligned faces between Dlib, FaceNet, and ArcFace \cite{chinapas}}
+	\label{fig:arcface1}
+\end{figure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.6\textwidth]{figures/ex.png}
+    \caption{Images with high intensity of light reflection in which ArcFace is unable to compute the embeddings for \cite{chinapas}}
+	\label{fig:arcface2}
+\end{figure}
+
+\section{Clustering Algorithms}
+\label{clustering}
+\quad
+After obtaining the face embeddings, each face represents a data point in the dataset. The similarity between each face can therefore be computed and grouped using different clustering algorithms. The following section will present the algorithms use in Section \ref{experiment}. 
+
+\subsection{K-Means}
+
+\quad
+Lloyd’s K-Means algorithm is a commonly used clustering method due to it's simplicity and efficiency. It aims to minimize the average squared distance between points in the same cluster \cite{kmeans}. The algorithm first initializes k random centroids, which are random datapoints chosen from the dataset. Then each point is assigned to the closest centroid. The centroids are then recomputed as the average of all datapoints assigned to it. The latter two steps are repeated until the centroids don't change significantly. The implementation in \cite{scikit-learn} computes the difference between the old and new centroids and terminates until the difference is less than a threshold of $0.0001$ \cite{kmeans}. \cite{scikit-learn} also uses K-Means++ for initializing the centroids, in which it weights the data points from the closest centroid already chosen \cite{kmeans}.
+
+\subsection{Spectral}
+
+\quad
+Spectral Clustering is an efficient clustering algorithm where it uses a low-dimensional embedding of the distance matrix between the data points, followed by the K-Means algorithm in the low dimensional space \cite{scikit-learn}.
+
+\subsection{Hierarchical Agglomerative}
+
+\quad
+Hierarchical clustering is a method that merges or splits the clusters successively to form a nested tree of clusters. In particular, Hierarchical Agglomerative Clustering is a bottom up approach where the root of the tree consists of the data points as their own clusters, then the clusters are successively merged together to form unique clusters at the leaves \cite{scikit-learn}. The merging technique is determined by the linkage criteria. Section \ref{experiment} uses Ward's method for the linkage criteria, in which it minimizes the variance of the clusters by the sum of squared differences \cite{scikit-learn}.
+
+\subsection{Expectation–Maximization}
+
+The Expectation–Maximization (EM) algorithm is based on the Gaussian mixture model (GMM), which is a probabilistic method that assumes all the data points are generated from a mixture of Gaussian distributions with unknown latent parameters (mean, covariance) for each distribution \cite{scikit-learn}. The Gaussian distributions corresponds to the clusters and since the information of which distribution each data point belongs to is unknown, the goal of the EM algorithm is to estimate the latent parameters for each distribution. After randomly initializing the latent parameters, EM executes the following two steps until convergence \cite{scikit-learn}.
+
+\begin{enumerate}
+\item \textbf{Expectation: } For each data point, compute the probability of it being generated by each latent parameter of the model. Each data point is then assigned to a cluster based on the probability.
+
+\item \textbf{Maximize: } Re-estimate the latent parameters by maximizing the likelihood of the data given the assignments 
+
+\end{enumerate}
+
+\subsection{Birch}
+\quad
+Birch clustering is an efficient data reduction algorithm in which it reduces the input data to a set of subclusters. For a given dataset, the algorithm builds the Characteristic Feature Tree (CFT) where the data points are compressed to a set of  Characteristic Feature nodes (CF Nodes). When a new data point is inserted into the CF Tree, it is merged with the nearest leaf of the subcluster of the root. These subclusters contain the necessary information for clustering \cite{scikit-learn}
+
+\section{Experiment}
+\label{experiment}
+
+\subsection{Dataset}
+
+\subsubsection{Experiment 1}
+\label{experiment1}
+\quad
+This dataset consists of $2,180$ unique images of five categories of athletes obtained from a combination of the repositories of \cite{data1}. As shown in Figure \ref{fig:sport}, \cite{data1} scraped the images directly from the official sport competition websites, therefore, the images are high quality straight head shots \cite{data1}. The following shows the distribution of images:
+
+\begin{itemize}
+\item \textbf{NBA Basketball Players: } $225$ images
+\item \textbf{UFC Fighting Champions: } $560$ images
+\item \textbf{FIFA Soccer Players: } $735$ images
+\item \textbf{PGA TOUR Golf Players: } $558$ images
+\item \textbf{ATP Tour Tennis Players: } $102$ images
+\end{itemize}
+
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\columnwidth]{figures/ex1.png}
+    \caption{Example of face images from the dataset of Experiment 1: Five categories of athletes \cite{data1}}
+	\label{fig:sport}
+\end{figure}
+
+\subsubsection{Experiment 2}
+\label{experiment2}
+\quad
+This dataset consists of $2,065$ unique images of five different categories of professions. It is a combination of a subset of the dataset from Experiment 1 and a new dataset acquired using Wikidata's SPARQL query service. 
+
+Wikidata is an open-source knowledge base for structured data. After choosing the professions and finding their entity IDs, a query was formed to find the images of the people with the corresponding occupations. In order to reduce variation in the dataset, only images of males from North America and Europe were obtained. Since clustering algorithms like K-Means tend to generate similar sized clusters \cite{shi}, the number of images for each occupation were limited to similar sizes. An example of a query for the occupation, manager, can be found in \ref{appen1}. The images were then automatically downloaded using Python. 
+
+As shown in Figure \ref{fig:prof}, opposed to the dataset from Experiment 1, the images from Wikidata are in-the-wild with varying head poses, illumination conditions, and other variations. The following shows the distribution of images:
+
+\begin{itemize}
+\item \textbf{Managers: } $371$ images
+\item \textbf{Politicians: } $449$ images
+\item \textbf{Military Officers: } $407$ images
+\item \textbf{Architects: } $388$ images
+\item \textbf{FIFA Soccer Players: } $450$ images
+\end{itemize}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\columnwidth]{figures/ex2.png}
+    \caption{Example of face images from the dataset of Experiment 2: Five categories of professions \cite{data1}}
+	\label{fig:prof}
+\end{figure}
+
+\subsubsection{Experiment 3}
+
+\quad
+This dataset consists of $4,593$ unique images of 11 different categories of professions. It is a combination of a subset of the dataset from Experiment 1 and 2 and images of five more professions downloaded from Wikidata. The following shows the distribution of images:
+
+\begin{itemize}
+\item \textbf{Managers: } $371$ images
+\item \textbf{Entrepreneur: } $485$ images
+\item \textbf{Politicians: } $449$ images
+\item \textbf{Lawyer: } $394$ images
+\item \textbf{Military Officers: } $407$ images
+\item \textbf{Sport Coaches: } $334$ images
+\item \textbf{FIFA Soccer Players: } $450$ images
+\item \textbf{UFC Fighting Champions: } $537$ images
+\item \textbf{Architects: } $388$ images
+\item \textbf{Actor: } $403$ images
+\item \textbf{Musician: } $375$ images
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=0.7\columnwidth]{figures/ex3.png}
+    \caption{Example of a subset of face images from the dataset of Experiment 3. In combination with Figure \ref{fig:prof}, it makes up the 11 professions for Experiment 3}
+\end{figure}
+
+\end{itemize}
+
+
+\subsection{Set-Up}
+\quad
+In the experiments faces of people are clustered by profession using different clustering algorithms. Since the number of different professions are known, the number of clusters corresponds to the number of professions in each experiment. The clustering algorithms were applied to the feature embeddings extracted from the methods described in Section \ref{facemethod}. Pre-trained models from each method was used in the experiment. 
+
+\subsection{Framework}
+\quad
+Computer Device Details:
+\begin{itemize}
+\item Processor: Intel Core i5-4570 CPU, 3.20GHz x 4
+\item 16 GB RAM
+\end{itemize}
+
+The following describes the steps to obtain the results:
+
+\begin{enumerate}
+\item \textbf{Load Images: } Each image is located inside a directory with the same filename.
+\item \textbf{Face Detection: } The FaceNet implementation uses MTCNN and the detected faces are of 160 x 160 pixels. Dlib uses the HOG face detector. OpenFace uses the HOG detector and the detected faces are of 96 x 96 pixels. ArcFace uses MTCNN and the detected faces are of 112 x 112 pixels.
+
+Table \ref{table:1} shows which face detection method was used for each method and the number of features in the resulting embeddings.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c||} 
+ \hline
+  Method & Face Detector & Number of Features\\ [0.5ex]
+ \hline\hline
+ \textbf{FaceNet} & MTCNN (160 x 160 px) & 512\\ 
+ \hline
+ \textbf{Dlib} & HOG & 128\\
+ \hline
+ \textbf{OpenFace} & HOG (96 x 96 px) & 128\\
+ \hline
+ \textbf{ArcFace} & MTCNN (112 x 112 px) & 512\\
+ \hline
+\end{tabular}
+\caption{The face detection method used and the number of features of the embeddings extracted from each method \cite{sandberg}, \cite{geitgey}, \cite{amos2016}, \cite{deng2019}.}
+\label{table:1}
+\end{table}
+
+\item \textbf{Extract Feature Embeddings: } The embeddings were extracted using pre-trained models. Table \ref{table:2} shows the details of the accuracy based on the LWF benchmark and training data size of the pre-trained models.
+
+\begin{table}[H]
+%\centering
+\begin{tabular}{||c c c||} 
+ \hline
+  Method & LWF Accuracy & Training Dataset Size\\ [0.5ex]
+ \hline\hline
+ \textbf{FaceNet} & 0.9965 & 3.31 million images, 9,121 identitie\\ 
+ \hline
+ \textbf{Dlib} & 0.9938 & 3 million images, 7,485 identities\\
+ \hline
+ \textbf{OpenFace} & 0.9292 & 500,000 images\\
+ \hline
+ \textbf{ArcFace} & 0.9982 & 10 million images, 100,000 identities\\
+ \hline
+ \textbf{Human-Level} \cite{amos} & 0.9753 &\\
+ \hline
+\end{tabular}
+\caption{Accuracy based on the LWF benchmark and training data size of the pre-trained models \cite{sandberg}, \cite{geitgey}, \cite{amos2016}, \cite{deng2019}.}
+\label{table:2}
+\end{table}
+
+The embeddings of FaceNet and ArcFace both have 512 features and the embeddings of Dlib and OpenFace have 128 features. The embeddings and corresponding labels (identity and profession) of are also saved. Table \ref{table:3} shows the dimensions of the feature embeddings extracted from each method.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c||} 
+ \hline
+  Method & Experiment 1 & Experiment 2 & Experiment 3\\ [0.5ex]
+ \hline\hline
+ \textbf{FaceNet} & 2,180 x 512 & 2,065 x 512 & 4,593 x 512\\ 
+ \hline
+ \textbf{Dlib} & 2,180 x 128 & 2,065 x 128 & 4,593 x 128\\
+ \hline
+ \textbf{OpenFace} & 2,180 x 128 & 2,065 x 128 & 4,593 x 128\\
+ \hline
+ \textbf{ArcFace} & 2,180 x 510 & 2,065 x 512 & 4,593 x 512\\
+ \hline
+\end{tabular}
+\caption{Dimensions of the feature embeddings extracted from each method}
+\label{table:3}
+\end{table}
+
+\item \textbf{Profession Clustering: } The clustering algorithms from Section \ref{clustering} were applied to the feature embeddings. The four images in Figure \ref{fig:plot1} belong to two professions. After detecting the faces and representing them as embeddings, Figure \ref{fig:plot2} shows the clustering results. The features are reduced to 2-D embeddings by PCA for visualization.
+\end{enumerate}
+
+\begin{figure}[h!]
+  \centering
+  \begin{minipage}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{figures/plot2.png}
+    \caption{The goal is to cluster the professions of the aligned images.}
+    \label{fig:plot1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.6\textwidth}
+    \includegraphics[width=\textwidth]{figures/plot.png}
+    \caption{PCA plot after clustering using the embeddings of the faces from Figure \ref{fig:plot1}}
+    \label{fig:plot2}
+  \end{minipage}
+\end{figure}
+
+\section{Results}
+
+\subsection{Evaluation}
+\quad
+Since the datasets provide the labels of the correct profession for each face image, the accuracy of the clusters can be evaluated corresponding to the known profession labels. Due to efficiency, the clustering accuracy is evaluated with the Pairwise F-Measure \cite{otto}.
+\newpage
+\subsubsection{Pairwise F-Measure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/fmeasure.png}
+    \caption{Example of a possible clustering output. Six data points are grouped into 2 clusters. A1, A2, and A3 have the same label, B1 has it's own label, and U1 and U2 have the same label \cite{otto}.}
+    \label{fig:fmeasure}
+\end{figure}
+\quad
+Suppose $L = \{l_{1},...,l_{n}\}$ contains the actual labels for each face and $C = \{c_{1},...,c_{n}\}$ are the labels from the output of the clustering algorithm. For example, shown in Figure \ref{fig:fmeasure}, the actual labels are in the set $$L = \{\{A1, A2, A3\}, \{B1\}, \{U1, U2\}\}$$ and the labels from the output of the clustering algorithm are in the set $$C = \{\{A1, A2, B1\}, \{A3, U1, U2 \}\}$$
+Then the set of face pairs from the actual labels is $$P = \{(A1, A2), (A1, A3), (A2, A3), (U1, U2)\}$$ 
+The set of face pairs from the labels of the cluster algorithm is $$Q = \{(A1, A2), (A1, B1), (A2, B1), (A3, U1), (A3, U2), (U1, U2)\}$$
+For each face pair $(i, j)$ of each cluster \cite{thesis}: \\
+\begin{itemize}
+\item \textbf{True Positive (TP):} The number of face pairs $(i, j)$ that are correctly clustered into the same cluster.
+$$TP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_{i} = l_{j}\}|$$
+
+In Figure \ref{fig:fmeasure}, $(A1, A2), (U1, U2)$ are matching pairs and
+$$TP = | P \cap Q | = |\{(A1, A2), (U1, U2)\}| = 2$$
+
+\item \textbf{False Positives (FP):} The number of face pairs $(i, j)$ that are incorrectly clustered to the same cluster. $$FP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_{i} \neq l_{j}\}|$$
+
+In Figure \ref{fig:fmeasure}, $(A1, B1), (A2, B1), (A3, U1), (A3, U2)$ are mismatching pairs and $$FP = |Q - P| = |\{(A1, B1), (A2, B1), (A3, U1), (A3, U2)\}| = 4$$ 
+
+\item \textbf{False Negatives (FN)}: The number of face pairs that are clustered to a different cluster. $$TN = | \{(i, j) \ \textrm{where} \ c_{i} \neq c_{j} \ \textrm{and} \ l_{i} \neq l_{j}\}|$$
+
+In Figure \ref{fig:fmeasure}, $(A1, A3), (A2, A3)$ are same-class pairs in different clusters and $$FN = |P - Q| = |\{(A1, A3), (A2, A3)\}| = 2$$
+\end{itemize}
+
+
+\begin{itemize}
+\item \textbf{Pairwise Precision:} Fraction of face pairs that are correctly clustered together over the total number of pairs that belong to the same class \cite{shi}.
+$$ Pairwise \ Precision = \frac{TP}{TP + FP}$$
+
+\item \textbf{Pairwise Recall:} Fraction of face pairs that are correctly clustered together over the total number of pairs that are in the same cluster \cite{shi}.
+$$ Pairwise \ Recall = \frac{TP}{TP + FN}$$
+
+\item \textbf{Pairwise F-Measure:} Harmonic mean of Precision and Recall \cite{shi} $$Pairwise \ F\textrm{-}Measure = \frac{2 * \textrm{Precision}*\textrm{Recall}}{\textrm{Precision} + \textrm{Recall}}$$
+\end{itemize}
+
+The F-Measure, Precision, Recall, and Runtime of the experiments are obtained by averaging the accuracy of the corresponding experiment 10 times.
+
+\subsection{Experiment 1}
+
+\begin{itemize}
+\item \textbf{Comparison of Feature Extraction Methods and the F-Measure}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c||}
+ \hline
+Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 0.478 & 0.391 & 0.382 & \textbf{0.516}\\ 
+ \hline
+  \textbf{Spectral} & 0.445 & 0.361 & 0.345 & \textbf{0.467}\\
+ \hline
+ \textbf{HAC} & \textbf{0.447} & 0.362 & 0.391 & 0.413\\
+ \hline
+ \textbf{EM} & 0.449 & 0.394 & 0.376 & \textbf{0.512}\\
+ \hline
+ \textbf{Birch} & 0.442 & 0.404 & 0.331 & \textbf{0.453}\\
+ \hline
+\end{tabular}
+\caption{F-Measure obtained by each feature extraction and clustering method}
+\label{table:ex1}
+\end{table}
+
+\item \textbf{FaceNet}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & \textbf{0.478} & 0.515 & 0.446 & 0.906\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.445 & 0.507 & 0.397 & 0.662\\
+ \hline
+ \textbf{HAC} & 5 & 0.447 & 0.463 & 0.432 & 0.669\\
+ \hline
+ \textbf{EM} & 5 & 0.449 & 0.499 & 0.408 & 5.004\\
+ \hline
+ \textbf{Birch} & 5 & 0.442 & 0.452 & 0.432 & 0.553\\
+ \hline
+\end{tabular}
+\caption{Experiment 1 FaceNet}
+\label{table:ex1facenet}
+\end{table}
+\item \textbf{Dlib}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.391 & 0.415 & 0.370 & 0.277\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.361 & 0.385 & 0.339 & 0.631\\
+ \hline
+ \textbf{HAC} & 5 & 0.362 & 0.384 & 0.343 & 0.234\\
+ \hline
+ \textbf{EM} & 5 & 0.394 & 0.419 & 0.372 & 0.594\\
+ \hline
+ \textbf{Birch} & 5 & \textbf{0.404} & 0.325 & 0.533 & 0.086\\
+ \hline
+\end{tabular}
+\caption{Experiment 1 Dlib}
+\label{table:ex1dlib}
+\end{table}
+
+\item \textbf{OpenFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.382 & 0.410 & 0.357 & 0.258\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.345 & 0.359 & 0.332 & 0.665\\
+ \hline
+ \textbf{HAC} & 5 & \textbf{0.391} & 0.369 & 0.417 & 0.226\\
+ \hline
+ \textbf{EM} & 5 & 0.376 & 0.408 & 0.349 & 0.475\\
+ \hline
+ \textbf{Birch} & 5 & 0.331 & 0.365 & 0.303 & 0.12\\
+ \hline
+\end{tabular}
+\caption{Experiment 1 OpenFace}
+\label{table:ex1openface}
+\end{table}
+
+\newpage
+
+\item \textbf{ArcFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & \textbf{0.516} & 0.588 & 0.459 & 1.211\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.467 & 0.533 & 0.415 & 0.804\\
+ \hline
+ \textbf{HAC} & 5 & 0.413 & 0.459 & 0.376 & 0.756\\
+ \hline
+ \textbf{EM} & 5 & 0.512 & 0.582 & 0.457 & 1.03\\
+ \hline
+ \textbf{Birch} & 5 & 0.453 & 0.473 & 0.434 & 1.036\\
+ \hline
+\end{tabular}
+\caption{Experiment 1 ArFace}
+\label{table:ex1arcface}
+\end{table}
+
+\end{itemize}
+
+
+\begin{figure}[H]
+ \centering
+    \includegraphics[width=0.9\columnwidth]{figures/soccer_tp.png}
+    \caption{\textbf{True Positives} using FaceNet and K-Means. Clusters of Soccer Players and Fighting Champions.}
+    \label{fig:ex1tp}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/soccer_fp.png}
+    \caption{\textbf{False Positives}}
+    \label{fig:ex1fp}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/soccer_fn.png}
+    \caption{\textbf{False Negatives}}
+    \label{fig:ex1fn}
+  \end{minipage}
+\end{figure}
+
+\subsection{Experiment 2}
+
+\begin{itemize}
+\item \textbf{Comparison of Feature Extraction Methods and the F-Measure}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c||} 
+ \hline
+Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & \textbf{0.426} & 0.405 & 0.306 & 0.294\\ 
+ \hline
+  \textbf{Spectral} & \textbf{0.392} & 0.367 & 0.295 & 0.272\\
+ \hline
+ \textbf{HAC} & 0.384 & \textbf{0.392} & 0.310 & 0.333\\
+ \hline
+ \textbf{EM} & \textbf{0.443} & 0.411 & 0.310 & 0.277\\
+ \hline
+ \textbf{Birch} & \textbf{0.399} & 0.383 & 0.294 & 0.304\\
+ \hline
+\end{tabular}
+\caption{Experiment 2 F-Measure Comparison}
+\label{table:ex2}
+\end{table}
+\item \textbf{FaceNet}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.426 & 0.415 & 0.439 & 0.880\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.392 & 0.379 & 0.408 & 0.617\\
+ \hline
+ \textbf{HAC} & 5 & 0.384 & 0.331 & 0.457 & 0.590\\
+ \hline
+ \textbf{EM} & 5 & \textbf{0.443} & 0.427 & 0.461 & 5.337\\
+ \hline
+ \textbf{Birch} & 5 & 0.399 & 0.368 & 0.435 & 0.499\\
+ \hline
+\end{tabular}
+\caption{Experiment 2 FaceNet}
+\label{table:ex2facenet}
+\end{table}
+
+\item \textbf{Dlib}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & \textbf{0.405} & 0.404 & 0.408 & 0.287\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.367 & 0.365 & 0.370 & 0.640\\
+ \hline
+ \textbf{HAC} & 5 & 0.392 & 0.348 & 0.450 & 0.201\\
+ \hline
+ \textbf{EM} & 5 & 0.411 & 0.401 & 0.422 & 0.532\\
+ \hline
+ \textbf{Birch} & 5 & 0.383 & 0.280 & 0.606 & 0.077\\
+ \hline
+\end{tabular}
+\caption{Experiment 2 Dlib}
+\label{table:ex2dlib}
+\end{table}
+
+\item \textbf{OpenFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime(seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.306 & 0.306 & 0.307 & 0.344\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.295 & 0.293 & 0.297 & 0.624\\
+ \hline
+ \textbf{HAC} & 5 & \textbf{0.310} & 0.282 & 0.345 & 0.203\\
+ \hline
+ \textbf{EM} & 5 & \textbf{0.310} & 0.310 & 0.311 & 0.398\\
+ \hline
+ \textbf{Birch} & 5 & 0.294 & 0.276 & 0.314 & 0.137\\
+ \hline
+\end{tabular}
+\caption{Experiment 2 OpenFace}
+\label{table:ex2openface}
+\end{table}
+\newpage
+\item \textbf{ArcFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 5 & 0.294 & 0.283 & 0.306 & 1.332\\ 
+ \hline
+  \textbf{Spectral} & 5 & 0.272 & 0.262 & 0.283 & 0.742\\
+ \hline
+ \textbf{HAC} & 5 & \textbf{0.333} & 0.277 & 0.418 & 0.586\\
+ \hline
+ \textbf{EM} & 5 & 0.277 & 0.268 & 0.288 & 0.803\\
+ \hline
+ \textbf{Birch} & 5 & 0.304 & 0.255 & 0.376 & 0.837\\
+ \hline
+\end{tabular}
+\caption{Experiment 2 ArFace}
+\label{table:ex2arcface}
+\end{table}
+\end{itemize}
+
+\begin{figure}[H]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/manager.png}
+    \caption{Experiment 2: Cluster of Managers and Politicians}
+    \label{fig:ex2tp}
+\end{figure}
+
+\subsection{Experiment 3}
+\begin{itemize}
+\item \textbf{Comparison of Feature Extraction Methods and the F-Measure}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c||} 
+ \hline
+Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & \textbf{0.203} & 0.185 & 0.141 & 0.182\\ 
+ \hline
+  \textbf{Spectral} & \textbf{0.204} & 0.166 & 0.143 & 0.159\\
+ \hline
+ \textbf{HAC} & 0.177 & \textbf{0.188} & 0.131 & 0.174\\
+ \hline
+ \textbf{EM} & \textbf{0.210} & 0.191 & 0.146 & 0.179\\
+ \hline
+ \textbf{Birch} & 0.182 & \textbf{0.193} & 0.149 & 0.151\\
+ \hline
+\end{tabular}
+\caption{Experiment 3 F-Measure Comparison}
+\label{table:ex3}
+\end{table}
+\newpage
+\item \textbf{FaceNet}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 11 & 0.203 & 0.202 & 0.204 & 3.698\\ 
+ \hline
+  \textbf{Spectral} & 11 & 0.204 & 0.205 & 0.203 & 3.695\\
+ \hline
+ \textbf{HAC} & 11 & 0.177 & 0.154 & 0.209 & 3.497\\
+ \hline
+ \textbf{EM} & 11 & \textbf{0.210} & 0.206 & 0.215 & 25.618\\
+ \hline
+ \textbf{Birch} & 11 & 0.182 & 0.172 & 0.193 & 2.271\\
+ \hline
+\end{tabular}
+\caption{Experiment 3 FaceNet}
+\label{table:ex3facenet}
+\end{table}
+
+\item \textbf{Dlib}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 11 & 0.185 & 0.181 & 0.190 & 1.260\\ 
+ \hline
+  \textbf{Spectral} & 11 & 0.166 & 0.167 & 0.167 & 3.458\\
+ \hline
+ \textbf{HAC} & 11 & 0.188 & 0.168 & 0.214 & 1.132\\
+ \hline
+ \textbf{EM} & 11 & 0.191 & 0.186 & 0.196 & 3.296\\
+ \hline
+ \textbf{Birch} & 11 & \textbf{0.193} & 0.140 & 0.310 & 0.207\\
+ \hline
+\end{tabular}
+\caption{Experiment 3 Dlib}
+\label{table:ex3dlib}
+\end{table}
+
+\item \textbf{OpenFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 11 & 0.141 & 0.139 & 0.145 & 1.162\\ 
+ \hline
+  \textbf{Spectral} & 11 & 0.143 & 0.130 & 0.160 & 1.140\\
+ \hline
+ \textbf{HAC} & 11 & 0.131 & 0.130 & 0.133 & 3.500\\
+ \hline
+ \textbf{EM} & 11 & 0.146 & 0.143 & 0.150 & 3.233\\
+ \hline
+ \textbf{Birch} & 11 & \textbf{0.149} & 0.137 & 0.164 & 0.492\\
+ \hline
+\end{tabular}
+\caption{Experiment 3 OpenFace}
+\label{table:ex3openface}
+\end{table}
+
+\item \textbf{ArcFace}
+\begin{table}[H]
+\centering
+\begin{tabular}{||c c c c c c||} 
+ \hline
+ Clustering Method & \# of clusters & F-Measure & Precision & Recall & Runtime (seconds)\\ [0.5ex]
+ \hline\hline
+ \textbf{K-Means} & 11 & \textbf{0.182} & 0.182 & 0.183 & 4.679\\ 
+ \hline
+  \textbf{Spectral} & 11 & 0.159 & 0.159 & 0.159 & 4.112\\
+ \hline
+ \textbf{HAC} & 11 & 0.174 & 0.156 & 0.197 & 3.600\\
+ \hline
+ \textbf{EM} & 11 & 0.179 & 0.178 & 0.180 & 4.043\\
+ \hline
+ \textbf{Birch} & 11 & 0.151 & 0.122 & 0.197 & 3.986\\
+ \hline
+\end{tabular}
+\caption{Experiment 3 ArcFace}
+\label{table:ex3arcface}
+\end{table}
+
+\end{itemize}
+
+\begin{figure}[H]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/lawyers.png}
+    \includegraphics[width=\columnwidth]{figures/actor.png}
+    \caption{Experiment 3: Cluster of Sport Coaches, Musicians, Lawyers, Entrepreneurs, and Actors}
+    \label{fig:ex2tp}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{figures/ex2_fp.png}
+    \caption{\textbf{False Positives}}
+    \label{fig:ex2fp}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.5\textwidth}
+   \includegraphics[width=\textwidth]{figures/ex2_fn.png}
+    \caption{\textbf{False Negatives}}
+    \label{fig:ex2fn}
+  \end{minipage}
+\end{figure}
+
+\subsection{Analysis}
+\subsubsection{Experiment 1}
+\quad
+As shown in Table \ref{table:ex1}, feature extraction using ArcFace provided the highest F-Measures for all the clustering algorithms except for Hierarchical Agglomerative Clustering where FaceNet provided a slightly higher F-Measure of 0.447 compared to 0.413 obtained from ArcFace. The highest F-Measure from Experiment 1 was 0.516 using a combination of ArcFace and K-Means clustering. The combination of ArcFace and EM-clustering also yielded the second highest F-Measure of 0.512. 
+
+%The results from Experiment 1 show that either K-Means, Birch, and HAC clustering resulted in the highest F-Measures depending on the feature extraction method. For both FaceNet and ArcFace, K-Means clustering yielded the highest F-measures of 0.478 and 0.516 respectively. 
+
+Figure \ref{fig:ex1tp} shows a subset of the clustering results of the true positives derived from using FaceNet and K-Means clustering.  Figure \ref{fig:ex1fp} shows the false positives and Figure \ref{fig:ex1fn} shows the false negatives. Qualitatively speaking, the results makes sense as the face pairs from Figure \ref{fig:ex1fp} resemble similar features and the face pairs from Figure \ref{fig:ex1fn} have large dissimilarities due to variation in ethnicity and appearances.
+
+\subsubsection{Experiment 2}
+\quad
+Even though Experiment 1 and Experiment 2 had a similar number of face images (2,180 and 2,065) and the same number of professions and clusters, the results differ significantly when clustering the embeddings from ArcFace. More specifically, the combination of ArcFace and K-Means clustering has a F-Measure of 0.294 compared to 0.561 obtained from Experiment 1. 
+
+The main difference between the datasets from Experiment 1 and Experiment 2 is that Experiment 1 consists of high-quality head shots of athletes, in which the variation of position, lighting, facial expression,and age of the faces are low. Whereas Experiment 2 consists of in-the-wild images and varying professions. As mentioned in Section 3.4, ArcFace is not good at computing face representations of images with high intensity of light reflection. Therefore, this may be a contributing factor to the low F-Measure.
+
+Nevertheless, the results from FaceNet are consistent and the highest F-Measure, 0.443, from Experiment 2 was obtained by the combination of FaceNet and EM clustering.
+
+\subsubsection{Experiment 3}
+\quad
+Table \ref{table:ex3} shows that the F-Measure of Experiment 3 dropped by half compared to Experiment 1 and 2 with the highest F-Measure of 0.210 obtained from the combination of FaceNet and EM clustering. This may be due the increasing variations due to doubling the data size, the number of professions and clusters.
+
+Figure \ref{fig:ex2tp} shows the clusters of a subset of the true positives. It can be observed that the age variation is high, particularly, the faces of entrepreneurs and actors are younger than the sport coaches and lawyers. 
+
+Shown in Figure \ref{fig:ex2fp}, a younger Sport Coach, d-2) Nicolas Manaudou  was clustered with the fighting champion d-1) Leonardo Santos. Since the faces of the dataset of athletes consists of younger faces, this clustering decision is qualitatively reasonable. A similar reasoning can be applied to the false negatives shown in Figure \ref{fig:ex2fn}.
+
+Table \ref{table:runtime} shows the runtime of detecting and extracting the features from the raw input images. FaceNet was the most efficient for Experiment 1 and 2, while OpenFace was the most efficient for Experiment 3. On the other hand, Dlib had the longest runtime for all the experiments.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{||c c c c||} 
+ \hline
+Feature Extraction Method & Experiment 1 & Experiment 2 & Experiment 3\\ [0.5ex]
+ \hline\hline
+ \textbf{FaceNet} & \textbf{00:15:06} & \textbf{00:25:27} & 00:57:44\\ 
+ \hline
+  \textbf{Dlib} & 00:28:19 & 00:50:44 & 01:52:57\\
+ \hline
+ \textbf{OpenFace} & 00:16:01 & 00:27:59 & \textbf{00:53:30}\\
+ \hline
+ \textbf{ArcFace} & 00:16:04 & 00:42:44 & 01:34:38\\
+ \hline
+\end{tabular}
+\caption{Runtime}
+\label{table:runtime}
+\end{table}
+
+\section{Conclusion}
+\quad
+Overall, the results show that when the raw input images are head shots with low variation, ArcFace is a good choice for the feature extraction method as it provided the highest accuracy. However, when the raw images are in-the-wild with many variations, then FaceNet is a better choice in terms of consistency, accuracy, and efficiency.  
+
+Although both K-Means and EM Clustering provided the highest accuracy for the experiments, the runtime shows that K-Means clustering is a lot more efficient. As a result, it is recommended to use FaceNet as the feature extraction method and K-Means clustering for a similar task.
+
+The highest F-Measure 0.516 from Experiment 1 and 0.443 from Experiment 2 indicate a positive correlation between the one's facial features and professional domain. The highest F-Measure of 0.210 from Experiment 3 indicates a slight correlation.
+
+Unlike clustering faces to recognize a person’s identity, it is not essential to use in-the-wild images to determine a person’s profession from their face features. The results would be stronger if the dataset was not in-the-wild and could be controlled to have more high-quality head shots of faces. However, since the available face images are taken at public events, this would be difficult to achieve.  
+
+In summary, the results show qualitatively and quantitatively that there is a slight correlation between one’s facial feature and their profession and that FaceNet combined with K-Means or EM clustering yields good clustering results.
+
+\begin{appendices}
+\section{SPARQL Query}
+\label{appen1}
+An example of a query that returns the names and image links to male managers with a citizenship from Europe or North America.
+ 
+\begin{verbatim}
+SELECT distinct ?name ?img
+    WHERE{
+          ?person wdt:P106 wd:Q2462658.
+          ?person rdfs:label ?name.
+          ?person wdt:P18 ?img.
+          ?person wdt:P21 wd:Q6581097.
+          
+          ?person wdt:P27 ?country.
+          {?country wdt:P30 wd:Q46} 
+          UNION {?country wdt:P30 wd:Q49}
+          
+          FILTER (LANG(?name) = 'en') .
+          SERVICE wikibase:label { bd:serviceParam wikibase:language "en".}.
+        } LIMIT 600
+\end{verbatim}
+
+\begin{itemize}
+\item Property wdt:P106: Occupation
+\item Entity ID wd:Q2462658: Manager
+\item Property wdt:P18: Image
+\item Property wdt: P21: Gender
+\item Entity ID wd:Q6581097: Male
+\item Property wdt:P27: Country of Citizenship
+\item Property wdt:P30: Continent
+\item Entity ID wd:Q46: Europe
+\item Entity ID wd:Q49: North America
+\end{itemize}
+
+
+\end{appendices}
+
+\nocite{*}
+
+\printbibliography
+
+\end{document}
