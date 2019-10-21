@@ -455,8 +455,31 @@ The following describes the steps to obtain the results:
 \label{table:3}
 \end{table}
 
-\item \textbf{Profession Clustering: } The clustering algorithms from Section \ref{clustering} were applied to the feature embeddings of the different methods. Since the number of different professions are known, the number of clusters selected corresponds to the number of professions in each experiment.
+\item \textbf{Profession Clustering: } The clustering algorithms from Section \ref{clustering} were applied to the feature embeddings of the different methods. Since the number of different professions are known, the number of clusters selected corresponds to the number of professions in each experiment. The example in Figure \ref{fig:plot1} has two professions. After detecting the faces and representing them as embeddings, Figure \ref{fig:plot2} shows the clustering results. The embeddings are visualized using PCA.
 \end{enumerate}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.3\textwidth}
+    \includegraphics[width=\textwidth]{figures/plot2.png}
+    \caption{The goal is to cluster the professions of the aligned images.}
+    \label{fig:plot1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.6\textwidth}
+    \includegraphics[width=\textwidth]{figures/plot.png}
+    \caption{PCA plot after clustering using the embeddings of the faces from Figure \ref{fig:plot1}}
+    \label{fig:plot2}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/soccer_tp.png}
+    \caption{\textbf{True Positives} using FaceNet and K-Means. Clusters of Soccer Players and Fighting Champions.}
+    \label{fig:ex1tp}
+\end{figure}
+
 
 \section{Results}
 
@@ -630,22 +653,23 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
 \begin{figure}[H]
  \centering
     \includegraphics[width=\columnwidth]{figures/soccer_tp.png}
-    \caption{Experiment 1: True Positives}
+    \caption{\textbf{True Positives} using FaceNet and K-Means. Clusters of Soccer Players and Fighting Champions.}
     \label{fig:ex1tp}
 \end{figure}
 
-\begin{figure}[!tbp]
- \centering
-    \includegraphics[width=0.4\columnwidth]{figures/soccer_fp.png}
-    \caption{Experiement 1: False Positives}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/soccer_fp.png}
+    \caption{\textbf{False Positives}}
     \label{fig:ex1fp}
-\end{figure}
-
-\begin{figure}[!tbp]
- \centering
-    \includegraphics[width=0.4\columnwidth]{figures/soccer_fn.png}
-    \caption{Experiment 1: False Negatives}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{figures/soccer_fn.png}
+    \caption{\textbf{False Negatives}}
     \label{fig:ex1fn}
+  \end{minipage}
 \end{figure}
 
 \subsection{Experiment 2}
@@ -767,6 +791,29 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
     \includegraphics[width=\columnwidth]{figures/manager.png}
     \caption{Experiment 2: Cluster of Managers and Politicians}
     \label{fig:ex2tp}
+\end{figure}
+
+\begin{figure}[!tbp]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/lawyers.png}
+    \includegraphics[width=\columnwidth]{figures/actor.png}
+    \caption{Experiment 3: Cluster of Sport Coaches, Musicians, Lawyers, Entrepreneurs, and Actors}
+    \label{fig:ex2tp}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{figures/ex2_fp.png}
+    \caption{\textbf{False Positives}}
+    \label{fig:ex2fp}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.5\textwidth}
+   \includegraphics[width=\textwidth]{figures/ex2_fn.png}
+    \caption{\textbf{False Negatives}}
+    \label{fig:ex2fn}
+  \end{minipage}
 \end{figure}
 
 \subsection{Experiment 3}
