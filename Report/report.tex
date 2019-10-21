@@ -473,14 +473,6 @@ The following describes the steps to obtain the results:
   \end{minipage}
 \end{figure}
 
-\begin{figure}[H]
- \centering
-    \includegraphics[width=\columnwidth]{figures/soccer_tp.png}
-    \caption{\textbf{True Positives} using FaceNet and K-Means. Clusters of Soccer Players and Fighting Champions.}
-    \label{fig:ex1tp}
-\end{figure}
-
-
 \section{Results}
 
 \subsection{Evaluation}
@@ -533,13 +525,15 @@ If the output of the algorithm clusters all data points as individual clusters, 
 
 %\item \textbf{Create ground truth dictionary: } Based on the embeddings and labels from the feature extraction methods, a dictionary that assigns the indices of the images to the corresponding profession was created. The identity and profession can later be retrieved from the indices. The keys are the professions and the values are arrays of image indices. e.g. $\{\textrm{tennis player}: [41, 54, ...], \ \textrm{basketball player}: [0, 2, 5, ...], \ \textrm{golfer}: [...], ...\}$
 
+The F-Measure, Precision, and Recall of the experiments are obtained by averaging the accuracy of the corresponding experiment 10 times.
+
 \subsection{Experiment 1}
 
-The results were obtained by averaging 10 F-measure scores. 
-
-\begin{table}[h!]
+\begin{itemize}
+\item \textbf{Comparison of Feature Extraction Methods and the F-Measure}
+\begin{table}[H]
 \centering
-\begin{tabular}{||c c c c c||} 
+\begin{tabular}{||c c c c c||}
  \hline
 Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
  \hline\hline
@@ -554,11 +548,10 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
  \textbf{Birch} & 0.442 & 0.404 & 0.331 & \textbf{0.453}\\
  \hline
 \end{tabular}
-\caption{Experiment 1: Comparison of Feature Extraction Methods and F-Measure of Clustering Algorithms}
+\caption{F-Measure obtained by each feature extraction and clustering method}
 \label{table:ex1}
 \end{table}
 
-\begin{itemize}
 \item \textbf{FaceNet}
 \begin{table}[H]
 \centering
@@ -674,6 +667,8 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
 
 \subsection{Experiment 2}
 
+\begin{itemize}
+\item \textbf{Comparison of Feature Extraction Methods and the F-Measure}
 \begin{table}[H]
 \centering
 \begin{tabular}{||c c c c c||} 
@@ -691,12 +686,9 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
  \textbf{Birch} & \textbf{0.399} & 0.383 & 0.294 & 0.304\\
  \hline
 \end{tabular}
-\caption{Experiment 2: Comparison of Feature Extraction Methods and F-Measure of Clustering Algorithms}
+\caption{Experiment 2 F-Measure Comparison}
 \label{table:ex2}
 \end{table}
-
-\begin{itemize}
-
 \item \textbf{FaceNet}
 \begin{table}[H]
 \centering
@@ -786,38 +778,16 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
 \end{table}
 \end{itemize}
 
-\begin{figure}[!tbp]
+\begin{figure}[H]
  \centering
     \includegraphics[width=\columnwidth]{figures/manager.png}
     \caption{Experiment 2: Cluster of Managers and Politicians}
     \label{fig:ex2tp}
 \end{figure}
 
-\begin{figure}[!tbp]
- \centering
-    \includegraphics[width=\columnwidth]{figures/lawyers.png}
-    \includegraphics[width=\columnwidth]{figures/actor.png}
-    \caption{Experiment 3: Cluster of Sport Coaches, Musicians, Lawyers, Entrepreneurs, and Actors}
-    \label{fig:ex2tp}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \begin{minipage}[b]{0.48\textwidth}
-    \includegraphics[width=\textwidth]{figures/ex2_fp.png}
-    \caption{\textbf{False Positives}}
-    \label{fig:ex2fp}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.5\textwidth}
-   \includegraphics[width=\textwidth]{figures/ex2_fn.png}
-    \caption{\textbf{False Negatives}}
-    \label{fig:ex2fn}
-  \end{minipage}
-\end{figure}
-
 \subsection{Experiment 3}
-
+\begin{itemize}
+\item \textbf{Comparison of Feature Extraction Methods and the F-Measure}
 \begin{table}[H]
 \centering
 \begin{tabular}{||c c c c c||} 
@@ -835,11 +805,9 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
  \textbf{Birch} & 0.182 & \textbf{0.193} & 0.149 & 0.151\\
  \hline
 \end{tabular}
-\caption{Experiment 3: Comparison of Feature Extraction Methods and F-Measure of Clustering Algorithms}
+\caption{Experiment 3 F-Measure Comparison}
 \label{table:ex3}
 \end{table}
-
-\begin{itemize}
 
 \item \textbf{FaceNet}
 \begin{table}[H]
@@ -931,6 +899,29 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
 
 \end{itemize}
 
+\begin{figure}[H]
+ \centering
+    \includegraphics[width=\columnwidth]{figures/lawyers.png}
+    \includegraphics[width=\columnwidth]{figures/actor.png}
+    \caption{Experiment 3: Cluster of Sport Coaches, Musicians, Lawyers, Entrepreneurs, and Actors}
+    \label{fig:ex2tp}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.48\textwidth}
+    \includegraphics[width=\textwidth]{figures/ex2_fp.png}
+    \caption{\textbf{False Positives}}
+    \label{fig:ex2fp}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.5\textwidth}
+   \includegraphics[width=\textwidth]{figures/ex2_fn.png}
+    \caption{\textbf{False Negatives}}
+    \label{fig:ex2fn}
+  \end{minipage}
+\end{figure}
+
 \subsection{Analysis}
 
 \begin{table}[h!]
@@ -952,14 +943,23 @@ Feature Extraction Method & Experiment 1 & Experiment 2 & Experiment 3\\ [0.5ex]
 \label{table:runtime}
 \end{table}
 
-Can't control age, big factor.
+As shown in Table \ref{table:ex1}, feature extraction using ArcFace provided the highest F-Measures using all the clustering algorithms except for Hierarchical Agglomerative Clustering where FaceNet provided a higher F-Measure of 0.447. However, this is only slightly higher than the F-Measure of 0.413 obtained from ArcFace. The highest F-Measure obtained from Experiment 1 was 0.516 usinga combination of ArcFace and K-Means clustering. The combination of ArcFace and EM-clustering also yielded a higher F-Measure of 0.512. 
 
-Bar graph Comparsion of accuracy based on increasing the number of clusters for each algorithm
+The results from Experiment 1 shows that either K-Means, Birch, and HAC clustering resulted in the highest F-Measures depending on the feature extraction method. For both FaceNet and ArcFace, K-Means clustering yielded the highest F-measures of 0.478 and 0.516 respectively. 
 
+Figure \ref{fig:ex1tp} shows a subset of the clustering results of the true positives of the soccer players and fighting champions derived from using FaceNet and K-Means clustering.  Figure \ref{fig:ex1fp} shows the false positives and Figure \ref{fig:ex1fn} shows the false negatives. Qualitatively speaking, the results makes sense as the face pairs from Figure \ref{fig:ex1fp} resemble similar features and the face pairs from Figure \ref{fig:ex1fn} have large dissimilarities due to variation in ethnicity and appearances. Therefore, even thoguh b-1.) Hyeon Chung and b-2) Radu Albot are both tennis players they have completely different facial features.
 
-It can also be assumed that the quality of images in terms of pose, illumination, occlusion, etc. being considered is relatively low, since social media images, images taken at public events etc. are not generally captured in the most favorable conditions for face recognition. \cite{shi}
+Even though Experiment 1 and Experiment 2 had a similar number of face images (2,180 and 2,065) and the same number of professions (number of clusters), the results differ significantly when using the embeddings from ArcFace. More specifically, the combination of ArcFace and K-Means clustering has a F-Measure of 0.294 which is a lot lower than the 0.561 obtained from Experiment 1. The main difference between the datasets from Experiment 1 and Experiment 2 is that Experiment 1 consists of high-quality head shots of athletes, in which the variation of position, lighting, facial expression,and age of the faces is low. However, a majority of the subset of the images from Experiment 2 are in-the-wild and the professions also vary significant, e.g. soccer players and architects. Therefore the dataset in Experiment 2 has a lot more variation and as mentioned in Section 3.4, a downside of ArcFace is not good at compute face representations of images with the high intensity of light reflection. Therefore, this may be a contributing factor the low F-Measure. Nevertheless, the results from FaceNet were consistent and the highest F-Measure, 0.443, from Experiment 2 was obtained by the combination of FaceNet and EM clustering. The results from Experiment 2 also show that EM, K-Means, and HAC resulted in the highest F-Measure depending on the feature extraction method. 
+
+Table \ref{table:ex3} shows that the F-Measure of Experiment 3 dropped by half compared to Experiment 1 and 2 with the highest F-Measure of 0.210 obtained from the combination of FaceNet and EM clustering. This may be due to doubling the data size, the number of professions and clusters since more variations are introduced when increasing the size of the dataset. Figure \ref{fig:ex2tp} shows the cluster of a subset of the true positives. It can be observed that the age variation is high, particularly, the faces of entrepreneurs and actors are younger than the sport coaches and lawyers. Shown in Figure \ref{ex2fg}, a younger Sport Coach, d-2) Nicolas Manaudou  was clustered with the fighting champion d-1) Leonardo Santos. Since the faces of the dataset of athletes consists of younger faces, this clustering decision is qualitatively reasonable. A similar reasoning can be applied to the false negatives shown in Figure \ref{fig:ex2fn}.
+
+Table \ref{table:runtime} shows the runtime of detecting and extracting the features from the raw input images. FaceNet was the most efficient for Experiment 1 and 2, while OpenFace was the most efficient for Experiment 3. On the other hand, Dlib had the longest runtime for all the experiments.
 
 \section{Conclusion}
+\quad
+Overall, the results show that when the raw input images are head shots with low variation, then ArcFace is good choice for the feature extraction method as it provided the highest accuracy. However, when the raw images are in-the-wild with many variations, then FaceNet is a better choice in terms of accuracy and efficiency.  Although both K-Means and EM Clustering provided the highest accuracy for the experiments, the runtime consistently shows that K-Means clustering is a lot more efficient. As a result, it is recommended to use FaceNet as the feature extraction method and K-Means clustering for a similar task. 
+
+Unlike clustering faces to recognize a person’s identity, it is not essential to use in-the-wild images to determine a person’s profession from their face features. The results would be stronger if the dataset was not in-the-wild could be controlled to more to have high-quality head shots of faces like the dataset from Experiment 1. However, since most publicly available face images are taken at public events, this would be difficult to achieve.  In summary, the results show qualitatively and quantatively that there is a slight correlation between one’s facial feature and their profession. 
 
 \begin{appendices}
 \section{SPARQL Query}

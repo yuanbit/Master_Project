@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.13)  21 OCT 2019 15:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.13)  21 OCT 2019 17:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1200,9 +1200,6 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 \@quotereset=\count351
 (./report.aux
 
-LaTeX Warning: Label `fig:ex1tp' multiply defined.
-
-
 LaTeX Warning: Label `fig:ex2tp' multiply defined.
 
 )
@@ -1579,43 +1576,38 @@ File: figures/plot.png Graphic file (type png)
 <use figures/plot.png>
 Package pdftex.def Info: figures/plot.png  used on input line 470.
 (pdftex.def)             Requested size: 263.11115pt x 175.41663pt.
-<figures/soccer_tp.png, id=461, 987.69pt x 544.0325pt>
-File: figures/soccer_tp.png Graphic file (type png)
-<use figures/soccer_tp.png>
-Package pdftex.def Info: figures/soccer_tp.png  used on input line 478.
-(pdftex.def)             Requested size: 438.51413pt x 241.53337pt.
  [15pdfTeX warning (ext4): destination with the same identifier (name{table.2})
  has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.482 
+l.481 
       pdfTeX warning (ext4): destination with the same identifier (name{table.3
 }) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.482 
+l.481 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 17}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.482 
+l.481 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 18}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.482 
+l.481 
        <./figures/plot2.png> <./figures/plot.png>]
-<figures/fmeasure.png, id=474, 565.11125pt x 199.74625pt>
+<figures/fmeasure.png, id=473, 565.11125pt x 199.74625pt>
 File: figures/fmeasure.png Graphic file (type png)
 <use figures/fmeasure.png>
-Package pdftex.def Info: figures/fmeasure.png  used on input line 494.
+Package pdftex.def Info: figures/fmeasure.png  used on input line 486.
 (pdftex.def)             Requested size: 438.51413pt x 155.0029pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 501--503
+Underfull \hbox (badness 10000) in paragraph at lines 493--495
 
  []
 
@@ -1624,226 +1616,221 @@ Underfull \hbox (badness 10000) in paragraph at lines 501--503
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.505 $$
-        TP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_...
- <./figures/soccer_tp.png>] [17pdfTeX warning (ext4): destination with the same
- identifier (name{figure.20}) has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.527 ...}{\textrm{Precision} + \textrm{Recall}}$$
+l.500 ...\cap Q | = |\{(A1, A2), (U1, U2)\}| = 2$$
                                                    <./figures/fmeasure.png>]
-[18pdfTeX warning (ext4): destination with the same identifier (name{table.4}) 
-has been already used, duplicate ignored
+[17] [18pdfTeX warning (ext4): destination with the same identifier (name{table
+.4}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.627 
+l.642 
       pdfTeX warning (ext4): destination with the same identifier (name{table.5
 }) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.627 
+l.642 
       pdfTeX warning (ext4): destination with the same identifier (name{table.6
 }) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.627 
-      ]
-File: figures/soccer_tp.png Graphic file (type png)
-<use figures/soccer_tp.png>
-Package pdftex.def Info: figures/soccer_tp.png  used on input line 655.
-(pdftex.def)             Requested size: 438.51413pt x 241.53337pt.
-<figures/soccer_fp.png, id=507, 463.7325pt x 547.04375pt>
-File: figures/soccer_fp.png Graphic file (type png)
-<use figures/soccer_fp.png>
-Package pdftex.def Info: figures/soccer_fp.png  used on input line 663.
-(pdftex.def)             Requested size: 175.40297pt x 206.91885pt.
-<figures/soccer_fn.png, id=508, 470.75874pt x 559.08875pt>
-File: figures/soccer_fn.png Graphic file (type png)
-<use figures/soccer_fn.png>
-Package pdftex.def Info: figures/soccer_fn.png  used on input line 669.
-(pdftex.def)             Requested size: 175.40297pt x 208.30986pt.
- [19pdfTeX warning (ext4): destination with the same identifier (name{table.7})
- has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.674 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.8
+l.642 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.7
 }) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.674 
+l.642 
+      ]
+<figures/soccer_tp.png, id=505, 987.69pt x 544.0325pt>
+File: figures/soccer_tp.png Graphic file (type png)
+<use figures/soccer_tp.png>
+Package pdftex.def Info: figures/soccer_tp.png  used on input line 648.
+(pdftex.def)             Requested size: 438.51413pt x 241.53337pt.
+<figures/soccer_fp.png, id=506, 463.7325pt x 547.04375pt>
+File: figures/soccer_fp.png Graphic file (type png)
+<use figures/soccer_fp.png>
+Package pdftex.def Info: figures/soccer_fp.png  used on input line 656.
+(pdftex.def)             Requested size: 175.40297pt x 206.91885pt.
+<figures/soccer_fn.png, id=507, 470.75874pt x 559.08875pt>
+File: figures/soccer_fn.png Graphic file (type png)
+<use figures/soccer_fn.png>
+Package pdftex.def Info: figures/soccer_fn.png  used on input line 662.
+(pdftex.def)             Requested size: 175.40297pt x 208.30986pt.
+ [19pdfTeX warning (ext4): destination with the same identifier (name{table.8})
+ has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.667 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-21}) has been already used, duplicate ignored
+20}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.674 
-      ] [20pdfTeX warning (ext4): destination with the same identifier (name{fi
-gure.22}) has been already used, duplicate ignored
+l.667 
+       <./figures/soccer_tp.png>] [20pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.21}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.743 
+l.735 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-23}) has been already used, duplicate ignored
+22}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.743 
+l.735 
       pdfTeX warning (ext4): destination with the same identifier (name{table.9
 }) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.743 
+l.735 
       pdfTeX warning (ext4): destination with the same identifier (name{table.1
 0}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.743 
+l.735 
        <./figures/soccer_fp.png> <./figures/soccer_fn.png>]
-<figures/manager.png, id=527, 1094.0875pt x 584.1825pt>
+<figures/manager.png, id=526, 1094.0875pt x 584.1825pt>
 File: figures/manager.png Graphic file (type png)
 <use figures/manager.png>
-Package pdftex.def Info: figures/manager.png  used on input line 791.
+Package pdftex.def Info: figures/manager.png  used on input line 783.
 (pdftex.def)             Requested size: 438.51413pt x 234.14128pt.
-<figures/lawyers.png, id=528, 984.67876pt x 787.94376pt>
-File: figures/lawyers.png Graphic file (type png)
-<use figures/lawyers.png>
-Package pdftex.def Info: figures/lawyers.png  used on input line 798.
-(pdftex.def)             Requested size: 438.51413pt x 350.90439pt.
-<figures/actor.png, id=529, 1113.15875pt x 633.36626pt>
-File: figures/actor.png Graphic file (type png)
-<use figures/actor.png>
-Package pdftex.def Info: figures/actor.png  used on input line 799.
-(pdftex.def)             Requested size: 438.51413pt x 249.50525pt.
-<figures/ex2_fp.png, id=530, 309.155pt x 686.565pt>
-File: figures/ex2_fp.png Graphic file (type png)
-<use figures/ex2_fp.png>
-Package pdftex.def Info: figures/ex2_fp.png  used on input line 807.
-(pdftex.def)             Requested size: 210.4849pt x 467.45517pt.
-<figures/ex2_fn.png, id=531, 317.185pt x 677.53125pt>
-File: figures/ex2_fn.png Graphic file (type png)
-<use figures/ex2_fn.png>
-Package pdftex.def Info: figures/ex2_fn.png  used on input line 813.
-(pdftex.def)             Requested size: 219.25706pt x 468.36548pt.
  [21pdfTeX warning (ext4): destination with the same identifier (name{table.11}
 ) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.818 
+l.787 
       pdfTeX warning (ext4): destination with the same identifier (name{table.1
 2}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.818 
+l.787 
       pdfTeX warning (ext4): destination with the same identifier (name{table.1
 3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.818 
+l.787 
       ]
-Overfull \vbox (100.66652pt too high) has occurred while \output is active []
+Overfull \hbox (28.28323pt too wide) in paragraph at lines 815--830
+ [][] 
+ []
 
 
-[22pdfTeX warning (ext4): destination with the same identifier (name{figure.24}
+Overfull \hbox (28.28323pt too wide) in paragraph at lines 837--852
+ [][] 
+ []
+
+[22pdfTeX warning (ext4): destination with the same identifier (name{figure.23}
 ) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.818 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-26}) has been already used, duplicate ignored
+l.855 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+4}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.818 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-27}) has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.818 
-       <./figures/manager.png> <./figures/ex2_fp.png> <./figures/ex2_fn.png>]
-[23pdfTeX warning (ext4): destination with the same identifier (name{figure.25}
-) has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.818 
-       <./figures/lawyers.png> <./figures/actor.png>]
-Overfull \hbox (28.28323pt too wide) in paragraph at lines 847--862
- [][] 
- []
-
-
-Overfull \hbox (28.28323pt too wide) in paragraph at lines 869--884
- [][] 
- []
-
-
-Overfull \hbox (28.28323pt too wide) in paragraph at lines 891--906
- [][] 
- []
-
-
-Overfull \hbox (28.28323pt too wide) in paragraph at lines 913--928
- [][] 
- []
-
-[24pdfTeX warning (ext4): destination with the same identifier (name{table.14})
- has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.931 
+l.855 
       pdfTeX warning (ext4): destination with the same identifier (name{table.1
 5}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.931 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.1
-6}) has been already used, duplicate ignored
+l.855 
+       <./figures/manager.png>]
+Overfull \hbox (28.28323pt too wide) in paragraph at lines 859--874
+ [][] 
+ []
+
+
+Overfull \hbox (28.28323pt too wide) in paragraph at lines 881--896
+ [][] 
+ []
+
+<figures/lawyers.png, id=542, 984.67876pt x 787.94376pt>
+File: figures/lawyers.png Graphic file (type png)
+<use figures/lawyers.png>
+Package pdftex.def Info: figures/lawyers.png  used on input line 904.
+(pdftex.def)             Requested size: 438.51413pt x 350.90439pt.
+<figures/actor.png, id=543, 1113.15875pt x 633.36626pt>
+File: figures/actor.png Graphic file (type png)
+<use figures/actor.png>
+Package pdftex.def Info: figures/actor.png  used on input line 905.
+(pdftex.def)             Requested size: 438.51413pt x 249.50525pt.
+[23pdfTeX warning (ext4): destination with the same identifier (name{table.16})
+ has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.931 
+l.909 
       pdfTeX warning (ext4): destination with the same identifier (name{table.1
 7}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.931 
+l.909 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+8}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.909 
       ]
+<figures/ex2_fp.png, id=551, 309.155pt x 686.565pt>
+File: figures/ex2_fp.png Graphic file (type png)
+<use figures/ex2_fp.png>
+Package pdftex.def Info: figures/ex2_fp.png  used on input line 913.
+(pdftex.def)             Requested size: 210.4849pt x 467.45517pt.
+<figures/ex2_fn.png, id=552, 317.185pt x 677.53125pt>
+File: figures/ex2_fn.png Graphic file (type png)
+<use figures/ex2_fn.png>
+Package pdftex.def Info: figures/ex2_fn.png  used on input line 919.
+(pdftex.def)             Requested size: 219.25706pt x 468.36548pt.
+ [24pdfTeX warning (ext4): destination with the same identifier (name{figure.24
+}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.924 
+       <./figures/lawyers.png> <./figures/actor.png>] [25pdfTeX warning (ext4):
+ destination with the same identifier (name{figure.25}) has been already used, 
+duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.947 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+26}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.947 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
+9}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.947 
+       <./figures/ex2_fp.png> <./figures/ex2_fn.png>]
+
+LaTeX Warning: Reference `ex2fg' on page 26 undefined on input line 954.
+
+[26]
 Overfull \hbox (30.7861pt too wide) in paragraph at lines 984--984
 []          \OT1/cmtt/m/n/12 SERVICE wikibase:label { bd:serviceParam wikibase:
 language "en".}.[] 
  []
 
-[25pdfTeX warning (ext4): destination with the same identifier (name{table.18})
- has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.984 \end{verbatim}
-                    pdfTeX warning (ext4): destination with the same identifier
- (name{table.19}) has been already used, duplicate ignored
-
-\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
-                                                  
-l.984 \end{verbatim}
-                    ]
+[27]
 Overfull \hbox (42.28856pt too wide) in paragraph at lines 1004--1004
 [][]$\OT1/cmtt/m/n/12 https : / / i . pinimg . com / originals / 76 / c3 / ea /
  76c3ea5bcd34a4d7435320c05651d494 .
@@ -1855,7 +1842,7 @@ Overfull \hbox (7.62163pt too wide) in paragraph at lines 1004--1004
 om / SoumitraAgarwal ? tab = repositories$[]\OT1/cmr/m/n/12 . 
  []
 
-[26] [27] [28]
+[28] [29]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1005.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 1005.
  (./report.aux)
@@ -1866,6 +1853,9 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: F46A454BDF38480BD634CDE9E1D56989;2401.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package logreq Info: Writing requests to 'report.run.xml'.
@@ -1873,13 +1863,13 @@ Package logreq Info: Writing requests to 'report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24799 strings out of 492982
- 455904 string characters out of 6134895
+ 24800 strings out of 492982
+ 455909 string characters out of 6134895
  881076 words of memory out of 5000000
- 27769 multiletter control sequences out of 15000+600000
+ 27770 multiletter control sequences out of 15000+600000
  13220 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,9n,56p,1033b,1625s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,9n,56p,1391b,1625s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/tex
@@ -1892,10 +1882,10 @@ amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on report.pdf (28 pages, 11330635 bytes).
+Output written on report.pdf (29 pages, 11334852 bytes).
 PDF statistics:
- 696 PDF objects out of 1000 (max. 8388607)
- 575 compressed objects within 6 object streams
+ 708 PDF objects out of 1000 (max. 8388607)
+ 586 compressed objects within 6 object streams
  153 named destinations out of 1000 (max. 500000)
  436 words of extra memory for PDF output out of 10000 (max. 10000000)
 
