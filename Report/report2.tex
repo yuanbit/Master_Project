@@ -99,7 +99,7 @@ In this section a traditional face detector, HOG, and another based on deep neur
 \quad
 A traditional method for face detection is the Histograms of Oriented Gradients (HOG) descriptors, which utilizes the distribution of local intensity gradients or edge directions to identify appearances and shapes in an image \cite{dalal}. 
 
-HOG divides the image into small grids, where each grid accumulates a histogram of gradient directions or edge orientations over the pixels of the cell. The cells are then normalized for better invariance to illumination, shadowing, and other variations \cite{dalal}. 
+HOG divides the image into small grids, where each grid accumulates a histogram of gradient directions or edge orientations over the pixels of the grid. The grids are then normalized for better invariance to illumination, shadowing, and other variations \cite{dalal}. 
 
 The normalized local histograms of image gradient orientations in the grids are the features and are then trained (typically by a linear classifier) to classify the region of the face in an image \cite{dalal}. When encountering a HOG representation of a new face image as shown in Figure \ref{fig:obama}, the part of the image that looks most similar to a trained HOG detector as shown in Figure \ref{fig:dlibhog} will be detected as the region of the face. 
 
@@ -113,7 +113,7 @@ The normalized local histograms of image gradient orientations in the grids are 
   \hfill
   \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{figures/face_hog.png}
-    \caption{Hog representation of a face \cite{hackevolve}}
+    \caption{HOG representation of a face \cite{hackevolve}}
     \label{fig:obama}
   \end{minipage}
 \end{figure}

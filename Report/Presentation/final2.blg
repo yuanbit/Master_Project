@@ -18,133 +18,53 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: final2-blx.bib
 Database file #2: mybib.bib
-Warning--I didn't find a database entry for "Karame"
+Warning--I didn't find a database entry for "data1"
+Warning--I didn't find a database entry for "sandberg"
+Warning--I didn't find a database entry for "geitgey"
+Warning--I didn't find a database entry for "amos2016"
+Warning--I didn't find a database entry for "deng2019"
 Biblatex version: 3.8
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2633 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2633 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2633 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2633 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2633 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2633 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2633 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2633 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2637 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2637 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2643 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2643 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2647 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2647 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2647 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2647 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2651 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2651 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2657 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2657 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2661 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2661 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2661 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2661 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2701 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2701 of file biblatex.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Name 1 in "Jung, Y. G., Kang, M. S., and Heo, J." has a comma at the end for entry ncbi
-while executing---line 2749 of file biblatex.bst
-Too many commas in name 1 of "Jung, Y. G., Kang, M. S., and Heo, J." for entry ncbi
-while executing---line 2749 of file biblatex.bst
-You've used 29 entries,
+You've used 8 entries,
             6268 wiz_defined-function locations,
-            1309 strings with 13046 characters,
-and the built_in function-call counts, 142450 in all, are:
-= -- 8977
-> -- 3022
-< -- 840
-+ -- 3647
-- -- 1177
-* -- 10368
-:= -- 14177
+            1212 strings with 9580 characters,
+and the built_in function-call counts, 31633 in all, are:
+= -- 1925
+> -- 653
+< -- 228
++ -- 778
+- -- 258
+* -- 2102
+:= -- 2987
 add.period$ -- 0
-call.type$ -- 29
-change.case$ -- 294
-chr.to.int$ -- 103
-cite$ -- 56
-duplicate$ -- 16316
-empty$ -- 13346
-format.name$ -- 1831
-if$ -- 29206
+call.type$ -- 8
+change.case$ -- 90
+chr.to.int$ -- 48
+cite$ -- 14
+duplicate$ -- 3550
+empty$ -- 3076
+format.name$ -- 342
+if$ -- 6667
 int.to.chr$ -- 0
-int.to.str$ -- 63
+int.to.str$ -- 12
 missing$ -- 0
-newline$ -- 845
-num.names$ -- 1073
-pop$ -- 9757
+newline$ -- 184
+num.names$ -- 211
+pop$ -- 2468
 preamble$ -- 1
-purify$ -- 446
+purify$ -- 119
 quote$ -- 0
-skip$ -- 4590
+skip$ -- 1106
 stack$ -- 0
-substring$ -- 13845
-swap$ -- 3932
-text.length$ -- 811
-text.prefix$ -- 28
+substring$ -- 2903
+swap$ -- 869
+text.length$ -- 197
+text.prefix$ -- 7
 top$ -- 1
-type$ -- 973
+type$ -- 259
 warning$ -- 0
-while$ -- 1879
+while$ -- 393
 width$ -- 0
-write$ -- 817
-(There were 42 error messages)
+write$ -- 177
+(There were 5 warnings)
