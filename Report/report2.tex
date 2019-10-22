@@ -31,44 +31,42 @@
 
 \begin{abstract}
 
-Motivated by researches in the social-sciences, the correlation between facial features and professional talents are examined using a computational method. Face clustering is a technique that groups similar faces together based on their feature representations. Obtaining a robust and discriminative embedding for this task is essential in the accuracy of face clustering. Thus, four open-source state-of-the-art feature extraction methods based on deep convolutional neural networks and common clustering algorithms are compared with respect to their ability to cluster faces based on the identity's profession domain. The results show that there is a slight correlation between facial features and professional talents and that a combination of FaceNet and K-Means or EM clustering yield good clustering results.
+Motivated by researches in the social sciences and computational methods, the correlation between facial features and professional talents are examined using  face clustering. Face clustering is a technique that groups similar faces together based on their feature representations. Therefore, obtaining a robust and discriminative face embedding for this task is essential. In this paper, four open-source state-of-the-art feature extraction methods and common clustering algorithms are compared by their accuracy to cluster faces based on the person's professional domain. The results show that there is a slight correlation between facial features and professional talents and that a combination of FaceNet and K-Means or EM clustering yield good clustering results.
 \end{abstract}
 
 \section{Introduction}
 \label{sec:introduction}
 
 \quad 
-Since a significant source of information and attributes can be derived from the human face by non-verbal communication \cite{joo}, facial features have been studied extensively in the social-science domain to predict success in reaching reputable leadership positions. In particular, studies have shown that certain facial features contribute to higher salaries and more prestigious employments. In application, the relationship between facial characteristics and social attributes can provide a powerful objective indicator for organizations to idenity and select effective leaders within their domain. Results have shown that a human judge can identify business, military, and sports leaders from their faces with above-chance accuracy \cite{olivola}. %However, these results are biased and do not imply the actual leadership qualities of a person \cite{olivola}.
+Since a significant source of information and attributes can be derived from the human face by non-verbal communication \cite{joo}, facial features have been studied extensively in the social science domain to predict a person's success in reaching reputable leadership positions. In particular, studies have shown that certain facial features contribute to higher salaries and more prestigious employments \cite{olivola}. In application, the relationship between facial characteristics and social attributes can provide a powerful objective indicator for organizations to idenity and select effective leaders within their domain \cite{olivola}. %Results have shown that a human judge can identify business, military, and sports leaders from their faces with above-chance accuracy \cite{olivola}. %However, these results are biased and do not imply the actual leadership qualities of a person \cite{olivola}.
 
-Caused by experiments based human judgement, research of social attributes and facial features in the social-sciences are limited in scalability, consistency, and generalization. Therefore, a growing number of studies have been extended and refined to computer vision and machine learning research due to the capability of using massive datasets and the large-scale processing capacity \cite{joo}.
+Caused by experiments based on human judgement, researches in the social sciences are limited in scalability, consistency, and generalization. Therefore, a growing number of studies have been extended and refined to computer vision and machine learning research due to the capability of using massive datasets and the large-scale processing capacity \cite{joo}. Particularly, through a computational framework, \cite{joo} trained a model to predict the outcomes of political elections based on the candidates' face images. This suggests that similar methods can be used to predict behavior in a broad range of human social relations, such as job placement \cite{joo}.
 
-Through a computational framework, \cite{joo} trained a model to predict the outcomes of political elections based on the candidates' face images. This suggests that similar methods can be used to predict behavior in a broad range of human social relations, such as job placement, political and commercial negotiations \cite{joo}.
-
-Motivated by computational methods, the following paper aims to examine the correlation between facial features and professional talents through face clustering. The face clustering problem consists of not only the choice of the clustering algorithm, but also the face representation and similarity metric of the face images \cite{shi}. Due to the importance of face representations in face clustering, this paper compares four open-source state-of-the-art feature extraction methods based on deep convolutional neural networks.\\
+Motivated by computational methods, the following paper aims to examine the correlation between facial features and professional talents through face clustering. The face clustering problem consists of not only the choice of the clustering algorithm, but also the face representation and similarity metric of the face images \cite{shi}. Due to the importance of face representations in face clustering, this paper compares four open-source state-of-the-art feature extraction methods based on deep convolutional neural networks and common algorithms for clustering the professional domains of faces.\\
 
 \section{Related Work}	
 
 \subsection{Face Clustering}
 
 \quad
-Clustering analysis is an unsupervised learning technique that groups data points into clusters based on their similarities. It is useful in grouping a collection of unlabeled data with similar nature into clusters. \cite{shi} investigated clustering a large number of unlabeled face images into individual identities present in the data \cite{shi}. The workflow shown in Figure\ref{fig:face}. consists of obtaining face representations of a collection of unlabeled data by a deep neural network. The choice of clustering algorithm then groups the face images according to their identity.
+Clustering analysis is an unsupervised learning technique that groups data points into clusters based on their similarities. It is useful in grouping a collection of unlabeled data with similar nature into clusters. \cite{shi} investigated clustering a large number of unlabeled face images into individual identities present in the data. The workflow shown in Figure \ref{fig:face}. consists of obtaining face representations of a collection of unlabeled data by a deep neural network. The choice of clustering algorithm then groups the face images according to their identity.
 
 \begin{figure}[!tbp]
  \centering
-    \includegraphics[width=\textwidth]{figures/otto_faceClustering_workflow.png}
+    \includegraphics[width=0.9\textwidth]{figures/otto_faceClustering_workflow.png}
     \caption{Face clustering workflow \cite{shi}}
 	\label{fig:face}
 \end{figure}
 
 
-Face clustering systems are usually composed of the following 4 steps \cite{trigueros}: 
+Face clustering systems are usually composed of the following four steps \cite{trigueros}: 
 
 \begin{enumerate}
-  \item \textbf{Face Detection:}\\ Detect the position of the faces in an image and returns the coordinates of a bounding box for each face as shown in Figure \ref{fig:detect}.
-  \item \textbf{Face Alignment:} \\ Find a set of facial landmarks with the best affine transformation that fits a set of reference points located at fixed locations in the image. As shown in Figure \ref{fig:landmark}, this step also includes resizing and cropping the image to the edges of the landmarks \cite{amos}. More specifically, as shown in Figure \ref{fig:meanlandmark} given a set of mean landmark locations, the affine transformation makes the landmarks detected in the face image close to the mean \cite{amos}.
+  \item \textbf{Face Detection:} Detect the position of the faces in an image and returns the coordinates of a bounding box for each face as shown in Figure \ref{fig:detect}.
+  \item \textbf{Face Alignment:} Find a set of facial landmarks with the best affine transformation that fits a set of reference points located at fixed locations in the image. As shown in Figure \ref{fig:landmark}, this step also includes resizing and cropping the image to the edges of the landmarks \cite{amos}. More specifically, as shown in Figure \ref{fig:meanlandmark} given a set of mean landmark locations, the affine transformation makes the landmarks detected in the face image close to the mean \cite{amos}.
   
-  \item \textbf{Face Representation:} \\ Transform the pixel values of a face image into a low-dimensional discriminative feature vector, also known as an embeddings. 
-  \item \textbf{Face Clustering:} \\ Apply clustering algorithm.
+  \item \textbf{Face Representation:} Transform the pixel values of a face image into a low-dimensional discriminative feature vector, also known as an embedding. 
+  \item \textbf{Face Clustering:} Apply clustering algorithm.
 \end{enumerate} 
  
 \begin{figure}[!tbp]
@@ -101,9 +99,9 @@ In this section a traditional face detector, HOG, and another based on deep neur
 \quad
 A traditional method for face detection is the Histograms of Oriented Gradients (HOG) descriptors, which utilizes the distribution of local intensity gradients or edge directions to identify appearances and shapes in an image \cite{dalal}. 
 
-HOG divides the image into small grids, where each grid accumulates a histogram of gradient directions or edge orientations over the pixels of the cell. The combination of all the histograms in the cells form the face region. The cells are then normalized for better invariance to illumination, shadowing, and other variations \cite{dalal}. 
+HOG divides the image into small grids, where each grid accumulates a histogram of gradient directions or edge orientations over the pixels of the cell. The cells are then normalized for better invariance to illumination, shadowing, and other variations \cite{dalal}. 
 
-The normalized local histograms of image gradient orientations in the grids are the features and are then trained (typically by a linear classifier) to classify the region of the face in an image \cite{dalal}. When encountering a HOG representation of a new face image as shown in Figure \ref{fig:obama}, the part of the image that looks most similar to a trained HOG detector as shown in Figure \ref{fig:dlibhog} will form the region of the face. 
+The normalized local histograms of image gradient orientations in the grids are the features and are then trained (typically by a linear classifier) to classify the region of the face in an image \cite{dalal}. When encountering a HOG representation of a new face image as shown in Figure \ref{fig:obama}, the part of the image that looks most similar to a trained HOG detector as shown in Figure \ref{fig:dlibhog} will be detected as the region of the face. 
 
 \begin{figure}[!tbp]
   \centering
@@ -122,7 +120,7 @@ The normalized local histograms of image gradient orientations in the grids are 
 
 \subsubsection{Multi-task Cascaded Convolutional Networks}
 \quad
-Face detection and alignment can also be done using covolutional neural networks (CNNs). CNNs are a type of deep neural networks. As shown in Figure \ref{fig:nnflow} a neural network feeds the input into many layers of function compositions followed by a loss function which measures how well the neural network models the data. Each layer is parameterized by a vector or matrix $\theta_{i}$ and the aim is to optimize the loss function iteratively by finding the optimal gradients $\delta L \mathbin{/} \delta  \theta_{i}$ which are computed with the backpropagation \cite{amos}. 
+Face detection and alignment can also be done using covolutional neural networks (CNNs). CNNs are a type of deep neural networks, as shown in Figure \ref{fig:nnflow} a neural network feeds the input into many layers of function compositions followed by a loss function which measures how well the neural network models the data. Each layer is parameterized by a vector or matrix $\theta_{i}$ and the aim is to optimize the loss function iteratively by finding the optimal gradients $\delta L \mathbin{/} \delta  \theta_{i}$ which are computed with the backpropagation \cite{amos}. 
 
 \begin{figure}[!tbp]
  \centering
@@ -134,7 +132,7 @@ Face detection and alignment can also be done using covolutional neural networks
 
 Multi-task Cascaded Convolutional Networks (MTCNN) is a widely used method to predict face and landmark location. The framework has a cascaded (waterfall) structure with three stages of deep CNNs shown in Figure \ref{fig:mtcnn}. \cite{zhang} 
 
-The image is first resized to different scales to build an image pyramid and is the input of the three stages:
+The image is first resized to different scales to build an image pyramid and is the input of the following three stages:
 
 \begin{enumerate}
 \item \textbf{Proposal Network (P-Net):} Obtains candidates that will serve as potential positions of the bounding boxes \cite{chinapas}.
@@ -147,7 +145,7 @@ The image is first resized to different scales to build an image pyramid and is 
 
 \end{enumerate}
 
-Both the predicting the bounding box and facial landmark locations use regression to minimize the Euclidean loss between the candidate positions of the bounding boxes, landmark coordinates and the ground truth. The ground truth of the bounding box is the left, top, height, width of the box. The ground truth of the facial landmarks is the coordinates of the left, right eye, nose, left and right mouth corner \cite{zhang}.
+Both the prediction of the bounding box and facial landmark locations use regression to minimize the Euclidean loss between the candidate positions of the bounding boxes, landmark coordinates and the ground truth. The ground truth of the bounding box is the left, top, height, width of the box. The ground truth of the facial landmarks is the coordinates of the left, right eye, nose, left and right mouth corner \cite{zhang}.
 
 
 \begin{figure}[!tbp]
@@ -161,9 +159,9 @@ Both the predicting the bounding box and facial landmark locations use regressio
 \subsection{Face Representation}
 
 \quad
-Face representation is conceivably the most important component in face clustering. However, challenges occur in real world images due to variations ranging from head poses and illumination conditions to aging and facial expressions. These images are referred in-the-wild images \cite{trigueros}.
+Face representation is conceivably the most important component in face clustering. However, challenges occur in real world images due to variations ranging from head poses and illumination conditions to aging and facial expressions. These images are referred as in-the-wild images \cite{trigueros}.
 
-Traditional techniques include using statistical methods such as Principal Component Analysis (PCA) to represent faces as a combination of eigenvectors \cite{amos}. The top-performing face representation techniques convolutional neural networks (CNNs) \cite{amos} since they are able to achieve very high accuracy by learning robust features due to the availability of large-scale faces in-the-wild datasets on the web \cite{trigueros}.  
+Traditional techniques include using statistical methods such as Principal Component Analysis (PCA) to represent faces as a combination of eigenvectors \cite{amos}. The top-performing face representation techniques use CNNs \cite{amos} since they are able to achieve very high accuracy by learning robust features due to the availability of large-scale in-the-wild face datasets on the web \cite{trigueros}.  
 
 \subsubsection{Convolutional Neural Networks}
 \quad
@@ -173,7 +171,7 @@ Another approach is to learn the features of the face directly by optimizing the
 
 \subsubsection{Triplet Loss Function}
 \quad
-When learning the face features directly, the choice of loss function has a great influence on the accuracy. One of the most used metric is the triplet loss function. The goal is to separate the distance between two aligned matching (positive) face images and an aligned non-matching (negative) face image by a distance margin. The result is a feature vector $f(x)$, known as embeddings, from a face image $x$ to a compact Euclidean feature space in $ \mathbb{R}^{d}$. The distance of the embeddings will be small if the faces are identical and large if the faces are distinct \cite{schroff}.
+When learning the face features directly, the choice of loss function has a great influence on the accuracy. One of the most used metric is the triplet loss function. The goal is to separate the distance between two aligned matching (positive) face images and an aligned non-matching (negative) face image by a distance margin. The result is a feature vector $f(x)$ from a face image $x$ to a compact Euclidean feature space in $ \mathbb{R}^{d}$. The distance of the embeddings will be small if the faces are identical and large if the faces are distinct \cite{schroff}.
 
 
 More specifically, as shown in Figure \ref{fig:bale}. the distance between an anchor face image, $x_{i}^{a}$ is minimized by the loss and will be closer to all other positive face images $x_{i}^{p}$ than the negative face images $x_{i}^{n}$ where the distance is maximized. For each triplet $i$, the following condition needs to be satisfied: $$\Vert f(x_{i}^{a}) - f(x_{i}^{p}) \Vert_{2}^{2} + \alpha < \Vert f(x_{i}^{a}) - f(x_{i}^{n}) \Vert_{2}^{2} $$
@@ -181,7 +179,7 @@ where $\alpha$ is a margin from the positive and negative pairs \cite{trigueros}
 
 For $N$ possible triplets, the loss being minimized is: $$ L = \sum_{i}^{N} \Big[ \Vert f(x_{i}^{a}) - f(x_{i}^{p}) \Vert_{2}^{2} - \Vert f(x_{i}^{a}) - f(x_{i}^{n}) \Vert_{2}^{2} + \alpha\Big]_{+} $$.
 
-Figure \ref{fig:loss} further demonstrates using a neural network to compute the triplet loss and it's gradient is backpropagated through the network to the unique images in the learning step \cite{amos}.
+Figure \ref{fig:loss} further demonstrates using a neural network to compute the triplet loss and it's gradient by backpropagation through the network to the unique images in the learning step \cite{amos}.
 
 \begin{figure}[!tbp]
  \centering
@@ -199,7 +197,7 @@ Figure \ref{fig:loss} further demonstrates using a neural network to compute the
  
 \section{Face Feature Extraction Methods}
 \label{facemethod}
-
+\quad
 The following section examines four open-source state-of-the-art face feature extraction methods for face representation.
 
 \subsection{FaceNet}
@@ -225,15 +223,15 @@ A dataset of about 3 million faces and 7,485 unique identities from a combinatio
 
 \subsection{OpenFace}
 \quad
-OpenFace uses Dlib for face detection and alignment. The input images after alignment are 96 x 96 pixels. OpenFace was trained with 500,000 images from a combination of the CASIA-WebFace and FaceScrub dataset. The face representation is obtained using a modification of FaceNet's architecture, in which the number of parameters are reduced. The resulting feature embedding is a 128-dimensional vector \cite{amos}.
+OpenFace uses Dlib for face detection and alignment. The input images after alignment are 96 x 96 pixels. OpenFace was trained with 500,000 images from a combination of the CASIA-WebFace and FaceScrub dataset. The face representation is obtained using a modification of FaceNet's architecture, in which the number of parameters are reduced. The pre-trained model has an accuracy of $92.92\%$ on the LFW benchmark. The resulting feature embedding is a 128-dimensional vector \cite{amos}.
 
 \subsection{ArcFace}
 \quad
-\cite{deng} introduced a new loss function, additive angular margin (ArcFace), that uses a geometric interpretation for learning the discriminative features for a face representation \cite{deng}. \cite{deng2019}'s implementation uses MTCNN for face detection to get aligned images of 112 x 112 pixels face. Then, ArcFace further adjusts a face image by rotating the image to a straight face as shown in Figure \ref{fig:arcface1}. Consequently, increasing the consistency of the facial feature positions and effectiveness when computing similarities between the embeddings. The resulting embedding is a 512-dimensional vector \cite{deng}.
+\cite{deng} introduced a new loss function, additive angular margin (ArcFace), that uses a geometric interpretation for learning the discriminative features for a face representation \cite{deng}. \cite{deng2019}'s implementation uses MTCNN for face detection to get aligned face images of 112 x 112 pixels. Then, ArcFace further adjusts a face image by rotating the image to a straight face as shown in Figure \ref{fig:arcface1}. Consequently, increasing the consistency of the facial feature positions and effectiveness when computing similarities between the embeddings. The resulting embedding is a 512-dimensional vector \cite{deng}.
 
 A downside of ArcFace is that it cannot compute face representations of images with high intensity of light reflection \cite{chinapas} as shown in Figure \ref{fig:arcface2}.
 
-The pre-trained model ((LResNet100E-IR) used in Section \ref{experiment} is trained on MS1MV2 which is a refinement of the MS-Celeb-1M dataset. The training dataset contains about 10 million images of 100,000 top celebrities selected from one million celebrities in terms of their web appearance frequency \cite{deng}. The model has an accuracy of $0.9982$ on the LFW benchmark \cite{deng2019}.
+The pre-trained model (LResNet100E-IR) used in Section \ref{experiment} is trained on MS1MV2 which is a refinement of the MS-Celeb-1M dataset. The training dataset contains about 10 million images of 100,000 top celebrities selected from one million celebrities in terms of their web appearance frequency \cite{deng}. The model has an accuracy of $99.82\%$ on the LFW benchmark \cite{deng2019}.
 
 \begin{figure}[!tbp]
  \centering
@@ -271,7 +269,7 @@ Hierarchical clustering is a method that merges or splits the clusters successiv
 
 \subsection{Expectation–Maximization}
 
-The Expectation–Maximization (EM) algorithm is based on the Gaussian mixture model (GMM), which is a probabilistic method that assumes all the data points are generated from a mixture of Gaussian distributions with unknown latent parameters (mean, covariance) for each distribution \cite{scikit-learn}. The Gaussian distributions corresponds to the clusters and since the information of which distribution each data point belongs to is unknown, the goal of the EM algorithm is to estimate the latent parameters for each distribution. After randomly initializing the latent parameters, EM executes the following two steps until convergence \cite{scikit-learn}.
+The Expectation–Maximization (EM) algorithm is based on the Gaussian mixture model (GMM), which is a probabilistic method that assumes all the data points are generated from a mixture of Gaussian distributions with unknown latent parameters (mean, covariance) for each distribution \cite{scikit-learn}. The Gaussian distributions correspond to the clusters and since the information of which distribution each data point belongs to is unknown, the goal of the EM algorithm is to estimate the latent parameters for each distribution. After randomly initializing the latent parameters, EM executes the following two steps until convergence \cite{scikit-learn}.
 
 \begin{enumerate}
 \item \textbf{Expectation: } For each data point, compute the probability of it being generated by each latent parameter of the model. Each data point is then assigned to a cluster based on the probability.
@@ -282,7 +280,7 @@ The Expectation–Maximization (EM) algorithm is based on the Gaussian mixture m
 
 \subsection{Birch}
 \quad
-Birch clustering is an efficient data reduction algorithm in which it reduces the input data to a set of subclusters. For a given dataset, the algorithm builds the Characteristic Feature Tree (CFT) where the data points are compressed to a set of  Characteristic Feature nodes (CF Nodes). When a new data point is inserted into the CF Tree, it is merged with the nearest leaf of the subcluster of the root. These subclusters contain the necessary information for clustering \cite{scikit-learn}
+Birch clustering is an efficient data reduction algorithm in which it reduces the input data to a set of subclusters. For a given dataset, the algorithm builds the Characteristic Feature Tree (CFT) where the data points are compressed to a set of  Characteristic Feature nodes (CF Nodes). When a new data point is inserted into the CF Tree, it is merged with the nearest leaf of the subcluster of the root. These subclusters contain the necessary information for clustering \cite{scikit-learn}.
 
 \section{Experiment}
 \label{experiment}
@@ -315,7 +313,7 @@ This dataset consists of $2,180$ unique images of five categories of athletes ob
 \quad
 This dataset consists of $2,065$ unique images of five different categories of professions. It is a combination of a subset of the dataset from Experiment 1 and a new dataset acquired using Wikidata's SPARQL query service. 
 
-Wikidata is an open-source knowledge base for structured data. After choosing the professions and finding their entity IDs, a query was formed to find the images of the people with the corresponding occupations. In order to reduce variation in the dataset, only images of males from North America and Europe were obtained. Since clustering algorithms like K-Means tend to generate similar sized clusters \cite{shi}, the number of images for each occupation were limited to similar sizes. An example of a query for the occupation, manager, can be found in \ref{appen1}. The images were then automatically downloaded using Python. 
+Wikidata is an open-source knowledge base for structured data. After choosing the professions and finding their entity IDs, a query was formed to find the images of the people with the corresponding occupations. In order to reduce variation in the dataset, only images of males from North America and Europe were obtained. Since clustering algorithms like K-Means tend to generate similar sized clusters \cite{shi}, the number of images for each occupation were limited to similar sizes. Due to the limited data source, the age of the face images would not be controlled. An example of a query for the occupation, manager, can be found in Appendix \ref{appen1}. The images were then automatically downloaded using Python. 
 
 As shown in Figure \ref{fig:prof}, opposed to the dataset from Experiment 1, the images from Wikidata are in-the-wild with varying head poses, illumination conditions, and other variations. The following shows the distribution of images:
 
@@ -363,7 +361,7 @@ This dataset consists of $4,593$ unique images of 11 different categories of pro
 
 \subsection{Set-Up}
 \quad
-In the experiments faces of people are clustered by profession using different clustering algorithms. Since the number of different professions are known, the number of clusters corresponds to the number of professions in each experiment. The clustering algorithms were applied to the feature embeddings extracted from the methods described in Section \ref{facemethod}. Pre-trained models from each method was used in the experiment. 
+In the experiments faces of people were clustered by profession using different clustering algorithms. Since the number of different professions are known, the number of clusters corresponds to the number of professions in each experiment. The clustering algorithms were applied to the feature embeddings extracted from the methods described in Section \ref{facemethod}. Pre-trained models from each method was used in the experiment. 
 
 \subsection{Framework}
 \quad
@@ -400,13 +398,13 @@ Table \ref{table:1} shows which face detection method was used for each method a
 \label{table:1}
 \end{table}
 
-\item \textbf{Extract Feature Embeddings: } The embeddings were extracted using pre-trained models. Table \ref{table:2} shows the details of the accuracy based on the LWF benchmark and training data size of the pre-trained models.
+\item \textbf{Extract Feature Embeddings: } The embeddings were extracted using pre-trained models. Table \ref{table:2} shows the details of the accuracy based on the LFW benchmark and training data size of the pre-trained models.
 
 \begin{table}[H]
 %\centering
 \begin{tabular}{||c c c||} 
  \hline
-  Method & LWF Accuracy & Training Dataset Size\\ [0.5ex]
+  Method & LFW Accuracy & Training Dataset Size\\ [0.5ex]
  \hline\hline
  \textbf{FaceNet} & 0.9965 & 3.31 million images, 9,121 identitie\\ 
  \hline
@@ -419,11 +417,11 @@ Table \ref{table:1} shows which face detection method was used for each method a
  \textbf{Human-Level} \cite{amos} & 0.9753 &\\
  \hline
 \end{tabular}
-\caption{Accuracy based on the LWF benchmark and training data size of the pre-trained models \cite{sandberg}, \cite{geitgey}, \cite{amos2016}, \cite{deng2019}.}
+\caption{Accuracy based on the LFW benchmark and training data size of the pre-trained models \cite{sandberg}, \cite{geitgey}, \cite{amos2016}, \cite{deng2019}.}
 \label{table:2}
 \end{table}
 
-The embeddings of FaceNet and ArcFace both have 512 features and the embeddings of Dlib and OpenFace have 128 features. The embeddings and corresponding labels (identity and profession) of are also saved. Table \ref{table:3} shows the dimensions of the feature embeddings extracted from each method.
+The embeddings of FaceNet and ArcFace both have 512 features and the embeddings of Dlib and OpenFace have 128 features. The embeddings and corresponding labels (identity and profession) are also saved. Table \ref{table:3} shows the dimensions of the feature embeddings extracted from each method.
 
 \begin{table}[H]
 \centering
@@ -437,27 +435,27 @@ The embeddings of FaceNet and ArcFace both have 512 features and the embeddings 
  \hline
  \textbf{OpenFace} & 2,180 x 128 & 2,065 x 128 & 4,593 x 128\\
  \hline
- \textbf{ArcFace} & 2,180 x 510 & 2,065 x 512 & 4,593 x 512\\
+ \textbf{ArcFace} & 2,180 x 512 & 2,065 x 512 & 4,593 x 512\\
  \hline
 \end{tabular}
 \caption{Dimensions of the feature embeddings extracted from each method}
 \label{table:3}
 \end{table}
 
-\item \textbf{Profession Clustering: } The clustering algorithms from Section \ref{clustering} were applied to the feature embeddings. The four images in Figure \ref{fig:plot1} belong to two professions. After detecting the faces and representing them as embeddings, Figure \ref{fig:plot2} shows the clustering results. The features are reduced to 2-D embeddings by PCA for visualization.
+\item \textbf{Professional Domain Clustering of Faces: } The clustering algorithms from Section \ref{clustering} were applied to the feature embeddings. The four images in Figure \ref{fig:plot1} belong to two professions. After detecting the faces and representing them as embeddings, Figure \ref{fig:plot2} shows the clustering results. The features were reduced to 2-D embeddings by PCA for visualization.
 \end{enumerate}
 
 \begin{figure}[h!]
   \centering
-  \begin{minipage}[b]{0.3\textwidth}
+  \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{figures/plot2.png}
     \caption{The goal is to cluster the professions of the aligned images.}
     \label{fig:plot1}
   \end{minipage}
   \hfill
-  \begin{minipage}[b]{0.6\textwidth}
+  \begin{minipage}[b]{0.55\textwidth}
     \includegraphics[width=\textwidth]{figures/plot.png}
-    \caption{PCA plot after clustering using the embeddings of the faces from Figure \ref{fig:plot1}}
+    \caption{PCA plot after clustering using the embeddings of the faces from Figure \ref{fig:plot1}.}
     \label{fig:plot2}
   \end{minipage}
 \end{figure}
@@ -477,12 +475,12 @@ Since the datasets provide the labels of the correct profession for each face im
     \label{fig:fmeasure}
 \end{figure}
 \quad
-Suppose $L = \{l_{1},...,l_{n}\}$ contains the actual labels for each face and $C = \{c_{1},...,c_{n}\}$ are the labels from the output of the clustering algorithm. For example, shown in Figure \ref{fig:fmeasure}, the actual labels are in the set $$L = \{\{A1, A2, A3\}, \{B1\}, \{U1, U2\}\}$$ and the labels from the output of the clustering algorithm are in the set $$C = \{\{A1, A2, B1\}, \{A3, U1, U2 \}\}$$
-Then the set of face pairs from the actual labels is $$P = \{(A1, A2), (A1, A3), (A2, A3), (U1, U2)\}$$ 
-The set of face pairs from the labels of the cluster algorithm is $$Q = \{(A1, A2), (A1, B1), (A2, B1), (A3, U1), (A3, U2), (U1, U2)\}$$
-For each face pair $(i, j)$ of each cluster \cite{thesis}: \\
+Suppose $L$ contains a set of actual clusters and $C$ contains contains a set of clusters from the output of the clustering algorithm. For example, shown in Figure \ref{fig:fmeasure}, $$L = \{\{A1, A2, A3\}, \{B1\}, \{U1, U2\}\}$$ $$C = \{\{A1, A2, B1\}, \{A3, U1, U2 \}\}$$
+Then the set of face pairs from the actual clusters, $L$, is $$P = \{(A1, A2), (A1, A3), (A2, A3), (U1, U2)\}$$ 
+The set of face pairs from the clusters of the cluster algorithm, $C$, is $$Q = \{(A1, A2), (A1, B1), (A2, B1), (A3, U1), (A3, U2), (U1, U2)\}$$
+For each face pair $(i, j)$ \cite{thesis}: \\
 \begin{itemize}
-\item \textbf{True Positive (TP):} The number of face pairs $(i, j)$ that are correctly clustered into the same cluster.
+\item \textbf{True Positives (TP):} The number of face pairs $(i, j)$ that are correctly clustered into the same cluster.
 $$TP = | \{(i, j) \ \textrm{where} \ c_{i} = c_{j} \ \textrm{and} \ l_{i} = l_{j}\}|$$
 
 In Figure \ref{fig:fmeasure}, $(A1, A2), (U1, U2)$ are matching pairs and
@@ -765,7 +763,7 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
 \begin{figure}[H]
  \centering
     \includegraphics[width=\columnwidth]{figures/manager.png}
-    \caption{Experiment 2: Cluster of Managers and Politicians}
+    \caption{Experiment 2: \textbf{True Positives} using FaceNet and K-Means. Cluster of Managers and Politicians}
     \label{fig:ex2tp}
 \end{figure}
 
@@ -887,7 +885,7 @@ Method & FaceNet & Dlib & OpenFace & ArcFace\\ [0.5ex]
  \centering
     \includegraphics[width=\columnwidth]{figures/lawyers.png}
     \includegraphics[width=\columnwidth]{figures/actor.png}
-    \caption{Experiment 3: Cluster of Sport Coaches, Musicians, Lawyers, Entrepreneurs, and Actors}
+    \caption{Experiment 3: \textbf{True Positives} using FaceNet and K-Means. Cluster of Sport Coaches, Musicians, Lawyers, Entrepreneurs, and Actors}
     \label{fig:ex2tp}
 \end{figure}
 
@@ -913,25 +911,28 @@ As shown in Table \ref{table:ex1}, feature extraction using ArcFace provided the
 
 %The results from Experiment 1 show that either K-Means, Birch, and HAC clustering resulted in the highest F-Measures depending on the feature extraction method. For both FaceNet and ArcFace, K-Means clustering yielded the highest F-measures of 0.478 and 0.516 respectively. 
 
-Figure \ref{fig:ex1tp} shows a subset of the clustering results of the true positives derived from using FaceNet and K-Means clustering.  Figure \ref{fig:ex1fp} shows the false positives and Figure \ref{fig:ex1fn} shows the false negatives. Qualitatively speaking, the results makes sense as the face pairs from Figure \ref{fig:ex1fp} resemble similar features and the face pairs from Figure \ref{fig:ex1fn} have large dissimilarities due to variation in ethnicity and appearances.
+Figure \ref{fig:ex1tp} shows a subset of the clustering results of the true positives derived from using FaceNet and K-Means clustering.  Figure \ref{fig:ex1fp} shows the false positives and Figure \ref{fig:ex1fn} shows the false negatives. Qualitatively speaking, the results make sense as the face pairs from Figure \ref{fig:ex1fp} resemble similar features and the face pairs from Figure \ref{fig:ex1fn} have large dissimilarities due to variation in ethnicity and appearances.
 
 \subsubsection{Experiment 2}
 \quad
 Even though Experiment 1 and Experiment 2 had a similar number of face images (2,180 and 2,065) and the same number of professions and clusters, the results differ significantly when clustering the embeddings from ArcFace. More specifically, the combination of ArcFace and K-Means clustering has a F-Measure of 0.294 compared to 0.561 obtained from Experiment 1. 
 
-The main difference between the datasets from Experiment 1 and Experiment 2 is that Experiment 1 consists of high-quality head shots of athletes, in which the variation of position, lighting, facial expression,and age of the faces are low. Whereas Experiment 2 consists of in-the-wild images and varying professions. As mentioned in Section 3.4, ArcFace is not good at computing face representations of images with high intensity of light reflection. Therefore, this may be a contributing factor to the low F-Measure.
+The main difference between the datasets from Experiment 1 and Experiment 2 is that Experiment 1 consists of high-quality head shots of athletes, in which the variation of position, lighting, facial expression,and age of the faces are low. Whereas Experiment 2 consists of in-the-wild images and varying professions. As mentioned in Section 3.4, ArcFace is not good at computing face representations of images with high intensity of light reflection. Therefore, this may be a contributing factor to the lower F-Measure.
 
 Nevertheless, the results from FaceNet are consistent and the highest F-Measure, 0.443, from Experiment 2 was obtained by the combination of FaceNet and EM clustering.
 
 \subsubsection{Experiment 3}
 \quad
-Table \ref{table:ex3} shows that the F-Measure of Experiment 3 dropped by half compared to Experiment 1 and 2 with the highest F-Measure of 0.210 obtained from the combination of FaceNet and EM clustering. This may be due the increasing variations due to doubling the data size, the number of professions and clusters.
+Table \ref{table:ex3} shows that the F-Measure of Experiment 3 dropped by half compared to Experiment 1 and 2 with the highest F-Measure of 0.210 obtained from the combination of FaceNet and EM clustering. This may be due the increasing variations by doubling the data size, the number of professions and clusters.
 
 Figure \ref{fig:ex2tp} shows the clusters of a subset of the true positives. It can be observed that the age variation is high, particularly, the faces of entrepreneurs and actors are younger than the sport coaches and lawyers. 
 
 Shown in Figure \ref{fig:ex2fp}, a younger Sport Coach, d-2) Nicolas Manaudou  was clustered with the fighting champion d-1) Leonardo Santos. Since the faces of the dataset of athletes consists of younger faces, this clustering decision is qualitatively reasonable. A similar reasoning can be applied to the false negatives shown in Figure \ref{fig:ex2fn}.
 
-Table \ref{table:runtime} shows the runtime of detecting and extracting the features from the raw input images. FaceNet was the most efficient for Experiment 1 and 2, while OpenFace was the most efficient for Experiment 3. On the other hand, Dlib had the longest runtime for all the experiments.
+\subsubsection{Runtime}
+\quad
+Table \ref{table:runtime} shows the runtime of detecting and extracting the features from the raw input images. FaceNet was the most efficient for Experiment 1 and 2, while OpenFace was the most efficient for Experiment 3. On the other hand, Dlib had the longest runtime for all the experiments. Therefore, although Dlib had higher accuracies in the experiments, it is not efficient for larger datasets. Moreover, even though OpenFace had lower accuracies in the experiments, it is efficient for larger datasets.
+
 
 \begin{table}[h!]
 \centering
@@ -954,15 +955,15 @@ Feature Extraction Method & Experiment 1 & Experiment 2 & Experiment 3\\ [0.5ex]
 
 \section{Conclusion}
 \quad
-Overall, the results show that when the raw input images are head shots with low variation, ArcFace is a good choice for the feature extraction method as it provided the highest accuracy. However, when the raw images are in-the-wild with many variations, then FaceNet is a better choice in terms of consistency, accuracy, and efficiency.  
+Overall, the results show that when the raw input images are head shots with low variations, ArcFace is a good choice for the feature extraction method as it provided the highest accuracy. However, when the raw images are in-the-wild with many variations, then FaceNet is a better choice in terms of consistency, accuracy, and efficiency. 
 
-Although both K-Means and EM Clustering provided the highest accuracy for the experiments, the runtime shows that K-Means clustering is a lot more efficient. As a result, it is recommended to use FaceNet as the feature extraction method and K-Means clustering for a similar task.
+Although both K-Means and EM Clustering provided the highest accuracy for the experiments, the runtime shows that K-Means clustering is a lot more efficient. As a result, it is recommended to use FaceNet as the feature extraction method and K-Means clustering if the dataset is large.
 
-The highest F-Measure 0.516 from Experiment 1 and 0.443 from Experiment 2 indicate a positive correlation between the one's facial features and professional domain. The highest F-Measure of 0.210 from Experiment 3 indicates a slight correlation.
+The highest F-Measure 0.516 from Experiment 1 and 0.443 from Experiment 2 indicate a positive correlation between facial features and the person's professional domain. The highest F-Measure of 0.210 from Experiment 3 indicates a slight correlation.
 
-Unlike clustering faces to recognize a person’s identity, it is not essential to use in-the-wild images to determine a person’s profession from their face features. The results would be stronger if the dataset was not in-the-wild and could be controlled to have more high-quality head shots of faces. However, since the available face images are taken at public events, this would be difficult to achieve.  
+Unlike clustering faces to recognize a person’s identity, it is not essential to use in-the-wild images to determine a person’s profession from their face features. The results would be stronger if the dataset was not in-the-wild and could be controlled to have more high-quality head shots of faces with low variation. However, since the available face images are taken at public events, this would be difficult to achieve.  
 
-In summary, the results show qualitatively and quantitatively that there is a slight correlation between one’s facial feature and their profession and that FaceNet combined with K-Means or EM clustering yields good clustering results.
+In summary, the results show qualitatively and quantitatively that there is a slight correlation between facial features and the person's profession and that FaceNet combined with K-Means or EM clustering yields good clustering results.
 
 \begin{appendices}
 \section{SPARQL Query}
