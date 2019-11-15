@@ -1,5 +1,4 @@
-# Master_Project
-A Comparison of Facial Feature Extraction Methods based on Professional Domain Clustering
+## A Comparison of Facial Feature Extraction Methods based on Professional Domain Clustering
 
 Motivated by researches in the social sciences and computational methods,
 the correlation between facial features and professional talents are examined
