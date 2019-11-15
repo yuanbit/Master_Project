@@ -1,6 +1,3 @@
-# pip install sparqlwrapper
-# https://rdflib.github.io/sparqlwrapper/
-
 ######### Download images of various professions from Wikidata ###############
 from SPARQLWrapper import SPARQLWrapper, JSON
 import re
